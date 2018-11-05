@@ -13,3 +13,6 @@ then push dev
 PS you can push or not for the personnal branch to 
 remote personnal branch, it depends on you for the 
 convience of coding
+
+Change to be done:
+generate N automatically   T2 customers
