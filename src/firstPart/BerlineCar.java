@@ -4,11 +4,13 @@ public class BerlineCar extends Car {
 	
 	private int seatNum;
 	private String idCar;
+	private static int counter = 0;
 
-	public BerlineCar(String idCar, int seatNum, double[] positionGps, int availableSeatNum, int N) {
+	public BerlineCar(String idCar, int seatNum, double[] positionGps, int availableSeatNum) {
 		super(idCar, seatNum, positionGps, availableSeatNum);
 		this.seatNum = 4;
-		this.idCar = "Berline"+N;
+		BerlineCar.counter++;
+		this.idCar = "Berline"+counter;
 		// TODO Auto-generated constructor stub
 	}
 	public int getSeatNum() {

@@ -1,16 +1,20 @@
 package firstPart;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public abstract class Car {
 	
 	/**
-	 * StandardN how to generate N is a trchnical question
+	 * StandardN will calculate automatically
 	 */
 	private String idCar;
 	private int seatNum;
 	private double []positionGps;
 	private int availableSeatNum;
+	private List<Driver> owners = new ArrayList<>();
+	private int cuurentDriver;
 	
 	/**
 	 * from resource
