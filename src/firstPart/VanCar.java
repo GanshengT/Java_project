@@ -4,10 +4,13 @@ public class VanCar extends Car {
 	
 	private int seatNum;
 	private String idCar;
-	public VanCar(int N) {
-		super();
+
+
+	public VanCar(String idCar, int seatNum, double[] positionGps, int availableSeatNum, int N) {
+		super(idCar, seatNum, positionGps, availableSeatNum);
 		seatNum = 6;
 		idCar = "Van"+N;
+		// TODO Auto-generated constructor stub
 	}
 	public int getSeatNum() {
 		return seatNum;

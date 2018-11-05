@@ -45,10 +45,16 @@ public abstract class Car {
 		return "Car [idCar=" + idCar + ", seatNum=" + seatNum + ", positionGps=" + Arrays.toString(positionGps)
 				+ ", availableSeatNum=" + availableSeatNum + "]";
 	}
-
-	public Car(String idCar2, int seatNum2, double[] positionGps2, int availableSeatNum2) {
-		// TODO Auto-generated constructor stub
+	
+	
+	public Car(String idCar, int seatNum, double[] positionGps, int availableSeatNum) {
+		super();
+		this.idCar = idCar;
+		this.seatNum = seatNum;
+		this.positionGps = positionGps;
+		this.availableSeatNum = availableSeatNum;
 	}
+	
 
 
 
