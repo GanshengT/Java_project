@@ -1,6 +1,7 @@
 package firstPart;
 
-import java.util.Random;
+
+import java.util.*;
 
 public class Driver {
 	private String name;
@@ -8,6 +9,9 @@ public class Driver {
 	private int driverId;
 	private String status;
 	private Boolean ownership;
+	private int rideNum;
+	private double moneyCashed;
+	private List<Integer> markList = new ArrayList<>();
 	/**
 	 * accept method change status to on a ride
 	 */
