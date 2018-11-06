@@ -7,8 +7,8 @@ import java.util.List;
 public class CreateStandardCar extends CreateCar {
 
 	@Override
-	protected Car createCarMethod(String idCar, int seatNum, double[] positionGps, int availableSeatNum, int N) {
-		return new StandardCar(idCar, seatNum, positionGps, availableSeatNum);
+	protected Car createCarMethod(AreaUsed areaUsed) {
+		return new StandardCar(areaUsed);
 	}
 
 

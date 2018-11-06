@@ -2,14 +2,13 @@ package firstPart;
 
 public class VanCar extends Car {
 	
-	private int seatNum;
+	private static int seatNum = 6;
 	private String idCar;
 	private static int counter = 0;
 
 
-	public VanCar(String idCar, int seatNum, double[] positionGps, int availableSeatNum) {
-		super(idCar, seatNum, positionGps, availableSeatNum);
-		this.seatNum = 6;
+	public VanCar(AreaUsed areaUsed) {
+		super(areaUsed);
 		VanCar.counter++;
 		idCar = "Van"+counter;
 		// TODO Auto-generated constructor stub

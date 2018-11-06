@@ -11,7 +11,7 @@ public abstract class Car {
 	 */
 	private String idCar;
 	private int seatNum;
-	private double []positionGps;
+	private AreaUsed areaUsed;
 	private int availableSeatNum;
 	private List<Driver> owners = new ArrayList<>();
 	private int cuurentDriver;
@@ -31,12 +31,7 @@ public abstract class Car {
 	}
 	public void setSeatNum(int seatNum) {
 		this.seatNum = seatNum;
-	}
-	public double[] getPositionGps() {
-		return positionGps;
-	}
-	public void setPositionGps(double[] positionGps) {
-		this.positionGps = positionGps;
+	
 	}
 	public int getAvailableSeatNum() {
 		return availableSeatNum;
@@ -44,19 +39,11 @@ public abstract class Car {
 	public void setAvailableSeatNum(int availableSeatNum) {
 		this.availableSeatNum = availableSeatNum;
 	}
-	@Override
-	public String toString() {
-		return "Car [idCar=" + idCar + ", seatNum=" + seatNum + ", positionGps=" + Arrays.toString(positionGps)
-				+ ", availableSeatNum=" + availableSeatNum + "]";
-	}
+
 	
 	
-	public Car(String idCar, int seatNum, double[] positionGps, int availableSeatNum) {
-		super();
-		this.idCar = idCar;
-		this.seatNum = seatNum;
-		this.positionGps = positionGps;
-		this.availableSeatNum = availableSeatNum;
+	public Car(AreaUsed areaUsed) {
+		this.areaUsed = areaUsed;
 	}
 	
 
