@@ -7,8 +7,10 @@ public class MyUber {
 	private int numVanCar;
 	private int numDriver;
 	private int numCustomer;
-	private GPSLocation centerLocation;
+	//private GPSLocation centerLocation;
 	private AreaUsed areaUsed;
+	private String[] nameList =new String[numCustomer];
+	private String[] surnameList = new String[numCustomer];
 	
 	private List<Car> listOfCar = new ArrayList<>();
 	private List<Car> listOfStandardCar = new ArrayList<>();
@@ -55,6 +57,16 @@ public class MyUber {
 		
 		return listOfDriver;
 		
+	}
+	
+	/**
+	 * generate customers 
+	 */
+	public List<Customer> createCostomerList(){
+		for(int i = 0; i<numCustomer;i++) {
+			listOfCustomer.add(new Customer(nameList[i],surnameList[i]));
+		}
+		return listOfCustomer;
 	}
 	
 	
