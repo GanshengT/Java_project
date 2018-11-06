@@ -14,7 +14,8 @@ public abstract class Car {
 	private AreaUsed areaUsed;
 	private int availableSeatNum;
 	private List<Driver> owners = new ArrayList<>();
-	private int cuurentDriver;
+	private int currentDriver;
+	private GPSLocation carLocation;
 	
 	/**
 	 * from resource
@@ -39,11 +40,22 @@ public abstract class Car {
 	public void setAvailableSeatNum(int availableSeatNum) {
 		this.availableSeatNum = availableSeatNum;
 	}
-
-	
+	public AreaUsed getAreaUsed() {
+		return areaUsed;
+	}
+	public void setAreaUsed(AreaUsed areaUsed) {
+		this.areaUsed = areaUsed;
+	}
+	public GPSLocation getCarLocation() {
+		return carLocation;
+	}
+	public void setCarLocation(GPSLocation carLocation) {
+		this.carLocation = carLocation;
+	}
 	
 	public Car(AreaUsed areaUsed) {
 		this.areaUsed = areaUsed;
+		this.carLocation = LocationUtils.GetRandomLocation(areaUsed.getCenter(), areaUsed.getRadius());
 	}
 	
 

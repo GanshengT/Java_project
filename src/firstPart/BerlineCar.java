@@ -5,6 +5,7 @@ public class BerlineCar extends Car {
 	private static int seatNum = 4;
 	private String idCar;
 	private static int counter = 0;
+	
 
 	public BerlineCar(AreaUsed areaUsed) {
 		super(areaUsed);
