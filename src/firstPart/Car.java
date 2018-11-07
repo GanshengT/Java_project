@@ -2,7 +2,9 @@ package firstPart;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+
 
 public abstract class Car {
 	
@@ -76,16 +78,40 @@ public abstract class Car {
 		Car.nonAssignedDrivers = nonAssignedDrivers;
 	}
 	public void AssignDriver(List<Driver> listOfDriver) {
+		//System.out.println(Car.nonAssignedDrivers.get(0).getName());
 		owners.add(Car.nonAssignedDrivers.get(0));
+		Car.nonAssignedDrivers.remove(0);
+		//System.out.println(Car.nonAssignedDrivers.get(0).getName());
+		Iterator <Driver> iter = Car.nonAssignedDrivers.iterator();
+		while (iter.hasNext()) {
+			Driver item = iter.next();
+			System.out.println(item.getName());
+			System.out.println(item.getOwnership());
+			if (item.getOwnership() == false) {
+				owners.add(item);
+				System.out.println(owners.size());
+				iter.remove();
+			}
+			else {
+				System.out.println("Assignment completed");
+			}
+		}
+
+		/**
+		 * 
+		 *
 		for(Driver driver : nonAssignedDrivers) {
 			if (driver.getOwnership() == false) {
+				System.out.println(driver.getName());
 				owners.add(driver);
 				nonAssignedDrivers.remove(driver);
+				System.out.println(Car.nonAssignedDrivers.get(0).getName());
 			}
 			else {
 				System.out.println("assignment for this car is done");;
 			}
 		}
+		*/
 		
 	}
 	

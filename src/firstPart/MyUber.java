@@ -1,7 +1,6 @@
 package firstPart;
 import java.io.*;
 import java.util.*;
-import org.dtools.ini.*;
 import org.ini4j.*;
 
 public class MyUber {
@@ -33,6 +32,8 @@ public class MyUber {
 	 * the create car method might not be used
 	 * @return
 	 */
+	
+	
 	public void createStandardCarList(){
 
 		CreateCar createStandardCar = new CreateStandardCar();
@@ -42,6 +43,158 @@ public class MyUber {
 		}
 	}
 	
+	public int getNumStandardCar() {
+		return numStandardCar;
+	}
+
+	public void setNumStandardCar(int numStandardCar) {
+		this.numStandardCar = numStandardCar;
+	}
+
+	public int getNumBerlineCar() {
+		return numBerlineCar;
+	}
+
+	public void setNumBerlineCar(int numBerlineCar) {
+		this.numBerlineCar = numBerlineCar;
+	}
+
+	public int getNumVanCar() {
+		return numVanCar;
+	}
+
+	public void setNumVanCar(int numVanCar) {
+		this.numVanCar = numVanCar;
+	}
+
+	public int getNumDriver() {
+		return numDriver;
+	}
+
+	public void setNumDriver(int numDriver) {
+		this.numDriver = numDriver;
+	}
+
+	public int getNumCustomer() {
+		return numCustomer;
+	}
+
+	public void setNumCustomer(int numCustomer) {
+		this.numCustomer = numCustomer;
+	}
+
+	public Ini getIni() {
+		return ini;
+	}
+
+	public void setIni(Ini ini) {
+		this.ini = ini;
+	}
+
+	public AreaUsed getAreaUsed() {
+		return areaUsed;
+	}
+
+	public void setAreaUsed(AreaUsed areaUsed) {
+		this.areaUsed = areaUsed;
+	}
+
+	public String[] getCustomerNameList() {
+		return customerNameList;
+	}
+
+	public void setCustomerNameList(String[] customerNameList) {
+		this.customerNameList = customerNameList;
+	}
+
+	public String[] getCustomerSurnameList() {
+		return customerSurnameList;
+	}
+
+	public void setCustomerSurnameList(String[] customerSurnameList) {
+		this.customerSurnameList = customerSurnameList;
+	}
+
+	public String[] getDriverNameList() {
+		return driverNameList;
+	}
+
+	public void setDriverNameList(String[] driverNameList) {
+		this.driverNameList = driverNameList;
+	}
+
+	public String[] getDriverSurnameList() {
+		return driverSurnameList;
+	}
+
+	public void setDriverSurnameList(String[] driverSurnameList) {
+		this.driverSurnameList = driverSurnameList;
+	}
+
+	public Boolean[] getDriverOwnershipList() {
+		return driverOwnershipList;
+	}
+
+	public void setDriverOwnershipList(Boolean[] driverOwnershipList) {
+		this.driverOwnershipList = driverOwnershipList;
+	}
+
+	public List<Car> getListOfCar() {
+		return listOfCar;
+	}
+
+	public void setListOfCar(List<Car> listOfCar) {
+		this.listOfCar = listOfCar;
+	}
+
+	public List<Car> getListOfStandardCar() {
+		return listOfStandardCar;
+	}
+
+	public void setListOfStandardCar(List<Car> listOfStandardCar) {
+		this.listOfStandardCar = listOfStandardCar;
+	}
+
+	public List<Car> getListOfBerlineCar() {
+		return listOfBerlineCar;
+	}
+
+	public void setListOfBerlineCar(List<Car> listOfBerlineCar) {
+		this.listOfBerlineCar = listOfBerlineCar;
+	}
+
+	public List<Car> getListOfVanCar() {
+		return listOfVanCar;
+	}
+
+	public void setListOfVanCar(List<Car> listOfVanCar) {
+		this.listOfVanCar = listOfVanCar;
+	}
+
+	public List<Driver> getListOfDriver() {
+		return listOfDriver;
+	}
+
+	public void setListOfDriver(List<Driver> listOfDriver) {
+		this.listOfDriver = listOfDriver;
+	}
+
+	public List<Boolean> getListOfOwnership() {
+		return listOfOwnership;
+	}
+
+	public void setListOfOwnership(List<Boolean> listOfOwnership) {
+		this.listOfOwnership = listOfOwnership;
+	}
+
+	public List<Customer> getListOfCustomer() {
+		return listOfCustomer;
+	}
+
+	public void setListOfCustomer(List<Customer> listOfCustomer) {
+		this.listOfCustomer = listOfCustomer;
+	}
+
 	public void createBerlineCarList(){
 
 		CreateCar createBerlineCar = new CreateBerlineCar();
@@ -68,7 +221,10 @@ public class MyUber {
 	}
 	
 	public void createDriverList(){
-		for(int i = 0; i<numDriver;i++) {
+		for(int i = 0; i<numDriver; i++) {
+			//System.out.println(i);
+			//System.out.println(driverNameList[0]);
+			//System.out.println(driverOwnershipList.length);
 			listOfDriver.add(new Driver(driverNameList[i],driverSurnameList[i],driverOwnershipList[i]));
 		}
 
@@ -107,9 +263,14 @@ public class MyUber {
 		this.customerSurnameList =section.getAll("customersurname", String[].class);
 		this.driverNameList =section.getAll("drivername", String[].class);
 		this.driverSurnameList =section.getAll("driversurname", String[].class);
-		
+		this.driverOwnershipList = section.getAll("ownership", Boolean[].class);
 		this.initialisation();
 
+	}
+	
+	public static void main(String[] args) throws InvalidFileFormatException, FileNotFoundException, IOException {
+		MyUber myUber = new MyUber("my_uber.ini");
+		System.out.println(myUber.getNumBerlineCar());
 	}
 	
 }
