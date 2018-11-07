@@ -263,7 +263,9 @@ public class MyUber {
 		this.customerSurnameList =section.getAll("customersurname", String[].class);
 		this.driverNameList =section.getAll("drivername", String[].class);
 		this.driverSurnameList =section.getAll("driversurname", String[].class);
+
 		this.driverOwnershipList = section.getAll("ownership", Boolean[].class);
+
 		this.initialisation();
 
 	}
