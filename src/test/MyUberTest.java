@@ -15,6 +15,7 @@ public class MyUberTest extends MyUber {
 	@Test
 	public void testMyUber() throws InvalidFileFormatException, FileNotFoundException, IOException {
 		MyUber myUber = new MyUber("my_uber.ini");
+		assertTrue(myUber.getNumBerlineCar() == 2) ;
 		fail("Not yet implemented");
 	}
 
