@@ -17,6 +17,7 @@ public class MyUber {
 	private String[] customerSurnameList = new String[numCustomer];
 	private String[] driverNameList =new String[numDriver];
 	private String[] driverSurnameList = new String[numDriver];
+	private Boolean[] driverOwnershipList = new Boolean[numDriver];
 	
 	private List<Car> listOfCar = new ArrayList<>();
 	private List<Car> listOfStandardCar = new ArrayList<>();
@@ -41,24 +42,22 @@ public class MyUber {
 		}
 	}
 	
-	public List<Car> createBerlineCarList(){
+	public void createBerlineCarList(){
 
 		CreateCar createBerlineCar = new CreateBerlineCar();
 		for(int j = 0;j<numBerlineCar; j++) {
 			listOfCar.add(createBerlineCar.createCarMethod(areaUsed));
 			listOfBerlineCar.add(createBerlineCar.createCarMethod(areaUsed));
 		}
-		return listOfBerlineCar;
 	}	
 	
-	public List<Car> createVanCarList(){
+	public void createVanCarList(){
 
 		CreateCar createVanCar = new CreateVanCar();
 		for(int j = 0;j<numVanCar; j++) {
 			listOfCar.add(createVanCar.createCarMethod(areaUsed));
 			listOfVanCar.add(createVanCar.createCarMethod(areaUsed));
 		}
-		return listOfVanCar;
 	}
 	
 	public void assignDriver(List<Driver> listOfDriver) {
@@ -68,11 +67,11 @@ public class MyUber {
 		}
 	}
 	
-	public List<Driver> createDriverList(){
+	public void createDriverList(){
 		for(int i = 0; i<numDriver;i++) {
-			listOfDriver.add(new Driver(driverNameList[i],driverSurnameList[i],));
+			listOfDriver.add(new Driver(driverNameList[i],driverSurnameList[i],driverOwnershipList[i]));
 		}
-		return listOfDriver;
+
 	}
 	
 	/**
@@ -100,14 +99,17 @@ public class MyUber {
 		this.numStandardCar = Integer.parseInt(section.get("standardCarNumber"));
 		this.numBerlineCar = Integer.parseInt(section.get("berlineCarNumber"));
 		this.numVanCar = Integer.parseInt(section.get("vanCarNumber"));
+		this.numDriver = Integer.parseInt(section.get("driverNumber"));
 		this.areaUsed = new AreaUsed(new GPSLocation(Double.parseDouble(section.get("longitude")),Double.parseDouble(section.get("latitude"))),
 									Double.parseDouble(section.get("radius"))) ; 
+
 		this.customerNameList =section.getAll("customername", String[].class);
 		this.customerSurnameList =section.getAll("customersurname", String[].class);
 		this.driverNameList =section.getAll("drivername", String[].class);
 		this.driverSurnameList =section.getAll("driversurname", String[].class);
 		
 		this.initialisation();
+
 	}
 	
 }
