@@ -82,7 +82,7 @@ public class MyUber {
 	 */
 	public void createCostomerList(){
 		for(int i = 0; i<numCustomer;i++) {
-			listOfCustomer.add(new Customer(nameList[i],surnameList[i]));
+			listOfCustomer.add(new Customer(customerNameList[i],customerSurnameList[i]));
 		}
 	}
 	
@@ -95,8 +95,8 @@ public class MyUber {
 		this.numVanCar = Integer.parseInt(section.get("vanCarNumber"));
 		this.areaUsed = new AreaUsed(new GPSLocation(Double.parseDouble(section.get("longitude")),Double.parseDouble(section.get("latitude"))),
 									Double.parseDouble(section.get("radius"))) ; 
-		nameList =section.getAll("name", String[].class);
-		surnameList =section.getAll("surname", String[].class);
+		customerNameList =section.getAll("name", String[].class);
+		customerSurnameList =section.getAll("surname", String[].class);
 	}
 	
 }
