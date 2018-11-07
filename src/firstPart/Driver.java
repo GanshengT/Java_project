@@ -8,7 +8,11 @@ public class Driver {
 	private String surName;
 	private int driverId;
 	private String status;
+	/**
+	 * ownership= true means it has its own car
+	 */
 	private Boolean ownership;
+	private static int counter = 0;
 	private int rideNum;
 	private double moneyCashed;
 	private List<Integer> markList = new ArrayList<>();
@@ -28,13 +32,13 @@ public class Driver {
 	 * @param status
 	 * @param owneship
 	 */
-	public Driver(String name, String surName, int driverId, String status, Boolean owneship) {
+	public Driver(String name, String surName) {
 		super();
 		this.name = name;
 		this.surName = surName;
-		this.driverId = driverId;
-		this.status = status;
-		this.ownership = owneship;
+		counter++;
+		this.driverId = counter;
+		this.status = "offline";
 		Random r = new Random();
 		int randomNum = r.nextInt(1);
 		if (randomNum == 1) {
@@ -43,6 +47,71 @@ public class Driver {
 		else this.ownership = false;
 			
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurName() {
+		return surName;
+	}
+
+	public void setSurName(String surName) {
+		this.surName = surName;
+	}
+
+	public int getDriverId() {
+		return driverId;
+	}
+
+	public void setDriverId(int driverId) {
+		this.driverId = driverId;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Boolean getOwnership() {
+		return ownership;
+	}
+
+	public void setOwnership(Boolean ownership) {
+		this.ownership = ownership;
+	}
+
+	public int getRideNum() {
+		return rideNum;
+	}
+
+	public void setRideNum(int rideNum) {
+		this.rideNum = rideNum;
+	}
+
+	public double getMoneyCashed() {
+		return moneyCashed;
+	}
+
+	public void setMoneyCashed(double moneyCashed) {
+		this.moneyCashed = moneyCashed;
+	}
+
+	public List<Integer> getMarkList() {
+		return markList;
+	}
+
+	public void setMarkList(List<Integer> markList) {
+		this.markList = markList;
+	}
+	
 	
 
 }

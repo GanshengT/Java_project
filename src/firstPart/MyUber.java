@@ -13,8 +13,10 @@ public class MyUber {
 	private Ini ini;
 	//private GPSLocation centerLocation;
 	private AreaUsed areaUsed;
-	private String[] nameList =new String[numCustomer];
-	private String[] surnameList = new String[numCustomer];
+	private String[] customerNameList =new String[numCustomer];
+	private String[] customerSurnameList = new String[numCustomer];
+	private String[] driverNameList =new String[numDriver];
+	private String[] driverSurnameList = new String[numDriver];
 	
 	private List<Car> listOfCar = new ArrayList<>();
 	private List<Car> listOfStandardCar = new ArrayList<>();
@@ -34,6 +36,7 @@ public class MyUber {
 		CreateCar createStandardCar = new CreateStandardCar();
 		for(int j = 0;j<numStandardCar; j++) {
 			listOfCar.add(createStandardCar.createCarMethod(areaUsed));
+			listOfStandardCar.add(createStandardCar.createCarMethod(areaUsed));
 		}
 		return listOfStandardCar;
 	}
@@ -43,6 +46,7 @@ public class MyUber {
 		CreateCar createBerlineCar = new CreateBerlineCar();
 		for(int j = 0;j<numBerlineCar; j++) {
 			listOfCar.add(createBerlineCar.createCarMethod(areaUsed));
+			listOfBerlineCar.add(createBerlineCar.createCarMethod(areaUsed));
 		}
 		return listOfBerlineCar;
 	}	
@@ -52,12 +56,22 @@ public class MyUber {
 		CreateCar createVanCar = new CreateVanCar();
 		for(int j = 0;j<numVanCar; j++) {
 			listOfCar.add(createVanCar.createCarMethod(areaUsed));
+			listOfVanCar.add(createVanCar.createCarMethod(areaUsed));
 		}
 		return listOfVanCar;
 	}
 	
+	public void assignDriver(List<Driver> listOfDriver) {
+		Car.setNonAssignedDrivers(listOfDriver);
+		for(Car car : listOfCar) {
+			car.AssignDriver(listOfDriver);
+		}
+	}
+	
 	public List<Driver> createDriverList(){
-		
+		for(int i = 0; i<numDriver;i++) {
+			listOfDriver.add(new Driver(driverNameList[i],driverSurnameList[i]));
+		}
 		
 		return listOfDriver;
 		
