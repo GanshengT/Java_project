@@ -24,6 +24,7 @@ public class MyUber {
 	private List<Car> listOfVanCar = new ArrayList<>();
 	
 	private List<Driver> listOfDriver = new ArrayList<>();
+	private List<Boolean> listOfOwnership = new ArrayList<>();
 	private List<Customer> listOfCustomer = new ArrayList<>();
 	
 	
@@ -31,14 +32,13 @@ public class MyUber {
 	 * the create car method might not be used
 	 * @return
 	 */
-	public List<Car> createStandardCarList(){
+	public void createStandardCarList(){
 
 		CreateCar createStandardCar = new CreateStandardCar();
 		for(int j = 0;j<numStandardCar; j++) {
 			listOfCar.add(createStandardCar.createCarMethod(areaUsed));
 			listOfStandardCar.add(createStandardCar.createCarMethod(areaUsed));
 		}
-		return listOfStandardCar;
 	}
 	
 	public List<Car> createBerlineCarList(){
@@ -70,11 +70,9 @@ public class MyUber {
 	
 	public List<Driver> createDriverList(){
 		for(int i = 0; i<numDriver;i++) {
-			listOfDriver.add(new Driver(driverNameList[i],driverSurnameList[i]));
+			listOfDriver.add(new Driver(driverNameList[i],driverSurnameList[i],));
 		}
-		
 		return listOfDriver;
-		
 	}
 	
 	/**
@@ -86,6 +84,15 @@ public class MyUber {
 		}
 	}
 	
+	public void initialisation() {
+		this.createCostomerList();
+		this.createDriverList();
+		this.createStandardCarList();
+		this.createBerlineCarList();
+		this.createVanCarList();
+		this.assignDriver(listOfDriver);
+	}
+	
 	public MyUber(String iniFileName) throws InvalidFileFormatException, FileNotFoundException, IOException {
 		this.ini = new Ini(new FileReader(new File(iniFileName)));
 		Ini.Section section = ini.get("case1");
@@ -95,8 +102,12 @@ public class MyUber {
 		this.numVanCar = Integer.parseInt(section.get("vanCarNumber"));
 		this.areaUsed = new AreaUsed(new GPSLocation(Double.parseDouble(section.get("longitude")),Double.parseDouble(section.get("latitude"))),
 									Double.parseDouble(section.get("radius"))) ; 
-		customerNameList =section.getAll("name", String[].class);
-		customerSurnameList =section.getAll("surname", String[].class);
+		this.customerNameList =section.getAll("customername", String[].class);
+		this.customerSurnameList =section.getAll("customersurname", String[].class);
+		this.driverNameList =section.getAll("drivername", String[].class);
+		this.driverSurnameList =section.getAll("driversurname", String[].class);
+		
+		this.initialisation();
 	}
 	
 }

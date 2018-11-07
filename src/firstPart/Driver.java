@@ -32,10 +32,11 @@ public class Driver {
 	 * @param status
 	 * @param owneship
 	 */
-	public Driver(String name, String surName) {
+	public Driver(String name, String surName, Boolean ownership) {
 		super();
 		this.name = name;
 		this.surName = surName;
+		this.ownership = ownership;
 		counter++;
 		this.driverId = counter;
 		this.status = "offline";
