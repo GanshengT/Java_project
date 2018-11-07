@@ -7,7 +7,7 @@ import org.junit.Test;
 public class MyUberTest {
 
 	@Test
-	public void test() {
+	public void testMyUber() {
 		fail("Not yet implemented");
 	}
 
