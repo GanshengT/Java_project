@@ -1,5 +1,8 @@
 package firstPart;
+import java.io.*;
 import java.util.*;
+import org.dtools.ini.*;
+import org.ini4j.*;
 
 public class MyUber {
 	private int numStandardCar;
@@ -7,6 +10,7 @@ public class MyUber {
 	private int numVanCar;
 	private int numDriver;
 	private int numCustomer;
+	private Ini ini;
 	//private GPSLocation centerLocation;
 	private AreaUsed areaUsed;
 	private String[] nameList =new String[numCustomer];
@@ -62,12 +66,23 @@ public class MyUber {
 	/**
 	 * generate customers 
 	 */
-	public List<Customer> createCostomerList(){
+	public void createCostomerList(){
 		for(int i = 0; i<numCustomer;i++) {
 			listOfCustomer.add(new Customer(nameList[i],surnameList[i]));
 		}
-		return listOfCustomer;
 	}
 	
+	public MyUber(String iniFileName) throws InvalidFileFormatException, FileNotFoundException, IOException {
+		this.ini = new Ini(new FileReader(new File(iniFileName)));
+		Ini.Section section = ini.get("case1");
+		this.numCustomer = Integer.parseInt(section.get("customerNumber"));
+		this.numStandardCar = Integer.parseInt(section.get("standardCarNumber"));
+		this.numBerlineCar = Integer.parseInt(section.get("berlineCarNumber"));
+		this.numVanCar = Integer.parseInt(section.get("vanCarNumber"));
+		this.areaUsed = new AreaUsed(new GPSLocation(Double.parseDouble(section.get("longitude")),Double.parseDouble(section.get("latitude"))),
+									Double.parseDouble(section.get("radius"))) ; 
+		nameList =section.getAll("name", String[].class);
+		surnameList =section.getAll("surname", String[].class);
+	}
 	
 }

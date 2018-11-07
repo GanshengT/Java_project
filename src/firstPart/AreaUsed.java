@@ -3,6 +3,12 @@ package firstPart;
 public class AreaUsed {
 	private GPSLocation center;
 	private double radius;
+	
+	public AreaUsed(GPSLocation center, double radius) {
+		this.center = center;
+		this.radius = radius;
+	}
+	
 	public GPSLocation getCenter() {
 		return center;
 	}
