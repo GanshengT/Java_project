@@ -6,7 +6,7 @@ public class Customer {
 	private String name;
 	private String surName;
 	private int numN;
-	private String idNum;
+	private int idNum;
 	private int rideNum = 0;
 	private double onCarTime = 0;
 	private double onCarMoney = 0;
@@ -17,7 +17,7 @@ public class Customer {
 		numN = counter;
 		this.name = name;
 		this.surName = surName;
-		this.idNum = "customer"+numN;
+		this.idNum = numN;
 	}
 
 	
@@ -46,11 +46,11 @@ public class Customer {
 		this.numN = numN;
 	}
 
-	public String getIdNum() {
+	public int getIdNum() {
 		return idNum;
 	}
 
-	public void setIdNum(String idNum) {
+	public void setIdNum(int idNum) {
 		this.idNum = idNum;
 	}
 
@@ -91,4 +91,8 @@ public class Customer {
 		return counter;
 	}
 	
+	public Ride requestForNewRide(int passengerNumRequested, double desLongtude, double desLatitude) {
+		
+		return newRide
+	}
 }
