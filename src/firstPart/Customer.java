@@ -91,8 +91,7 @@ public class Customer {
 		return counter;
 	}
 	
-	public Ride requestForNewRide(int passengerNumRequested, double desLongtude, double desLatitude) {
-		
-		return newRide
-	}
+	public void requestForNewRide(int passengerNumRequested, double desLongtude, double desLatitude, double startTime) {
+		System.out.println("one request is sent");
+		}
 }
