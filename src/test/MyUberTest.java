@@ -7,21 +7,18 @@ import java.io.IOException;
 
 import org.ini4j.InvalidFileFormatException;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 import firstPart.MyUber;
+import junit.framework.TestCase;
 
-public class MyUberTest extends MyUber {
-
-	public MyUberTest(String iniFileName) throws InvalidFileFormatException, FileNotFoundException, IOException {
-		super(iniFileName);
-		// TODO Auto-generated constructor stub
-	}
-
+public class MyUberTest extends TestCase {
+	
 	@Test
-	public void testMyUber() throws InvalidFileFormatException, FileNotFoundException, IOException {
+	public void testMyUber() throws InvalidFileFormatException, FileNotFoundException, IOException { 
 		MyUber myUber = new MyUber("my_uber.ini");
-		assertTrue(myUber.getNumBerlineCar() == 2) ;
-		fail("Not yet implemented");
+		assertTrue(myUber.getNumBerlineCar() == 2);
 	}
 
 }

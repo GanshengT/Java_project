@@ -13,13 +13,69 @@ public abstract class Ride {
 	private GPSLocation startPosition;
 	private GPSLocation endPosition;
 	private double length;
+	private double pricePerKmLessThanFive;
+	private double pricePerKmFiveToTen;
+	private double pricePerKmTenToTwenty;
+	private double pricePerKmMoreThanTwenty;
 	private int rideQuality;
+
 	
+	
+	public Ride(List<Customer> customers, int passengerNum, GPSLocation startPosition, GPSLocation endPosition) {
+		super();
+		this.customers = customers;
+		this.passengerNum = passengerNum;
+		this.startPosition = startPosition;
+		this.endPosition = endPosition;
+	}
 	public List<Customer> getCustomers() {
 		return customers;
 	}
 	public void setCustomers(List<Customer> customers) {
 		this.customers = customers;
+	}
+	
+	public double getDuration() {
+		return duration;
+	}
+	public void setDuration(double duration) {
+		this.duration = duration;
+	}
+	public double getLength() {
+		return length;
+	}
+	public void setLength(double length) {
+		this.length = length;
+	}
+	public double getPricePerKmLessThanFive() {
+		return pricePerKmLessThanFive;
+	}
+	public void setPricePerKmLessThanFive(double pricePerKmLessThanFive) {
+		this.pricePerKmLessThanFive = pricePerKmLessThanFive;
+	}
+	public double getPricePerKmFiveToTen() {
+		return pricePerKmFiveToTen;
+	}
+	public void setPricePerKmFiveToTen(double pricePerKmFiveToTen) {
+		this.pricePerKmFiveToTen = pricePerKmFiveToTen;
+	}
+	public double getPricePerKmTenToTwenty() {
+		return pricePerKmTenToTwenty;
+	}
+	public void setPricePerKmTenToTwenty(double pricePerKmTenToTwenty) {
+		this.pricePerKmTenToTwenty = pricePerKmTenToTwenty;
+	}
+	public double getPricePerKmMoreThanTwenty() {
+		return pricePerKmMoreThanTwenty;
+	}
+	public void setPricePerKmMoreThanTwenty(double pricePerKmMoreThanTwenty) {
+		this.pricePerKmMoreThanTwenty = pricePerKmMoreThanTwenty;
+	}
+	public int getRideQuality() {
+		return rideQuality;
+	}
+	public void setRideQuality(int rideQuality) {
+		this.rideQuality = rideQuality;
 	}
 	public Car getCar() {
 		return car;

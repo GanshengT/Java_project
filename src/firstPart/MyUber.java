@@ -260,6 +260,10 @@ public class MyUber {
 		this.assignDriver(listOfDriver);
 	}
 	
+	public List<Ride> requestARide(){
+		
+	}
+	
 	public MyUber(String iniFileName) throws InvalidFileFormatException, FileNotFoundException, IOException {
 		this.ini = new Ini(new FileReader(new File(iniFileName)));
 		Ini.Section section = ini.get("case1");
@@ -284,7 +288,7 @@ public class MyUber {
 	
 	public static void main(String[] args) throws InvalidFileFormatException, FileNotFoundException, IOException {
 		MyUber myUber = new MyUber("my_uber.ini");
-		System.out.println(myUber.getDriverOwnershipList());
+		System.out.println(myUber.getNumBerlineCar());
 	}
 	
 }
