@@ -78,14 +78,14 @@ public abstract class Car {
 		Car.nonAssignedDrivers = nonAssignedDrivers;
 	}
 	public void AssignDriver(List<Driver> listOfDriver) {
-		//System.out.println(Car.nonAssignedDrivers.get(0).getName());
+		//System.out.println(Car.nonAssignedDrivers.get(0).getOwnership());
 		owners.add(Car.nonAssignedDrivers.get(0));
 		Car.nonAssignedDrivers.remove(0);
 		//System.out.println(Car.nonAssignedDrivers.get(0).getName());
 		Iterator <Driver> iter = Car.nonAssignedDrivers.iterator();
 		while (iter.hasNext()) {
 			Driver item = iter.next();
-			System.out.println(item.getName());
+			//System.out.println(item.getName());
 			System.out.println(item.getOwnership());
 			if (item.getOwnership() == false) {
 				owners.add(item);
@@ -94,6 +94,7 @@ public abstract class Car {
 			}
 			else {
 				System.out.println("Assignment completed");
+				break;
 			}
 		}
 

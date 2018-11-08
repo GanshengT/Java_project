@@ -16,8 +16,9 @@ public class MyUber {
 	private String[] customerSurnameList = new String[numCustomer];
 	private String[] driverNameList =new String[numDriver];
 	private String[] driverSurnameList = new String[numDriver];
+	private String[] driverOwnershipListString = new String[numDriver];
 	private Boolean[] driverOwnershipList = new Boolean[numDriver];
-	
+ 	
 	private List<Car> listOfCar = new ArrayList<>();
 	private List<Car> listOfStandardCar = new ArrayList<>();
 	private List<Car> listOfBerlineCar = new ArrayList<>();
@@ -224,8 +225,9 @@ public class MyUber {
 		for(int i = 0; i<numDriver; i++) {
 			//System.out.println(i);
 			//System.out.println(driverNameList[0]);
-			//System.out.println(driverOwnershipList.length);
+			//System.out.println(driverOwnershipList[i]);
 			listOfDriver.add(new Driver(driverNameList[i],driverSurnameList[i],driverOwnershipList[i]));
+			//System.out.println(listOfDriver.get(i).getOwnership());
 		}
 
 	}
@@ -239,7 +241,17 @@ public class MyUber {
 		}
 	}
 	
+	public void stringToBoolean() {
+		for(int i=0;i<numDriver;i++) {
+			//System.out.println(i);
+			//System.out.println(driverOwnershipListString[i]);
+			this.driverOwnershipList[i] = Boolean.parseBoolean(driverOwnershipListString[i]);
+			//System.out.println(driverOwnershipList[i]);
+		}
+	}
+	
 	public void initialisation() {
+		this.stringToBoolean();
 		this.createCostomerList();
 		this.createDriverList();
 		this.createStandardCarList();
@@ -263,16 +275,16 @@ public class MyUber {
 		this.customerSurnameList =section.getAll("customersurname", String[].class);
 		this.driverNameList =section.getAll("drivername", String[].class);
 		this.driverSurnameList =section.getAll("driversurname", String[].class);
-
 		this.driverOwnershipList = section.getAll("ownership", Boolean[].class);
-
+		this.driverOwnershipListString = section.getAll("ownership", String[].class);
+		//System.out.println(driverOwnershipList[6]);
 		this.initialisation();
 
 	}
 	
 	public static void main(String[] args) throws InvalidFileFormatException, FileNotFoundException, IOException {
 		MyUber myUber = new MyUber("my_uber.ini");
-		System.out.println(myUber.getNumBerlineCar());
+		System.out.println(myUber.getDriverOwnershipList());
 	}
 	
 }

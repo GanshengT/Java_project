@@ -40,13 +40,14 @@ public class Driver {
 		counter++;
 		this.driverId = counter;
 		this.status = "offline";
-		Random r = new Random();
+		this.ownership = ownership;
+		/*Random r = new Random();
 		int randomNum = r.nextInt(1);
 		if (randomNum == 1) {
 			this.ownership = true; 
 		}
 		else this.ownership = false;
-			
+		*/
 	}
 
 	public String getName() {

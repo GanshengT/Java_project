@@ -12,6 +12,11 @@ import firstPart.MyUber;
 
 public class MyUberTest extends MyUber {
 
+	public MyUberTest(String iniFileName) throws InvalidFileFormatException, FileNotFoundException, IOException {
+		super(iniFileName);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Test
 	public void testMyUber() throws InvalidFileFormatException, FileNotFoundException, IOException {
 		MyUber myUber = new MyUber("my_uber.ini");
