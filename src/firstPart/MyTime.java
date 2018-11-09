@@ -161,8 +161,9 @@ public class MyTime {
 	}
 	
 	public static void main(String[] args) {
-		MyTime myTime = new MyTime(20,32,10);
-		myTime.addTime(30);
+		MyTime myTime = new MyTime(23,32,10);
+		myTime.addTime(1800);
+		System.out.println(myTime.getHH());
 		System.out.println(myTime.getMm()); 
 		System.out.println(myTime.getSs());
 	}
