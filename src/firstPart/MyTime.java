@@ -110,7 +110,7 @@ public class MyTime {
 	 * add second!! not millis
 	 * @param durationS
 	 */
-	public void addTime(int durationS) {
+	public void addTime(double durationS) {
 		/**
 		 * if (durationMillisS <= 1000) {
 		 *
@@ -124,7 +124,7 @@ public class MyTime {
 		*/
 		Calendar cal=java.util.Calendar.getInstance();
 		cal.set(this.yyyy, this.MM, this.dd, this.HH, this.mm, this.ss);  
-		cal.add(java.util.Calendar.SECOND,durationS); 
+		cal.add(java.util.Calendar.SECOND,(int) durationS); 
 		this.yyyy = cal.get(Calendar.YEAR);
 		this.MM = cal.get(Calendar.MONTH)+1;
 		this.dd = cal.get(Calendar.DAY_OF_MONTH);
@@ -167,4 +167,6 @@ public class MyTime {
 		System.out.println(myTime.getMm()); 
 		System.out.println(myTime.getSs());
 	}
+
+	
 }

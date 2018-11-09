@@ -8,7 +8,7 @@ public abstract class Ride {
 	private String state;
 	private int passengerNum;
 	private MyTime startTime;
-	private double endTime;
+	private MyTime endTime;
 	private double durationMin;
 	private GPSLocation startPosition;
 	private GPSLocation endPosition;
@@ -87,6 +87,12 @@ public abstract class Ride {
 		return length/speed*60;
 	}
 	
+	public MyTime returnEndTime(MyTime oneStartTime) {
+		MyTime oneEndTime = startTime;
+		oneEndTime.addTime(this.durationMin*60);
+		return oneEndTime;
+	}
+	
 	public Ride(List<Customer> customers, int passengerNum, GPSLocation startPosition, GPSLocation endPosition, MyTime startTime) {
 		super();
 		this.customers = customers;
@@ -97,8 +103,9 @@ public abstract class Ride {
 		this.length = LocationUtils.GetDistance(startPosition, endPosition);
 		this.trafficState = returnTrafficInfo(startTime);
 		this.durationMin = calculateDuration(length, trafficSpeedMap.get(trafficState));
-		
+		this.endTime = returnEndTime(this.startTime);
 	}
+	
 	public List<Customer> getCustomers() {
 		return customers;
 	}
@@ -179,10 +186,10 @@ public abstract class Ride {
 	public void setStartTime(MyTime startTime) {
 		this.startTime = startTime;
 	}
-	public double getEndTime() {
+	public MyTime getEndTime() {
 		return endTime;
 	}
-	public void setEndTime(double endTime) {
+	public void setEndTime(MyTime endTime) {
 		this.endTime = endTime;
 	}
 	public GPSLocation getStartPosition() {
