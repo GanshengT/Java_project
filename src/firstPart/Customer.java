@@ -5,7 +5,6 @@ public class Customer {
 	private static int counter = 0;
 	private String name;
 	private String surName;
-	private int numN;
 	private int idNum;
 	private int rideNum = 0;
 	private double onCarTime = 0;
@@ -14,10 +13,9 @@ public class Customer {
 	
 	public Customer(String name, String surName){
 		counter++;
-		numN = counter;
 		this.name = name;
 		this.surName = surName;
-		this.idNum = numN;
+		this.idNum = counter;
 	}
 
 	
