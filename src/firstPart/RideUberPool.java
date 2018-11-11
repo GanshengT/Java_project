@@ -33,6 +33,7 @@ public class RideUberPool extends Ride {
 
 	public RideUberPool(Customer customer, int passengerNum, GPSLocation startPosition, GPSLocation endPosition, MyTime startTime) {
 		super(customer, passengerNum, startPosition, endPosition, startTime);
+		this.setRideType("uberPool");
 		//this.setPricePerKmLessThanFive(2.4);
 		//this.setPricePerKmFiveToTen(3);
 		//this.setPricePerKmTenToTwenty(1.3);

@@ -5,6 +5,16 @@ import java.util.*;
 public abstract class Ride {
 	private static int counter = 0;
 	private int rideId;
+	private String rideType;
+	public String getRideType() {
+		return rideType;
+	}
+
+	public void setRideType(String rideType) {
+		this.rideType = rideType;
+	}
+
+
 	private Customer customer;
 	private Car car;
 	private Driver driver;

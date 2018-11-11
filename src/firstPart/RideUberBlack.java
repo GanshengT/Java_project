@@ -20,6 +20,7 @@ public class RideUberBlack extends Ride {
 		};
 	public RideUberBlack(Customer customer, int passengerNum, GPSLocation startPosition, GPSLocation endPosition, MyTime startTime) {
 		super(customer, passengerNum, startPosition, endPosition, startTime);
+		this.setRideType("uberBlack");
 		//this.setPricePerKmLessThanFive(6.2);
 		//this.setPricePerKmFiveToTen(5.5);
 		//this.setPricePerKmTenToTwenty(3.25);

@@ -36,13 +36,6 @@ public class Customer {
 		this.surName = surName;
 	}
 
-	public int getNumN() {
-		return numN;
-	}
-
-	public void setNumN(int numN) {
-		this.numN = numN;
-	}
 
 	public int getIdNum() {
 		return idNum;

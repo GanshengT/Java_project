@@ -29,7 +29,8 @@ public class MyUber {
 	private List<Customer> listOfCustomer = new ArrayList<>();
 	
 	private List<BookOfRide> bookOfRide = new ArrayList<>();
-	private List<PoolRequest> poolRequest = new ArrayList<>();
+	private List<Ride> poolRequest = new ArrayList<>();
+	private List<Ride> listOfRide = new ArrayList<>();
 	
 	/**
 	 * the create car method might not be used
@@ -291,6 +292,20 @@ public class MyUber {
 		//System.out.println(driverOwnershipList[6]);
 		this.initialisation();
 
+	}
+	
+	public void driverAssignment(Ride ride) {
+		if (ride.getRideType() == "uberPool") {
+			this.poolRequest.add(ride);
+			this.listOfRide.add(ride);
+		}
+		else {
+			this.listOfRide.add(ride);
+		}
+		/**
+		 * search nearest driver
+		 */
+		
 	}
 	
 	public static void main(String[] args) throws InvalidFileFormatException, FileNotFoundException, IOException {
