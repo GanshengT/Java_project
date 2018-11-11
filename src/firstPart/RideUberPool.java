@@ -4,6 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/***
+ * 
+ * @author gaelle
+ * ride pool 要点
+ * 1.每个乘客有一个自己的rideuberpool 计算价格方式和其他的三种ride相同
+ * 2.rideuberpool可以有一个新的constructor argument是列表（？或者其他的）
+ * rideuber
+ */
 public class RideUberPool extends Ride {
 	private static Map<String, Double> trafficRateMap = new HashMap<String, Double>() {
 		{put("lowTraffic", (double) 1);
@@ -19,8 +27,9 @@ public class RideUberPool extends Ride {
 		};
 	@Override
 	public double price() {
-		// TODO Auto-generated method stub
-		return 0;
+		this.setPriceToPay(this.getLength()*lengthTypeMap.get(this.getLengthType())*trafficRateMap.
+				get(this.getTrafficState()));
+		return this.getPriceToPay();
 	}
 
 	public RideUberPool(List<Customer> customers, int passengerNum, GPSLocation startPosition, GPSLocation endPosition, MyTime startTime) {

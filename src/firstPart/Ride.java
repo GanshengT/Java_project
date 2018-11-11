@@ -1,11 +1,12 @@
 package firstPart;
 import java.util.*;
 
+
 public abstract class Ride {
 	private List<Customer> customers = new ArrayList<>();
 	private Car car;
 	private Driver driver;
-	private String state;
+	private String state = "unconfirmed";
 	private int passengerNum;
 	private MyTime startTime;
 	private MyTime endTime;
