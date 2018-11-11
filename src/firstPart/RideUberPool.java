@@ -7,11 +7,10 @@ import java.util.Map;
 /***
  * 
  * @author gaelle
- * ride pool 要点
- * 1.每个乘客有一个自己的rideuberpool 计算价格方式和其他的三种ride相同
- * 2.rideuberpool可以有一个新的constructor argument是列表（？或者其他的）
  * rideuber
  */
+
+
 public class RideUberPool extends Ride {
 	private static Map<String, Double> trafficRateMap = new HashMap<String, Double>() {
 		{put("lowTraffic", (double) 1);

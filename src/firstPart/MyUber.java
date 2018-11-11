@@ -28,6 +28,8 @@ public class MyUber {
 	private List<Boolean> listOfOwnership = new ArrayList<>();
 	private List<Customer> listOfCustomer = new ArrayList<>();
 	
+	private List<BookOfRide> bookOfRide = new ArrayList<>();
+	private List<PoolRequest> poolRequest = new ArrayList<>();
 	
 	/**
 	 * the create car method might not be used
