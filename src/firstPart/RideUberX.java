@@ -17,8 +17,8 @@ public class RideUberX extends Ride {
 				put("MoreThanTwenty",1.5);
 			}
 		};
-	public RideUberX(List<Customer> customers, int passengerNum, GPSLocation startPosition, GPSLocation endPosition, MyTime startTime) {
-		super(customers, passengerNum, startPosition, endPosition, startTime);
+	public RideUberX(Customer customer, int passengerNum, GPSLocation startPosition, GPSLocation endPosition, MyTime startTime) {
+		super(customer, passengerNum, startPosition, endPosition, startTime);
 		//this.setPricePerKmLessThanFive(3.3);
 		//this.setPricePerKmFiveToTen(4.2);
 		//this.setPricePerKmTenToTwenty(1.91);
