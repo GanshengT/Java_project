@@ -89,7 +89,15 @@ public class Customer {
 		return counter;
 	}
 	
-	public void requestForNewRide(int passengerNumRequested, double desLongtude, double desLatitude, double startTime) {
+	public Ride createANewRide(int passengerNumRequested, double desLongtude, double desLatitude, int startHH, int startMM) {
+		MyTime startTime = new MyTime(startHH, startMM, 0);
 		System.out.println("one request is sent");
+		Ride finalRide;
+		GPSLocation gpsEnd = new GPSLocation(desLongtude, desLatitude);
+		Ride rideX = new RideUberX(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+		Ride rideBlack = new RideUberX(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+		Ride rideVan = new RideUberVan(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+		Ride ridePool = new RideUberPool(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+		return rideX;
 		}
 }

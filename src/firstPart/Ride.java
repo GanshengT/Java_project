@@ -3,7 +3,9 @@ import java.util.*;
 
 
 public abstract class Ride {
-	private List<Customer> customers = new ArrayList<>();
+	private static int counter = 0;
+	private int rideId;
+	private Customer customer;
 	private Car car;
 	private Driver driver;
 	private String state = "unconfirmed";
@@ -94,9 +96,11 @@ public abstract class Ride {
 		return oneEndTime;
 	}
 	
-	public Ride(List<Customer> customers, int passengerNum, GPSLocation startPosition, GPSLocation endPosition, MyTime startTime) {
+	public Ride(Customer customer, int passengerNum, GPSLocation startPosition, GPSLocation endPosition, MyTime startTime) {
 		super();
-		this.customers = customers;
+		counter++;
+		this.rideId =counter;
+		this.customer = customer;
 		this.passengerNum = passengerNum;
 		this.startPosition = startPosition;
 		this.endPosition = endPosition;
@@ -107,11 +111,11 @@ public abstract class Ride {
 		this.endTime = returnEndTime(this.startTime);
 	}
 	
-	public List<Customer> getCustomers() {
-		return customers;
+	public Customer getCustomer() {
+		return customer;
 	}
-	public void setCustomers(List<Customer> customers) {
-		this.customers = customers;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 	public double getDuration() {
 		return durationMin;
@@ -125,6 +129,14 @@ public abstract class Ride {
 	public void setLength(double length) {
 		this.length = length;
 	}
+	public int getRideId() {
+		return rideId;
+	}
+
+	public void setRideId(int rideId) {
+		this.rideId = rideId;
+	}
+
 	/**
 	public double getPricePerKmLessThanFive() {
 		return pricePerKmLessThanFive;

@@ -261,10 +261,15 @@ public class MyUber {
 		this.createVanCarList();
 		this.assignDriver(listOfDriver);
 	}
-	
-	public List<Ride> requestARide(){
+	/***
+	public static List<Ride> returnListOfRide(Customer customer, int passengerNumRequested, double desLongtude, double desLatitude, Mytime startTime){
+		Ride rideX = new RideUberX(customer, passengerNumRequested, desLongtude, desLatitude, startTime);
+		Ride rideBlack = new RideUberX(customer, passengerNumRequested, desLongtude, desLatitude, startTime);
+		Ride rideVan = new RideUberVan(customer, passengerNumRequested, desLongtude, desLatitude, startTime);
+		Ride ridePool = new RideUber
 		
 	}
+	*/
 	
 	public MyUber(String iniFileName) throws InvalidFileFormatException, FileNotFoundException, IOException {
 		this.ini = new Ini(new FileReader(new File(iniFileName)));
