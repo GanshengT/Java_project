@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 
-public abstract class Car {
+public abstract class Car implements Comparable<Car> {
 	
 	/**
 	 * StandardN will calculate automatically
@@ -19,6 +19,7 @@ public abstract class Car {
 	private int currentDriver;
 	private GPSLocation carLocation;
 	private static List<Driver> nonAssignedDrivers = new ArrayList<>();
+	private Integer distanceFromCustomer;
 	
 	/**
 	 * from resource
@@ -115,7 +116,25 @@ public abstract class Car {
 		*/
 		
 	}
-	
+	public Integer getDistanceFromCustomer() {
+		return distanceFromCustomer;
+	}
+	public void setDistanceFromCustomer(int d) {
+		this.distanceFromCustomer = d;
+	}
+	public void calculateDistance(Ride ride) {
+		this.setDistanceFromCustomer(LocationUtils.GetDistance(this.carLocation, ride.getStartPosition()));
+	}
+	public int compareTo(Car arg0) {
+        return this.getDistanceFromCustomer().compareTo(arg0.getDistanceFromCustomer());
+    }
+	public int getCurrentDriver() {
+		return currentDriver;
+	}
+	public void setCurrentDriver(int currentDriver) {
+		this.currentDriver = currentDriver;
+	}
+
 
 
 

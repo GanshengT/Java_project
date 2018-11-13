@@ -6,13 +6,7 @@ public class LocationUtils {
 	static final double PI = 3.1415926535898;
  
 	/**
-	 * 根据中心坐标获取指定距离的随机坐标点
-	 * 
-	 * @param center
-	 *            中心坐标
-	 * @param distance
-	 *            离中心坐标距离（单位：米）
-	 * @return 随机坐标
+
 	 */
 	public static GPSLocation GetRandomLocation(GPSLocation center, double distance) {
 		if (distance <= 0) distance = 50;
@@ -38,16 +32,8 @@ public class LocationUtils {
 		return location;
 	}
  
-	/**
-	 * 获取两点间的距离(单位：米)
-	 * 
-	 * @param start
-	 *            起始坐标
-	 * @param end
-	 *            结束坐标
-	 * @return 距离
-	 */
-	public static double GetDistance(GPSLocation start, GPSLocation end) {
+
+	public static int GetDistance(GPSLocation start, GPSLocation end) {
 		double radLat1 = rad(start.getLatitude());
 		double radLat2 = rad(end.getLatitude());
 		double a = radLat1 - radLat2;
@@ -55,11 +41,11 @@ public class LocationUtils {
 		double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
 		s = s * EARTH_RADIUS;
 		s = (int) (s * 10000000) / 10000;
-		return s;
+		return (int)s;
 	}
  
 	/**
-	 * 弧度
+	
 	 * 
 	 * @param d
 	 * @return
@@ -69,7 +55,7 @@ public class LocationUtils {
 	}
  
 	/**
-	 * 角度
+	
 	 * 
 	 * @param rd
 	 * @return

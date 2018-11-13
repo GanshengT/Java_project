@@ -10,6 +10,7 @@ public class Customer {
 	private double onCarTime = 0;
 	private double onCarMoney = 0;
 	private GPSLocation gpsStart;
+	private Ride currentRide;
 	
 	public Customer(String name, String surName){
 		counter++;
@@ -109,16 +110,28 @@ public class Customer {
 		}
 	
 		if(rideType == "uberx") {
+			this.currentRide = rideX;
 			return rideX;
 		}else if(rideType == "uberblack") {
+			this.currentRide = rideBlack;
 			return rideBlack;
 		}else if(rideType == "ubervan") {
+			this.currentRide = rideVan;
 			return rideVan;
 		}else if (rideType == "uberpool") {
+			this.currentRide = ridePool;
 			return ridePool;
 		}else {
 			return rideError;
 		}
-		
 		}
+	
+	public void cancelBook() {
+		this.currentRide.setState("canceled");
+		/**
+		 * need to add reassign in car class
+		 */
+		//this.currentRide.getCar().reAssignDriver;
+	}
+	
 }

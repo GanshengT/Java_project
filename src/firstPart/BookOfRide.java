@@ -9,6 +9,19 @@ public class BookOfRide {
 	public double lengthOfRide;
 	private MyTime pickupTime;
 	private MyTime arrivalTime;
+	
+	public BookOfRide(int idOfDriver, String idOfCar, int idOfCustomer, GPSLocation startingPoint,
+			GPSLocation endingPoint, double lengthOfRide, MyTime pickupTime, MyTime arrivalTime) {
+		super();
+		IdOfDriver = idOfDriver;
+		IdOfCar = idOfCar;
+		IdOfCustomer = idOfCustomer;
+		this.startingPoint = startingPoint;
+		this.endingPoint = endingPoint;
+		this.lengthOfRide = lengthOfRide;
+		this.pickupTime = pickupTime;
+		this.arrivalTime = arrivalTime;
+	}
 	public GPSLocation getStartingPoint() {
 		return startingPoint;
 	}

@@ -20,9 +20,7 @@ public class Driver {
 	 * accept method change status to on a ride
 	 */
 	
-	public void accept() {
-		this.status = "on duty";
-	}
+
 	
 	/**
 	 * if ownership is True, we will add a new car in the list in main method of test class
@@ -114,6 +112,17 @@ public class Driver {
 		this.markList = markList;
 	}
 	
+	public Boolean acceptRequest() {
+		double i = Math.random();
+		if (i>=0.5) {
+			this.status = "onARide";
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	
+
 
 }

@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.*;
 import org.ini4j.*;
 
-public class MyUber {
+public class MyUber  {
 	private int numStandardCar;
 	private int numBerlineCar;
 	private int numVanCar;
@@ -28,7 +28,7 @@ public class MyUber {
 	private List<Boolean> listOfOwnership = new ArrayList<>();
 	private List<Customer> listOfCustomer = new ArrayList<>();
 	
-	private List<BookOfRide> bookOfRide = new ArrayList<>();
+	private List<BookOfRide> bookOfRideList = new ArrayList<>();
 	private List<Ride> poolRequest = new ArrayList<>();
 	private List<Ride> listOfRide = new ArrayList<>();
 	
@@ -294,23 +294,98 @@ public class MyUber {
 
 	}
 	
-	public void driverAssignment(Ride ride) {
+	public void driverAllocation(Ride ride) {
 		if (ride.getRideType() == "uberPool") {
 			this.poolRequest.add(ride);
 			this.listOfRide.add(ride);
 		}
 		else {
 			this.listOfRide.add(ride);
+			this.searchDriver(ride);
 		}
 		/**
 		 * search nearest driver
-		 */
-		
+		 */	
+	}
+	
+	public List<Car> sortByDistance(Ride ride) {
+		List<Car> listSorted = new ArrayList<>();
+		if (ride.getRideType()=="uberX") {
+			listSorted = this.getListOfStandardCar();
+			for (Car car:listSorted) {
+				car.calculateDistance(ride);
+			}
+			Collections.sort(listSorted);
+		}
+		else if(ride.getRideType()=="uberBlack") {
+			listSorted = this.getListOfBerlineCar();
+			for (Car car:listSorted) {
+				car.calculateDistance(ride);
+			}
+			Collections.sort(listSorted);
+		}
+		else if(ride.getRideType()=="uberVan") {
+			listSorted = this.getListOfVanCar();
+			for (Car car:listSorted) {
+				car.calculateDistance(ride);
+			}
+			Collections.sort(listSorted);
+		}
+		else {
+			System.out.println("type not right");
+		}
+		return listSorted;
+	}
+	
+/**
+ * multithread or if
+ * @param ride
+ */
+	
+	public void searchDriver(Ride ride) {
+		List<Car> carListToNotify = this.sortByDistance(ride);
+		for (Car car : carListToNotify) {
+			if (this.getDriverObject(car.getCurrentDriver()).getStatus()== "onDuty") {
+			Boolean acceptOrNot = this.getDriverObject(car.getCurrentDriver()).acceptRequest();
+			if (acceptOrNot == true) {
+				BookOfRide	bookOfRide = new BookOfRide(car.getCurrentDriver(), car.getIdCar(), ride.getCustomer().getIdNum(), ride.getStartPosition(),
+						ride.getEndPosition(), ride.getLength(), ride.getStartTime(),ride.getEndTime());
+				this.bookOfRideList.add(bookOfRide);
+				ride.setState("confirmed");
+				break;
+			}
+			else {
+				continue;
+			}
+			}
+			else {
+				continue;
+			}
+		}
+	}
+	
+	public Driver getDriverObject(int id) {
+		for (Driver driver : this.getListOfDriver() ) {
+			if (driver.getDriverId() == id) {
+			return driver;	
+			}}
+		return null;
 	}
 	
 	public static void main(String[] args) throws InvalidFileFormatException, FileNotFoundException, IOException {
 		MyUber myUber = new MyUber("my_uber.ini");
 		System.out.println(myUber.getNumBerlineCar());
+		/**
+		 * create myUber done
+		 * customer make request
+		 *  driverallocation -> bookofride add, driver , ride state change 
+		 *  customer board  ride->ongoing  
+ 		 *  customer finish ride -> completed driver.random(offduty or offline or onduty) + command offduty setstatus add record time
+ 		 *  
+ 		 *  Uberpool:
+ 		 *  
+		 */
 	}
-	
+
+
 }
