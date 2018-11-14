@@ -35,51 +35,35 @@ public class RideUberPool extends Ride {
 	}
 	
 	public double calculateLowestRideCost(Car car) {
-		double c_p1 = 99999;
-		double p1_p2 = 99999;
-		double p2_d1 = 999999;
-		double d1_d2 = 999999;
-		if(LocationUtils.GetDistance(car.getCarLocation(), this.getStartPosition())<LocationUtils.GetDistance(car.getCarLocation(), this.getStartPosition2())) {
-			if(LocationUtils.GetDistance(this.getStartPosition2(), this.getEndPosition())< LocationUtils.GetDistance(this.getStartPosition2(),this.getEndPosition2())) {
-				this.cost = LocationUtils.GetDistance(car.getCarLocation(), this.getStartPosition())
-						+ LocationUtils.GetDistance(this.getStartPosition(), this.getStartPosition2())
-						+ LocationUtils.GetDistance(this.getStartPosition2(), this.getEndPosition())
-						+ LocationUtils.GetDistance(this.getEndPosition(), this.getEndPosition2());
-				this.setLength(LocationUtils.GetDistance(this.getStartPosition(), this.getStartPosition2())
-						+ LocationUtils.GetDistance(this.getStartPosition2(), this.getEndPosition()));
-				this.setLength2(LocationUtils.GetDistance(this.getStartPosition2(), this.getEndPosition())
-						+ LocationUtils.GetDistance(this.getEndPosition(), this.getEndPosition2()));
+		double c_p1 = LocationUtils.GetDistance(car.getCarLocation(), this.getStartPosition());
+		double c_p2 = LocationUtils.GetDistance(car.getCarLocation(), this.getStartPosition2());
+		double p1_p2 = LocationUtils.GetDistance(car.getCarLocation(), this.getStartPosition2());
+		double d1_d2 = LocationUtils.GetDistance(this.getEndPosition(), this.getEndPosition2());
+		double p1_d1 = LocationUtils.GetDistance(this.getStartPosition(), this.getEndPosition());
+		double p1_d2 = LocationUtils.GetDistance(this.getStartPosition(), this.getEndPosition2());
+		double p2_d1 = LocationUtils.GetDistance(this.getStartPosition2(), this.getEndPosition());
+		double p2_d2 = LocationUtils.GetDistance(this.getStartPosition2(), this.getEndPosition2());;
+		if(c_p1 < c_p2) {
+			if(p2_d1< p2_d2) {
+				this.cost = c_p1 + p1_p2 + p2_d1 + d1_d2;
+				this.setLength(p1_p2 + p2_d1);
+				this.setLength2(p2_d1 + d1_d2);
 				return this.cost;		
 			}else {
-				this.cost = LocationUtils.GetDistance(car.getCarLocation(), this.getStartPosition())
-						+ LocationUtils.GetDistance(this.getStartPosition(), this.getStartPosition2())
-						+ LocationUtils.GetDistance(this.getStartPosition2(), this.getEndPosition2())
-						+ LocationUtils.GetDistance(this.getEndPosition(), this.getEndPosition2());
-				this.setLength(LocationUtils.GetDistance(this.getStartPosition(), this.getStartPosition2())
-						+ LocationUtils.GetDistance(this.getStartPosition2(), this.getEndPosition2())
-						+LocationUtils.GetDistance(this.getEndPosition2(), this.getEndPosition()));
+				this.cost = c_p1 + p1_p2 + p2_d2 + d1_d2;
+				this.setLength(p1_p2 + p2_d2 + d1_d2);
 				return this.cost;
 			}
 				
 		}else {
-			if(LocationUtils.GetDistance(this.getStartPosition(), this.getEndPosition2())< LocationUtils.GetDistance(this.getStartPosition(),this.getEndPosition())) {
-				this.cost = LocationUtils.GetDistance(car.getCarLocation(), this.getStartPosition2())
-						+ LocationUtils.GetDistance(this.getStartPosition2(), this.getStartPosition())
-						+ LocationUtils.GetDistance(this.getStartPosition(), this.getEndPosition2())
-						+ LocationUtils.GetDistance(this.getEndPosition2(), this.getEndPosition());
-				this.setLength(LocationUtils.GetDistance(this.getStartPosition(), this.getEndPosition2())
-						+ LocationUtils.GetDistance(this.getEndPosition2(), this.getEndPosition()));
-				this.setLength2(LocationUtils.GetDistance(this.getStartPosition2(), this.getStartPosition())
-						+ LocationUtils.GetDistance(this.getStartPosition(), this.getEndPosition2()));
+			if(p1_d2<p1_d1) {
+				this.cost = c_p2 + p1_p2 + p1_d2 + d1_d2;
+				this.setLength(p1_d2 + d1_d2);
+				this.setLength2(p1_p2 + p1_d2);
 				return this.cost;		
 			}else {
-				this.cost = LocationUtils.GetDistance(car.getCarLocation(), this.getStartPosition2())
-						+ LocationUtils.GetDistance(this.getStartPosition2(), this.getStartPosition())
-						+ LocationUtils.GetDistance(this.getStartPosition(), this.getEndPosition())
-						+ LocationUtils.GetDistance(this.getEndPosition(), this.getEndPosition2());
-				this.setLength2(LocationUtils.GetDistance(this.getStartPosition2(), this.getStartPosition())
-						+ LocationUtils.GetDistance(this.getStartPosition(), this.getEndPosition())
-						+LocationUtils.GetDistance(this.getEndPosition(), this.getEndPosition2()));
+				this.cost = c_p2 + p1_p2 + p1_d1 + d1_d2;
+				this.setLength2(p1_p2 + p1_d1 + d1_d2);
 				return this.cost;
 			}
 		}

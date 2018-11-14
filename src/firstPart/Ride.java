@@ -39,7 +39,7 @@ public abstract class Ride {
 	private GPSLocation startPosition2;
 	private GPSLocation endPosition2;
 	private MyTime startTime2;
-	private int length2;
+	private double length2;
 	private String trafficState2;
 	private double durationMin2;
 	private MyTime endTime2;
@@ -196,11 +196,11 @@ public abstract class Ride {
 		this.startTime2 = startTime2;
 	}
 
-	public int getLength2() {
+	public double getLength2() {
 		return length2;
 	}
 
-	public void setLength2(int length2) {
+	public void setLength2(double length2) {
 		this.length2 = length2;
 	}
 

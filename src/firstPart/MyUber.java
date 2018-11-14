@@ -296,10 +296,23 @@ public class MyUber  {
 	
 	public void driverAllocation(Ride ride) {
 		if (ride.getRideType() == "uberPool") {
-			this.poolRequest.add(ride);
-			this.listOfRide.add(ride);
-			if(poolRequest.size()==2) {
-				
+			this.poolRequest.add(0,ride);
+			//this.listOfRide.add(ride);
+			if(poolRequest.size()>=2) {
+				OUT:
+				for(int i = poolRequest.size()-1;i>=0;i--) {
+					for(int j = poolRequest.size()-2;j >= 0; j--) {
+						if(poolRequest.get(i).getPassengerNum()+poolRequest.get(j).getPassengerNum()<=4) {
+							Ride newRideUberPool = new RideUberPool(poolRequest.get(i),poolRequest.get(j));
+							this.listOfRide.add(newRideUberPool);
+							poolRequest.remove(i);
+							poolRequest.remove(j);
+							break OUT;
+						}else {
+							continue;
+						}
+					}
+				}
 			}else if(poolRequest.size()==3) {
 				
 			}
