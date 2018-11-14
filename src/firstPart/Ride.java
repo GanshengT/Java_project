@@ -41,6 +41,7 @@ public abstract class Ride {
 	private MyTime startTime2;
 	private double length2;
 	private String trafficState2;
+	private String lengthType2;
 	private double durationMin2;
 	private MyTime endTime2;
 	private double cost;
@@ -160,6 +161,7 @@ public abstract class Ride {
 		this.endPosition = endPosition;
 		this.startTime = startTime;
 		this.length = LocationUtils.GetDistance(startPosition, endPosition);
+		this.lengthType = this.returnLengthType(this.length);
 		this.trafficState = returnTrafficInfo(startTime);
 		this.durationMin = calculateDuration(length, trafficSpeedMap.get(trafficState));
 		this.endTime = returnEndTime(this.startTime);
@@ -176,6 +178,7 @@ public abstract class Ride {
 		this.endPosition = endPosition;
 		this.startTime = startTime;
 		this.length = LocationUtils.GetDistance(startPosition, endPosition);
+		this.lengthType = this.returnLengthType(this.length);
 		this.trafficState = returnTrafficInfo(startTime);
 		this.durationMin = calculateDuration(length, trafficSpeedMap.get(trafficState));
 		this.endTime = returnEndTime(this.startTime);
@@ -185,6 +188,7 @@ public abstract class Ride {
 		this.endPosition2 = endPosition2;
 		this.startTime2 = startTime2;
 		this.length2 = LocationUtils.GetDistance(startPosition2, endPosition2);
+		this.lengthType2 = this.returnLengthType(this.length2);
 		this.trafficState2 = returnTrafficInfo(startTime2);
 		this.durationMin2 = calculateDuration(length2, trafficSpeedMap.get(trafficState2));
 		this.endTime2 = returnEndTime(this.startTime2);
@@ -233,6 +237,14 @@ public abstract class Ride {
 
 	public MyTime getStartTime2() {
 		return startTime2;
+	}
+
+	public String getLengthType2() {
+		return lengthType2;
+	}
+
+	public void setLengthType2(String lengthType2) {
+		this.lengthType2 = lengthType2;
 	}
 
 	public void setStartTime2(MyTime startTime2) {

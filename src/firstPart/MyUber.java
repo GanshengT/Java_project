@@ -2,6 +2,7 @@ package firstPart;
 import java.io.*;
 import java.util.*;
 import org.ini4j.*;
+import org.junit.platform.commons.util.CollectionUtils;
 
 public class MyUber  {
 	private int numStandardCar;
@@ -218,7 +219,8 @@ public class MyUber  {
 	}
 	
 	public void assignDriver(List<Driver> listOfDriver) {
-		Car.setNonAssignedDrivers(listOfDriver);
+		Car.nonAssignedDrivers.addAll(listOfDriver);
+		//Collections.copy(Car.nonAssignedDrivers , listOfDriver);
 		for(Car car : listOfCar) {
 			car.AssignDriver(listOfDriver);
 		}
@@ -230,6 +232,7 @@ public class MyUber  {
 			//System.out.println(driverNameList[0]);
 			//System.out.println(driverOwnershipList[i]);
 			listOfDriver.add(new Driver(driverNameList[i],driverSurnameList[i],driverOwnershipList[i]));
+			//System.out.println(this.listOfDriver.size()+"driverlist");
 			//System.out.println(listOfDriver.get(i).getOwnership());
 		}
 
@@ -240,7 +243,9 @@ public class MyUber  {
 	 */
 	public void createCostomerList(){
 		for(int i = 0; i<numCustomer;i++) {
-			listOfCustomer.add(new Customer(customerNameList[i],customerSurnameList[i]));
+			Customer customer = new Customer(customerNameList[i],customerSurnameList[i]);
+			customer.setGpsStart(LocationUtils.GetRandomLocation(this.areaUsed.getCenter(),this.areaUsed.getRadius()));
+			listOfCustomer.add(customer);
 		}
 	}
 	
@@ -257,6 +262,7 @@ public class MyUber  {
 		this.stringToBoolean();
 		this.createCostomerList();
 		this.createDriverList();
+		//System.out.println(listOfDriver+"listofdriver");
 		this.createStandardCarList();
 		this.createBerlineCarList();
 		this.createVanCarList();
@@ -314,9 +320,9 @@ public class MyUber  {
 						}
 					}
 				}
-			}else if(poolRequest.size()==3) {
-				
 			}
+			//else if(poolRequest.size()==3) 
+
 		}
 		else {
 			this.listOfRide.add(ride);
@@ -327,6 +333,30 @@ public class MyUber  {
 		 */	
 	}
 	
+	public List<BookOfRide> getBookOfRideList() {
+		return bookOfRideList;
+	}
+
+	public void setBookOfRideList(List<BookOfRide> bookOfRideList) {
+		this.bookOfRideList = bookOfRideList;
+	}
+
+	public List<Ride> getPoolRequest() {
+		return poolRequest;
+	}
+
+	public void setPoolRequest(List<Ride> poolRequest) {
+		this.poolRequest = poolRequest;
+	}
+
+	public List<Ride> getListOfRide() {
+		return listOfRide;
+	}
+
+	public void setListOfRide(List<Ride> listOfRide) {
+		this.listOfRide = listOfRide;
+	}
+
 	public List<Car> sortByDistance(Ride ride) {
 		List<Car> listSorted = new ArrayList<>();
 		if (ride.getRideType()=="uberX") {
@@ -397,7 +427,7 @@ public class MyUber  {
 			if (driver.getDriverId() == id) {
 			return driver;	
 			}}
-		return null;
+	return this.listOfDriver.get(1);
 	}
 	
 	/**
@@ -443,6 +473,10 @@ public class MyUber  {
  		 *  Uberpool:
  		 *  
 		 */
+		//System.out.println(myUber.getListOfDriver().size());
+		//System.out.println(myUber.getDriverObject(3).getDriverId());
+		myUber.driverAllocation(myUber.getListOfCustomer().get(1).createANewRide(3, 44.1, 2.15 , 21, 7));
+		System.out.println((myUber.getListOfRide().get(0).getCustomer().getName()));
 	}
 
 

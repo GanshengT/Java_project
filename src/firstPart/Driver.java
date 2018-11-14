@@ -111,10 +111,10 @@ public class Driver {
 	public void setStatus(String status) {
 		this.status = status;
 		if (status=="on-duty") {
-			this.startOnduty.systemTime();
+			this.startOnduty = new MyTime();
 		}
 		else if(status == "off-duty" || status == "on-a-ride") {
-			this.endOnDuty.systemTime();
+			this.endOnDuty= new MyTime();
 			this.OndutyTime+=this.getStartOnduty().timeMinus(this.endOnDuty);		}
 	}
 

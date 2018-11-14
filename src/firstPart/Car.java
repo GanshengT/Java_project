@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 
 public abstract class Car implements Comparable<Car> {
@@ -22,7 +23,7 @@ public abstract class Car implements Comparable<Car> {
 	 */
 	private int currentDriver;
 	private GPSLocation carLocation;
-	private static List<Driver> nonAssignedDrivers = new ArrayList<>();
+	public static List<Driver> nonAssignedDrivers = new ArrayList();
 	private Integer distanceFromCustomer;
 	
 	/**
@@ -100,15 +101,16 @@ public abstract class Car implements Comparable<Car> {
 			System.out.println(item.getOwnership());
 			if (item.getOwnership() == false) {
 				owners.add(item);
-				System.out.println(owners.size());
+				//System.out.println(owners.size());
 				iter.remove();
 			}
 			else {
 				System.out.println("Assignment completed");
 				break;
 			}
-		}
 
+		}
+		this.changeDriver();
 		/**
 		 * 
 		 *
@@ -128,7 +130,11 @@ public abstract class Car implements Comparable<Car> {
 	}
 	
 	public Driver RandomDriver() {
-		double RandomNum = (int)Math.random()*this.owners.size()-1;
+		Random random = new Random();
+		double RandomNum = random.nextDouble()*this.owners.size()-1;
+		if (RandomNum <= 0) {
+			RandomNum =0;
+		}
 		int driverIndex = (int)RandomNum;
 		return this.owners.get(driverIndex);
 	}
@@ -139,7 +145,13 @@ public abstract class Car implements Comparable<Car> {
 	public void changeDriver() {
 		Driver currentD = RandomDriver();
 		this.currentDriver = currentD.getDriverId();
-		currentD.setStatus("on-duty");
+		System.out.println(this.currentDriver);
+		for (Driver driver : this.owners) {
+			if (driver.getDriverId() == currentD.getDriverId()){
+				driver.setStatus("on-duty");
+			}
+		}
+		System.out.println(this.owners.get(0).getStatus());
 		}
 	
 	public Integer getDistanceFromCustomer() {

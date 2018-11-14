@@ -62,7 +62,7 @@ public class MyTime {
 		this.ss = ss;
 	}
 	
-	public void systemTime() {
+	public  MyTime() {
 		Calendar calendar = Calendar.getInstance();
 		this.yyyy = calendar.get(1);
 		this.MM = calendar.get(2);
@@ -229,7 +229,6 @@ public class MyTime {
 		System.out.println(myTime.getHH());
 		System.out.println(myTime.getMm()); 
 		System.out.println(myTime.getSs());
-		myTime.systemTime();
 		System.out.println(myTime.getHH());
 		System.out.println(myTime.getMm()); 
 		System.out.println(myTime.getSs());
