@@ -43,6 +43,7 @@ public abstract class Ride {
 	private String trafficState2;
 	private double durationMin2;
 	private MyTime endTime2;
+	private double cost;
 	private static double[] midnightCoef = {0.95,0.04,0.01};
 	private static double[] morningCoef = {0.05,0.20,0.75};
 	private static double[] afternoonCoef = {0.15,0.70,0.15};
@@ -115,6 +116,40 @@ public abstract class Ride {
 		return oneEndTime;
 	}
 	
+	public void calculateLowestRideCost(Car car) {
+		double c_p1 = LocationUtils.GetDistance(car.getCarLocation(), this.getStartPosition());
+		double c_p2 = LocationUtils.GetDistance(car.getCarLocation(), this.getStartPosition2());
+		double p1_p2 = LocationUtils.GetDistance(car.getCarLocation(), this.getStartPosition2());
+		double d1_d2 = LocationUtils.GetDistance(this.getEndPosition(), this.getEndPosition2());
+		double p1_d1 = LocationUtils.GetDistance(this.getStartPosition(), this.getEndPosition());
+		double p1_d2 = LocationUtils.GetDistance(this.getStartPosition(), this.getEndPosition2());
+		double p2_d1 = LocationUtils.GetDistance(this.getStartPosition2(), this.getEndPosition());
+		double p2_d2 = LocationUtils.GetDistance(this.getStartPosition2(), this.getEndPosition2());;
+		if(c_p1 < c_p2) {
+			if(p2_d1< p2_d2) {
+				this.setCost( c_p1 + p1_p2 + p2_d1 + d1_d2);
+				this.setLength(p1_p2 + p2_d1);
+				this.setLength2(p2_d1 + d1_d2);
+				//return this.cost;		
+			}else {
+				this.setCost (c_p1 + p1_p2 + p2_d2 + d1_d2);
+				this.setLength(p1_p2 + p2_d2 + d1_d2);
+				//return this.cost;
+			}
+				
+		}else {
+			if(p1_d2<p1_d1) {
+				this.setCost(c_p2 + p1_p2 + p1_d2 + d1_d2);
+				this.setLength(p1_d2 + d1_d2);
+				this.setLength2(p1_p2 + p1_d2);
+				//return this.cost;		
+			}else {
+				this.setCost(c_p2 + p1_p2 + p1_d1 + d1_d2);
+				this.setLength2(p1_p2 + p1_d1 + d1_d2);
+				//return this.cost;
+			}
+		}}
+	
 	public Ride(Customer customer, int passengerNum, GPSLocation startPosition, GPSLocation endPosition, MyTime startTime) {
 		super();
 		counter++;
@@ -156,6 +191,14 @@ public abstract class Ride {
 		
 	}
 	
+	public double getCost() {
+		return cost;
+	}
+
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+
 	public Customer getCustomer2() {
 		return customer2;
 	}

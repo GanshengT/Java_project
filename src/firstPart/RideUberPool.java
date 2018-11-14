@@ -13,8 +13,18 @@ import java.util.Map;
 
 public class RideUberPool extends Ride {
 	private MyTime coStartTime;
-	private double cost;
 	
+	
+	public MyTime getCoStartTime() {
+		return coStartTime;
+	}
+
+	public void setCoStartTime(MyTime coStartTime) {
+		this.coStartTime = coStartTime;
+	}
+
+	
+
 	private static Map<String, Double> trafficRateMap = new HashMap<String, Double>() {
 		{put("lowTraffic", (double) 1);
 		put("mediumTraffic",(double)1.1);
@@ -33,8 +43,8 @@ public class RideUberPool extends Ride {
 				get(this.getTrafficState()));
 		return this.getPriceToPay();
 	}
-	
-	public double calculateLowestRideCost(Car car) {
+	/***
+	public void calculateLowestRideCost(Car car) {
 		double c_p1 = LocationUtils.GetDistance(car.getCarLocation(), this.getStartPosition());
 		double c_p2 = LocationUtils.GetDistance(car.getCarLocation(), this.getStartPosition2());
 		double p1_p2 = LocationUtils.GetDistance(car.getCarLocation(), this.getStartPosition2());
@@ -45,30 +55,31 @@ public class RideUberPool extends Ride {
 		double p2_d2 = LocationUtils.GetDistance(this.getStartPosition2(), this.getEndPosition2());;
 		if(c_p1 < c_p2) {
 			if(p2_d1< p2_d2) {
-				this.cost = c_p1 + p1_p2 + p2_d1 + d1_d2;
+				this.setCost( c_p1 + p1_p2 + p2_d1 + d1_d2);
 				this.setLength(p1_p2 + p2_d1);
 				this.setLength2(p2_d1 + d1_d2);
-				return this.cost;		
+				//return this.cost;		
 			}else {
-				this.cost = c_p1 + p1_p2 + p2_d2 + d1_d2;
+				this.setCost (c_p1 + p1_p2 + p2_d2 + d1_d2);
 				this.setLength(p1_p2 + p2_d2 + d1_d2);
-				return this.cost;
+				//return this.cost;
 			}
 				
 		}else {
 			if(p1_d2<p1_d1) {
-				this.cost = c_p2 + p1_p2 + p1_d2 + d1_d2;
+				this.setCost(c_p2 + p1_p2 + p1_d2 + d1_d2);
 				this.setLength(p1_d2 + d1_d2);
 				this.setLength2(p1_p2 + p1_d2);
-				return this.cost;		
+				//return this.cost;		
 			}else {
-				this.cost = c_p2 + p1_p2 + p1_d1 + d1_d2;
+				this.setCost(c_p2 + p1_p2 + p1_d1 + d1_d2);
 				this.setLength2(p1_p2 + p1_d1 + d1_d2);
-				return this.cost;
+				//return this.cost;
 			}
 		}
 		
-	}
+		
+	}*/
 	
 
 	public RideUberPool(Customer customer, int passengerNum, GPSLocation startPosition, GPSLocation endPosition, MyTime startTime) {

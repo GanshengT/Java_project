@@ -305,6 +305,7 @@ public class MyUber  {
 						if(poolRequest.get(i).getPassengerNum()+poolRequest.get(j).getPassengerNum()<=4) {
 							Ride newRideUberPool = new RideUberPool(poolRequest.get(i),poolRequest.get(j));
 							this.listOfRide.add(newRideUberPool);
+							this.searchDriver(newRideUberPool);
 							poolRequest.remove(i);
 							poolRequest.remove(j);
 							break OUT;
@@ -346,6 +347,15 @@ public class MyUber  {
 			listSorted = this.getListOfVanCar();
 			for (Car car:listSorted) {
 				car.calculateDistance(ride);
+			}
+			Collections.sort(listSorted);
+		}
+		else if(ride.getRideType()=="uberPool") {
+			listSorted = this.getListOfStandardCar();
+			for (Car car: listSorted) {
+				ride.calculateLowestRideCost(car);
+				double cost = ride.getCost();
+				car.setDistanceFromCustomer((int) (cost));
 			}
 			Collections.sort(listSorted);
 		}
