@@ -8,6 +8,24 @@ public class Driver {
 	private String surName;
 	private int driverId;
 	private String status;
+	private MyTime startOnduty;
+	private double OndutyTime;
+	public MyTime getStartOnduty() {
+		return startOnduty;
+	}
+
+	public void setStartOnduty(MyTime startOnduty) {
+		this.startOnduty = startOnduty;
+	}
+
+	public double getOndutyTime() {
+		return OndutyTime;
+	}
+
+	public void setOndutyTime(double ondutyTime) {
+		OndutyTime = ondutyTime;
+	}
+
 	/**
 	 * ownership= true means it has its own car
 	 */

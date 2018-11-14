@@ -345,7 +345,7 @@ public class MyUber  {
 	public void searchDriver(Ride ride) {
 		List<Car> carListToNotify = this.sortByDistance(ride);
 		for (Car car : carListToNotify) {
-			if (this.getDriverObject(car.getCurrentDriver()).getStatus()== "onDuty") {
+			if (this.getDriverObject(car.getCurrentDriver()).getStatus()== "on-duty") {
 			Boolean acceptOrNot = this.getDriverObject(car.getCurrentDriver()).acceptRequest();
 			if (acceptOrNot == true) {
 				BookOfRide	bookOfRide = new BookOfRide(car.getCurrentDriver(), car.getIdCar(), ride.getCustomer().getIdNum(), ride.getStartPosition(),
@@ -370,6 +370,35 @@ public class MyUber  {
 			return driver;	
 			}}
 		return null;
+	}
+	
+	/**
+	 * manulelly change status offduty to onduty
+	 * @param ride
+	 * @return
+	 */
+	public double RideFinished(Ride ride) {
+		double randomNum = Math.random();
+		if(randomNum<=0.33) {
+		ride.getDriver().setStatus("off-duty");
+		/**
+		 * time unit is second
+		 */
+	
+	}
+		/**
+		 * offline
+		 */
+		else if(randomNum <= 0.66) {
+			ride.getDriver().setStatus("offline");
+			ride.getCar().changeDriver();
+		}
+		else {
+			ride.getDriver().setStatus("on-duty");
+		}
+		return 0;
+		
+		
 	}
 	
 	public static void main(String[] args) throws InvalidFileFormatException, FileNotFoundException, IOException {

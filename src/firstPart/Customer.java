@@ -134,4 +134,8 @@ public class Customer {
 		//this.currentRide.getCar().reAssignDriver;
 	}
 	
+	public void aboard() {
+		this.currentRide.setState("ongoing");
+	}
+	
 }

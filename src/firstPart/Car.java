@@ -16,6 +16,10 @@ public abstract class Car implements Comparable<Car> {
 	private AreaUsed areaUsed;
 	private int availableSeatNum;
 	private List<Driver> owners = new ArrayList<>();
+	
+	/**
+	 * currentDriverId we might want to modify afterwards
+	 */
 	private int currentDriver;
 	private GPSLocation carLocation;
 	private static List<Driver> nonAssignedDrivers = new ArrayList<>();
@@ -25,6 +29,12 @@ public abstract class Car implements Comparable<Car> {
 	 * from resource
 	 * @return
 	 */
+	public List<Driver> getOwners() {
+		return owners;
+	}
+	public void setOwners(List<Driver> owners) {
+		this.owners = owners;
+	}
 	public String getIdCar() {
 		return idCar;
 	}
@@ -116,6 +126,22 @@ public abstract class Car implements Comparable<Car> {
 		*/
 		
 	}
+	
+	public Driver RandomDriver() {
+		double RandomNum = (int)Math.random()*this.owners.size()-1;
+		int driverIndex = (int)RandomNum;
+		return this.owners.get(driverIndex);
+	}
+	
+	/**
+	 * changeDriver make car change current driver and set the current driver status to onduty
+	 */
+	public void changeDriver() {
+		Driver currentD = RandomDriver();
+		this.currentDriver = currentD.getDriverId();
+		currentD.setStatus("on-duty");
+		}
+	
 	public Integer getDistanceFromCustomer() {
 		return distanceFromCustomer;
 	}
