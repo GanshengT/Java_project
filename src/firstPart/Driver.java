@@ -9,6 +9,16 @@ public class Driver {
 	private int driverId;
 	private String status;
 	private MyTime startOnduty;
+	private MyTime endOnDuty;
+	private List<Integer> listOfMark = new ArrayList<>();
+	public MyTime getEndOnDuty() {
+		return endOnDuty;
+	}
+
+	public void setEndOnDuty(MyTime endOnDuty) {
+		this.endOnDuty = endOnDuty;
+	}
+
 	private double OndutyTime;
 	public MyTime getStartOnduty() {
 		return startOnduty;
@@ -48,6 +58,10 @@ public class Driver {
 	 * @param status
 	 * @param owneship
 	 */
+	
+	public void getMark(int mark) {
+		this.getListOfMark().add(mark);	}
+	
 	public Driver(String name, String surName, Boolean ownership) {
 		super();
 		this.name = name;
@@ -96,6 +110,12 @@ public class Driver {
 
 	public void setStatus(String status) {
 		this.status = status;
+		if (status=="on-duty") {
+			this.startOnduty.systemTime();
+		}
+		else if(status == "off-duty" || status == "on-a-ride") {
+			this.endOnDuty.systemTime();
+			this.OndutyTime+=this.getStartOnduty().timeMinus(this.endOnDuty);		}
 	}
 
 	public Boolean getOwnership() {
@@ -133,12 +153,20 @@ public class Driver {
 	public Boolean acceptRequest() {
 		double i = Math.random();
 		if (i>=0.5) {
-			this.status = "onARide";
+			this.status = "on-a-ride";
 			return true;
 		}
 		else {
 			return false;
 		}
+	}
+
+	public List<Integer> getListOfMark() {
+		return listOfMark;
+	}
+
+	public void setListOfMark(List<Integer> listOfMark) {
+		this.listOfMark = listOfMark;
 	}
 	
 

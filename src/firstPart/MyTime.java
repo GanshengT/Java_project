@@ -40,6 +40,17 @@ public class MyTime {
 		}
 		return day + "";
 	}
+	
+	/**
+	 * use to calculate onduty time
+	 * @param otherTime
+	 * @return
+	 */
+	public long timeMinus(MyTime otherTime) {
+	long second = 0;
+	second = 24*3600*(otherTime.dd - this.dd)+3600*(otherTime.HH - this.HH)+60*(otherTime.mm - this.mm)+otherTime.ss-this.ss;
+	return second;
+	}
 
 	public MyTime(int HH, int mm, int ss) {
 		Calendar calendar = Calendar.getInstance();	
@@ -50,6 +61,17 @@ public class MyTime {
 		this.mm = mm;
 		this.ss = ss;
 	}
+	
+	public void systemTime() {
+		Calendar calendar = Calendar.getInstance();
+		this.yyyy = calendar.get(1);
+		this.MM = calendar.get(2);
+		this.dd = calendar.get(3);
+		this.HH = calendar.get(Calendar.HOUR_OF_DAY);
+		this.mm = calendar.get(Calendar.MINUTE);
+		this.ss = calendar.get(Calendar.SECOND);
+	}
+	
 	public static String getTIME_FORMAT() {
 		return TIME_FORMAT;
 	}
@@ -149,6 +171,7 @@ public class MyTime {
 		String formattedDate = sdf.format(date);
 		return formattedDate;
 	}
+	
 	public static long time2Millis(String date) {
 		Date dateFormat = null;
 		try {
@@ -206,7 +229,11 @@ public class MyTime {
 		System.out.println(myTime.getHH());
 		System.out.println(myTime.getMm()); 
 		System.out.println(myTime.getSs());
+		myTime.systemTime();
+		System.out.println(myTime.getHH());
+		System.out.println(myTime.getMm()); 
+		System.out.println(myTime.getSs());
 	}
 
-	
 }
+
