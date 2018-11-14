@@ -160,6 +160,46 @@ public class MyTime {
 		return dateLong;
 	}
 	
+	public static MyTime getLaterTime(MyTime mytime1, MyTime mytime2) {
+		if(mytime1.getYyyy() == mytime2.getYyyy()) {
+			if(mytime1.getMM() == mytime2.getMM()) {
+				if(mytime1.getDd() == mytime2.getDd()) {
+					if(mytime1.getHH() == mytime2.getHH()) {
+						if(mytime1.getMm() == mytime2.getMm()) {
+							if(mytime1.getSs() == mytime2.getSs()) {
+								return mytime1;
+							}else if(mytime1.getSs() > mytime2.getSs()) {
+								return mytime1;
+							}else {
+								return mytime2;
+							}
+						}else if(mytime1.getMm() > mytime2.getMm()) {
+							return mytime1;
+						}else {
+							return mytime2;
+						}
+					}else if(mytime1.getHH() > mytime2.getHH()) {
+						return mytime1;
+					}else {
+						return mytime2;
+					}
+				}else if(mytime1.getDd() > mytime2.getDd()) {
+					return mytime1;
+				}else {
+					return mytime2;
+				}
+			}else if(mytime1.getMM() > mytime2.getMM()) {
+				return mytime1;
+			}else {
+				return mytime2;
+			}
+		}else if(mytime1.getYyyy() > mytime2.getYyyy()) {
+			return mytime1;
+		}else {
+			return mytime2;
+		}
+	}
+	
 	public static void main(String[] args) {
 		MyTime myTime = new MyTime(23,32,10);
 		myTime.addTime(1800);

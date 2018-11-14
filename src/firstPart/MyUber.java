@@ -298,6 +298,11 @@ public class MyUber  {
 		if (ride.getRideType() == "uberPool") {
 			this.poolRequest.add(ride);
 			this.listOfRide.add(ride);
+			if(poolRequest.size()==2) {
+				
+			}else if(poolRequest.size()==3) {
+				
+			}
 		}
 		else {
 			this.listOfRide.add(ride);

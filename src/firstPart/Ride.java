@@ -34,6 +34,15 @@ public abstract class Ride {
 	private int rideQuality;
 	private String trafficState;
 	private String lengthType;
+	private Customer customer2;
+	private int passengerNum2;
+	private GPSLocation startPosition2;
+	private GPSLocation endPosition2;
+	private MyTime startTime2;
+	private int length2;
+	private String trafficState2;
+	private double durationMin2;
+	private MyTime endTime2;
 	private static double[] midnightCoef = {0.95,0.04,0.01};
 	private static double[] morningCoef = {0.05,0.20,0.75};
 	private static double[] afternoonCoef = {0.15,0.70,0.15};
@@ -121,6 +130,104 @@ public abstract class Ride {
 		this.endTime = returnEndTime(this.startTime);
 	}
 	
+	public Ride(Customer customer, int passengerNum, GPSLocation startPosition, GPSLocation endPosition, MyTime startTime,
+			Customer customer2, int passengerNum2, GPSLocation startPosition2, GPSLocation endPosition2, MyTime startTime2) {
+		super();
+		//counter++;
+		//this.rideId =counter;
+		this.customer = customer;
+		this.passengerNum = passengerNum;
+		this.startPosition = startPosition;
+		this.endPosition = endPosition;
+		this.startTime = startTime;
+		this.length = LocationUtils.GetDistance(startPosition, endPosition);
+		this.trafficState = returnTrafficInfo(startTime);
+		this.durationMin = calculateDuration(length, trafficSpeedMap.get(trafficState));
+		this.endTime = returnEndTime(this.startTime);
+		this.customer2 = customer2;
+		this.passengerNum2 = passengerNum2;
+		this.startPosition2 = startPosition2;
+		this.endPosition2 = endPosition2;
+		this.startTime2 = startTime2;
+		this.length2 = LocationUtils.GetDistance(startPosition2, endPosition2);
+		this.trafficState2 = returnTrafficInfo(startTime2);
+		this.durationMin2 = calculateDuration(length2, trafficSpeedMap.get(trafficState2));
+		this.endTime2 = returnEndTime(this.startTime2);
+		
+	}
+	
+	public Customer getCustomer2() {
+		return customer2;
+	}
+
+	public void setCustomer2(Customer customer2) {
+		this.customer2 = customer2;
+	}
+
+	public int getPassengerNum2() {
+		return passengerNum2;
+	}
+
+	public void setPassengerNum2(int passengerNum2) {
+		this.passengerNum2 = passengerNum2;
+	}
+
+	public GPSLocation getStartPosition2() {
+		return startPosition2;
+	}
+
+	public void setStartPosition2(GPSLocation startPosition2) {
+		this.startPosition2 = startPosition2;
+	}
+
+	public GPSLocation getEndPosition2() {
+		return endPosition2;
+	}
+
+	public void setEndPosition2(GPSLocation endPosition2) {
+		this.endPosition2 = endPosition2;
+	}
+
+	public MyTime getStartTime2() {
+		return startTime2;
+	}
+
+	public void setStartTime2(MyTime startTime2) {
+		this.startTime2 = startTime2;
+	}
+
+	public int getLength2() {
+		return length2;
+	}
+
+	public void setLength2(int length2) {
+		this.length2 = length2;
+	}
+
+	public String getTrafficState2() {
+		return trafficState2;
+	}
+
+	public void setTrafficState2(String trafficState2) {
+		this.trafficState2 = trafficState2;
+	}
+
+	public double getDurationMin2() {
+		return durationMin2;
+	}
+
+	public void setDurationMin2(double durationMin2) {
+		this.durationMin2 = durationMin2;
+	}
+
+	public MyTime getEndTime2() {
+		return endTime2;
+	}
+
+	public void setEndTime2(MyTime endTime2) {
+		this.endTime2 = endTime2;
+	}
+
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -147,32 +254,6 @@ public abstract class Ride {
 		this.rideId = rideId;
 	}
 
-	/**
-	public double getPricePerKmLessThanFive() {
-		return pricePerKmLessThanFive;
-	}
-	public void setPricePerKmLessThanFive(double pricePerKmLessThanFive) {
-		this.pricePerKmLessThanFive = pricePerKmLessThanFive;
-	}
-	public double getPricePerKmFiveToTen() {
-		return pricePerKmFiveToTen;
-	}
-	public void setPricePerKmFiveToTen(double pricePerKmFiveToTen) {
-		this.pricePerKmFiveToTen = pricePerKmFiveToTen;
-	}
-	public double getPricePerKmTenToTwenty() {
-		return pricePerKmTenToTwenty;
-	}
-	public void setPricePerKmTenToTwenty(double pricePerKmTenToTwenty) {
-		this.pricePerKmTenToTwenty = pricePerKmTenToTwenty;
-	}
-	public double getPricePerKmMoreThanTwenty() {
-		return pricePerKmMoreThanTwenty;
-	}
-	public void setPricePerKmMoreThanTwenty(double pricePerKmMoreThanTwenty) {
-		this.pricePerKmMoreThanTwenty = pricePerKmMoreThanTwenty;
-	}
-	*/
 	public int getRideQuality() {
 		return rideQuality;
 	}
