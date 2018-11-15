@@ -10,7 +10,7 @@ public class VanCar extends Car {
 	public VanCar(AreaUsed areaUsed) {
 		super(areaUsed);
 		VanCar.counter++;
-		idCar = "Van"+counter;
+		idCar = "Van"+VanCar.counter;
 		// TODO Auto-generated constructor stub
 	}
 	public int getSeatNum() {

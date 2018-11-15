@@ -89,7 +89,7 @@ public abstract class Car implements Comparable<Car> {
 	public static void setNonAssignedDrivers(List<Driver> nonAssignedDrivers) {
 		Car.nonAssignedDrivers = nonAssignedDrivers;
 	}
-	public void AssignDriver(List<Driver> listOfDriver) {
+	public void AssignDriver() {
 		//System.out.println(Car.nonAssignedDrivers.get(0).getOwnership());
 		owners.add(Car.nonAssignedDrivers.get(0));
 		Car.nonAssignedDrivers.remove(0);
@@ -132,6 +132,11 @@ public abstract class Car implements Comparable<Car> {
 	public Driver RandomDriver() {
 		Random random = new Random();
 		double RandomNum = random.nextDouble()*this.owners.size()-1;
+		System.out.println(this.getIdCar()+"  this car");
+		System.out.println(this.owners.get(0).getName());
+		
+		System.out.println(this.owners.size()+"num of owners");
+		System.out.println(RandomNum+"randomNum");
 		if (RandomNum <= 0) {
 			RandomNum =0;
 		}
@@ -151,7 +156,7 @@ public abstract class Car implements Comparable<Car> {
 				driver.setStatus("on-duty");
 			}
 		}
-		System.out.println(this.owners.get(0).getStatus());
+		//System.out.println(this.owners.get(0).getStatus());
 		}
 	
 	public Integer getDistanceFromCustomer() {

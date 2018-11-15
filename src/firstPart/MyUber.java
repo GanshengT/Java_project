@@ -246,7 +246,7 @@ public class MyUber  {
 		Car.nonAssignedDrivers.addAll(listOfDriver);
 		//Collections.copy(Car.nonAssignedDrivers , listOfDriver);
 		for(Car car : listOfCar) {
-			car.AssignDriver(listOfDriver);
+			car.AssignDriver();
 		}
 	}
 	
@@ -408,12 +408,13 @@ public class MyUber  {
 			System.out.println(this.getDriverObject(car.getCurrentDriver()).getStatus());
 			if (this.getDriverObject(car.getCurrentDriver()).getStatus()== "on-duty") {
 			Boolean acceptOrNot = this.getDriverObject(car.getCurrentDriver()).acceptRequest();
-			System.out.println("if succeed");
+			//System.out.println("if succeed");
 			if (acceptOrNot == true) {
 				BookOfRide	bookOfRide = new BookOfRide(car.getCurrentDriver(), car.getIdCar(), ride.getCustomer().getIdNum(), ride.getStartPosition(),
 						ride.getEndPosition(), ride.getLength(), ride.getStartTime(),ride.getEndTime());
 				ride.setDriver(this.getDriverObject(car.getCurrentDriver()));
-				System.out.println(ride.getDriver().getDriverId()+" driver infomation");
+				ride.setCar(car);
+				System.out.println(ride.getDriver().getDriverId()+" someone accept, driver infomation");
 				this.bookOfRideList.add(bookOfRide);
 				ride.setState("confirmed");
 				break;
@@ -472,7 +473,10 @@ public class MyUber  {
 		 */
 		else if(randomNum <= 0.66) {
 			ride.getDriver().setStatus("offline");
+			//System.out.println(ride.getCar().getIdCar());
+			System.out.println(ride.getCar().getIdCar()+" ride get car");
 			ride.getCar().changeDriver();
+			
 		}
 		else {
 			ride.getDriver().setStatus("on-duty");
@@ -483,10 +487,12 @@ public class MyUber  {
 		
 	}
 	
+	/**
+
 	public static void main(String[] args) throws InvalidFileFormatException, FileNotFoundException, IOException {
 		MyUber myUber = new MyUber("my_uber.ini");
 		System.out.println(myUber.getNumBerlineCar());
-		/**
+		 *
 		 * create myUber done
 		 * customer make request
 		 *  driverallocation -> bookofride add, driver , ride state change 
@@ -495,12 +501,13 @@ public class MyUber  {
  		 *  
  		 *  Uberpool:
  		 *  
-		 */
+		 *
 		//System.out.println(myUber.getListOfDriver().size());
 		//System.out.println(myUber.getDriverObject(3).getDriverId());
 		myUber.driverAllocation(myUber.getListOfCustomer().get(1).createANewRide(3, 44.1, 2.15 , 21, 7));
 		System.out.println((myUber.getListOfRide().get(0).getCustomer().getName()));
 	}
+	*/
 
 
 }

@@ -223,6 +223,8 @@ public class MyTime {
 		}
 	}
 	
+	/**
+	
 	public static void main(String[] args) {
 		MyTime myTime = new MyTime(23,32,10);
 		myTime.addTime(1800);
@@ -233,6 +235,7 @@ public class MyTime {
 		System.out.println(myTime.getMm()); 
 		System.out.println(myTime.getSs());
 	}
+	*/
 
 }
 

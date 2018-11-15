@@ -10,7 +10,7 @@ public class BerlineCar extends Car {
 	public BerlineCar(AreaUsed areaUsed) {
 		super(areaUsed);
 		BerlineCar.counter++;
-		this.idCar = "Berline"+counter;
+		this.idCar = "Berline"+BerlineCar.counter;
 		// TODO Auto-generated constructor stub
 	}
 	public int getSeatNum() {

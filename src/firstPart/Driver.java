@@ -11,6 +11,7 @@ public class Driver {
 	private MyTime startOnduty;
 	private MyTime endOnDuty;
 	private List<Integer> listOfMark = new ArrayList<>();
+	private double averageMark = 0;
 	public MyTime getEndOnDuty() {
 		return endOnDuty;
 	}
@@ -59,7 +60,13 @@ public class Driver {
 	 */
 	
 	public void askMark(int mark) {
-		this.getListOfMark().add(mark);	}
+		this.getListOfMark().add(mark);	
+		double sum = 0;
+		for (int m : this.getListOfMark()) {
+			sum += m;
+		}
+		this.averageMark = sum/(this.getListOfMark().size());
+	}
 	
 	public Driver(String name, String surName, Boolean ownership) {
 		super();
@@ -160,6 +167,14 @@ public class Driver {
 
 	public void setListOfMark(List<Integer> listOfMark) {
 		this.listOfMark = listOfMark;
+	}
+
+	public double getAverageMark() {
+		return averageMark;
+	}
+
+	public void setAverageMark(double averageMark) {
+		this.averageMark = averageMark;
 	}
 	
 

@@ -9,7 +9,7 @@ public class StandardCar extends Car{
 	public StandardCar(AreaUsed areaUsed) {
 		super(areaUsed);
 		StandardCar.counter++;
-		this.idCar = "Standard"+ counter;
+		this.idCar = "Standard"+ StandardCar.counter;
 	}
 	public int getSeatNum() {
 		return seatNum;
