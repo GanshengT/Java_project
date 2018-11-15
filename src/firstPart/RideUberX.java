@@ -34,6 +34,9 @@ public class RideUberX extends Ride {
 		return this.getPriceToPay();
 	}
 
-	
+	@Override
+	public double price2() {
+		return 0.00;
+	};
 
 }

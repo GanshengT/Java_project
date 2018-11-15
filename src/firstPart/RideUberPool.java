@@ -43,6 +43,13 @@ public class RideUberPool extends Ride {
 				get(this.getTrafficState()));
 		return this.getPriceToPay();
 	}
+	
+	@Override
+	public double price2() {
+		this.setPriceToPay2(this.getLength2()*lengthTypeMap.get(this.getLengthType2())*trafficRateMap.
+				get(this.getTrafficState2()));
+		return this.getPriceToPay2();
+	};
 	/***
 	public void calculateLowestRideCost(Car car) {
 		double c_p1 = LocationUtils.GetDistance(car.getCarLocation(), this.getStartPosition());

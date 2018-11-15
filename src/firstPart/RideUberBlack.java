@@ -34,5 +34,9 @@ public class RideUberBlack extends Ride {
 				get(this.getTrafficState()));
 		return this.getPriceToPay();
 	}
-
+	
+	@Override
+	public double price2() {
+		return 0.00;
+	};
 }

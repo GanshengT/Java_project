@@ -199,6 +199,30 @@ public class MyUber  {
 	public void setListOfCustomer(List<Customer> listOfCustomer) {
 		this.listOfCustomer = listOfCustomer;
 	}
+	
+	public List<BookOfRide> getBookOfRideList() {
+		return bookOfRideList;
+	}
+
+	public void setBookOfRideList(List<BookOfRide> bookOfRideList) {
+		this.bookOfRideList = bookOfRideList;
+	}
+
+	public List<Ride> getPoolRequest() {
+		return poolRequest;
+	}
+
+	public void setPoolRequest(List<Ride> poolRequest) {
+		this.poolRequest = poolRequest;
+	}
+
+	public List<Ride> getListOfRide() {
+		return listOfRide;
+	}
+
+	public void setListOfRide(List<Ride> listOfRide) {
+		this.listOfRide = listOfRide;
+	}
 
 	public void createBerlineCarList(){
 
@@ -333,29 +357,7 @@ public class MyUber  {
 		 */	
 	}
 	
-	public List<BookOfRide> getBookOfRideList() {
-		return bookOfRideList;
-	}
-
-	public void setBookOfRideList(List<BookOfRide> bookOfRideList) {
-		this.bookOfRideList = bookOfRideList;
-	}
-
-	public List<Ride> getPoolRequest() {
-		return poolRequest;
-	}
-
-	public void setPoolRequest(List<Ride> poolRequest) {
-		this.poolRequest = poolRequest;
-	}
-
-	public List<Ride> getListOfRide() {
-		return listOfRide;
-	}
-
-	public void setListOfRide(List<Ride> listOfRide) {
-		this.listOfRide = listOfRide;
-	}
+	
 
 	public List<Car> sortByDistance(Ride ride) {
 		List<Car> listSorted = new ArrayList<>();
@@ -436,6 +438,20 @@ public class MyUber  {
 	 * @return
 	 */
 	public double RideFinished(Ride ride) {
+		if(ride.getRideType() == "UberPool") {
+			ride.getCustomer().setRideNum(ride.getCustomer().getRideNum()+1);
+			ride.getCustomer().setOnCarMoney(ride.getCustomer().getOnCarMoney()+ride.price());
+			ride.getCustomer2().setRideNum(ride.getCustomer2().getRideNum()+1);
+			ride.getCustomer2().setOnCarMoney(ride.getCustomer2().getOnCarMoney()+ride.price2());
+			ride.getDriver().setMoneyCashed(ride.getDriver().getMoneyCashed()+ride.price()+ride.price2());
+		}else {
+			ride.getCustomer().setRideNum(ride.getCustomer().getRideNum()+1);
+			ride.getCustomer().setOnCarMoney(ride.getCustomer().getOnCarMoney()+ride.getPriceToPay());	
+			ride.getDriver().setMoneyCashed(ride.getDriver().getMoneyCashed()+ride.price());
+		}
+		
+		ride.getDriver().setRideNum(ride.getDriver().getRideNum()+1);
+		
 		double randomNum = Math.random();
 		if(randomNum<=0.33) {
 		ride.getDriver().setStatus("off-duty");

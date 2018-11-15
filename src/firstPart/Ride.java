@@ -44,6 +44,7 @@ public abstract class Ride {
 	private String lengthType2;
 	private double durationMin2;
 	private MyTime endTime2;
+	private double priceToPay2;
 	private double cost;
 	private static double[] midnightCoef = {0.95,0.04,0.01};
 	private static double[] morningCoef = {0.05,0.20,0.75};
@@ -379,6 +380,15 @@ public abstract class Ride {
 		this.priceToPay = priceToPay;
 	}
 
+	
+	public double getPriceToPay2() {
+		return priceToPay2;
+	}
+
+	public void setPriceToPay2(double priccToPay2) {
+		this.priceToPay2 = priccToPay2;
+	}
+
 	public String getTrafficState() {
 		return trafficState;
 	}
@@ -397,5 +407,6 @@ public abstract class Ride {
 	
 	public abstract double price();
 	
+	public abstract double price2();
 	
 }
