@@ -405,11 +405,15 @@ public class MyUber  {
 	public void searchDriver(Ride ride) {
 		List<Car> carListToNotify = this.sortByDistance(ride);
 		for (Car car : carListToNotify) {
+			System.out.println(this.getDriverObject(car.getCurrentDriver()).getStatus());
 			if (this.getDriverObject(car.getCurrentDriver()).getStatus()== "on-duty") {
 			Boolean acceptOrNot = this.getDriverObject(car.getCurrentDriver()).acceptRequest();
+			System.out.println("if succeed");
 			if (acceptOrNot == true) {
 				BookOfRide	bookOfRide = new BookOfRide(car.getCurrentDriver(), car.getIdCar(), ride.getCustomer().getIdNum(), ride.getStartPosition(),
 						ride.getEndPosition(), ride.getLength(), ride.getStartTime(),ride.getEndTime());
+				ride.setDriver(this.getDriverObject(car.getCurrentDriver()));
+				System.out.println(ride.getDriver().getDriverId()+" driver infomation");
 				this.bookOfRideList.add(bookOfRide);
 				ride.setState("confirmed");
 				break;
@@ -422,6 +426,9 @@ public class MyUber  {
 				continue;
 			}
 		}
+		if (ride.getDriver()==null) {
+		System.out.println("no car available");
+	}
 	}
 	
 	public Driver getDriverObject(int id) {

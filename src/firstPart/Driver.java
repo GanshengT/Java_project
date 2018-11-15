@@ -43,7 +43,6 @@ public class Driver {
 	private static int counter = 0;
 	private int rideNum;
 	private double moneyCashed;
-	private List<Integer> markList = new ArrayList<>();
 	/**
 	 * accept method change status to on a ride
 	 */
@@ -59,7 +58,7 @@ public class Driver {
 	 * @param owneship
 	 */
 	
-	public void getMark(int mark) {
+	public void askMark(int mark) {
 		this.getListOfMark().add(mark);	}
 	
 	public Driver(String name, String surName, Boolean ownership) {
@@ -142,13 +141,7 @@ public class Driver {
 		this.moneyCashed = moneyCashed;
 	}
 
-	public List<Integer> getMarkList() {
-		return markList;
-	}
 
-	public void setMarkList(List<Integer> markList) {
-		this.markList = markList;
-	}
 	
 	public Boolean acceptRequest() {
 		double i = Math.random();

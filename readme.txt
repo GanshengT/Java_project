@@ -5,8 +5,8 @@ checkout to personnal branch to write codes
 saved!
 
 sharing
-checkout local dev and pull
-checkout personnal branch and commit change then rebase dev
+checkout personnal branch and commit change 
+checkout local dev and pull then rebase dev
 checkout dev and rebase personnal branch
 then push dev
 
