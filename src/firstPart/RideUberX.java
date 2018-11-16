@@ -6,10 +6,20 @@ import java.util.Map;
 
 public class RideUberX extends Ride {
 	private static Map<String, Double> trafficRateMap = new HashMap<String, Double>() {
-		{put("lowTraffic", (double) 1);
-		put("mediumTraffic",(double)1.1);
-		put("heavyTraffic",(double)1.5);}};
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -2279656004986567889L;
+
+		{put("lowTraffic",  1.0);
+		put("mediumTraffic",1.1);
+		put("heavyTraffic",1.5);}};
 	private static Map<String, Double> lengthTypeMap = new HashMap<String, Double>(){
+			/**
+		 * 
+		 */
+		private static final long serialVersionUID = 3814171649951810234L;
+
 			{
 				put("LessThanFive",3.3);
 				put("FiveToTen",4.2);
@@ -29,7 +39,7 @@ public class RideUberX extends Ride {
 
 	@Override
 	public double price() {
-		this.setPriceToPay(this.getLength()*lengthTypeMap.get(this.getLengthType())*trafficRateMap.
+		this.setPriceToPay(this.getLength()*RideUberX.lengthTypeMap.get(this.getLengthType())*RideUberX.trafficRateMap.
 				get(this.getTrafficState()));
 		return this.getPriceToPay();
 	}

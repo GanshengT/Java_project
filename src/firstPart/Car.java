@@ -22,6 +22,7 @@ public abstract class Car implements Comparable<Car> {
 	 * currentDriverId we might want to modify afterwards
 	 */
 	private int currentDriver;
+	private Driver currentDirverObject;
 	private GPSLocation carLocation;
 	public static List<Driver> nonAssignedDrivers = new ArrayList();
 	private Integer distanceFromCustomer;
@@ -48,6 +49,13 @@ public abstract class Car implements Comparable<Car> {
 	public void setSeatNum(int seatNum) {
 		this.seatNum = seatNum;
 	
+	}
+	
+	public Driver getCurrentDirverObject() {
+		return currentDirverObject;
+	}
+	public void setCurrentDirverObject(Driver currentDirverObject) {
+		this.currentDirverObject = currentDirverObject;
 	}
 	public int getAvailableSeatNum() {
 		return availableSeatNum;
@@ -105,12 +113,15 @@ public abstract class Car implements Comparable<Car> {
 				iter.remove();
 			}
 			else {
-				System.out.println("Assignment completed");
+				//System.out.println("Assignment completed");
 				break;
 			}
 
 		}
-		this.changeDriver();
+		this.currentDirverObject = this.RandomDriver();
+		this.setCurrentDriver(this.currentDirverObject.getDriverId());
+		this.currentDirverObject.setStatus("on-duty");
+		//this.changeDriver();
 		/**
 		 * 
 		 *
@@ -131,12 +142,13 @@ public abstract class Car implements Comparable<Car> {
 	
 	public Driver RandomDriver() {
 		Random random = new Random();
-		double RandomNum = random.nextDouble()*this.owners.size()-1;
-		System.out.println(this.getIdCar()+"  this car");
-		System.out.println(this.owners.get(0).getName());
+		int RandomNum = random.nextInt(this.owners.size());
+		//double RandomNum = random.nextDouble()*this.owners.size()-1;
+		//System.out.println(this.getIdCar()+"  this car");
+		//System.out.println(this.owners.get(0).getName());
 		
-		System.out.println(this.owners.size()+"num of owners");
-		System.out.println(RandomNum+"randomNum");
+		//System.out.println(this.owners.size()+"num of owners");
+		//System.out.println(RandomNum+"randomNum");
 		if (RandomNum <= 0) {
 			RandomNum =0;
 		}

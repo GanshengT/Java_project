@@ -83,15 +83,18 @@ public class Customer {
 		return counter;
 	}
 	
-	public Ride createANewRide(int passengerNumRequested, double desLongtude, double desLatitude, int startHH, int startMM) {
+	public Ride createANewRide(int passengerNumRequested, double desLongtude, double desLatitude, int startHH, int startMM,String type) {
 		MyTime startTime = new MyTime(startHH, startMM, 0);
 		System.out.println("one request is sent");
 		String rideType = "";
 		GPSLocation gpsEnd = new GPSLocation(desLongtude, desLatitude);
 		Ride rideX = new RideUberX(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
-		Ride rideBlack = new RideUberX(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+		Ride rideBlack = new RideUberBlack(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
 		Ride rideVan = new RideUberVan(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
 		Ride ridePool = new RideUberPool(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+		rideBlack.setTrafficState(rideX.getTrafficState());
+		rideVan.setTrafficState(rideX.getTrafficState());
+		ridePool.setTrafficState(rideX.getTrafficState());
 		Ride rideError = new RideUberX(this,0,this.gpsStart, new GPSLocation(0,0),startTime);
 		if (passengerNumRequested>=5 & passengerNumRequested <= 6) {
 			System.out.printf("Your can choose a Van car for this ride, the price is: %g.\n"
@@ -104,7 +107,7 @@ public class Customer {
 					+ "An UberPool price is: %geuros.\n"
 					+ "Please input your choice.(\"uberx\" or \"uberblack\" or \"ubervan\" or \"uberpool\")\n", 
 					rideX.price(),rideBlack.price(),rideVan.price(),ridePool.price());
-			rideType = "uberx";
+			rideType = type;
 		}else {
 			System.out.println("You have input a wrong passenger number.");
 		}

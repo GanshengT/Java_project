@@ -39,14 +39,7 @@ public class MyUber  {
 	 */
 	
 	
-	public void createStandardCarList(){
 
-		CreateCar createStandardCar = new CreateStandardCar();
-		for(int j = 0;j<numStandardCar; j++) {
-			listOfCar.add(createStandardCar.createCarMethod(areaUsed));
-			listOfStandardCar.add(createStandardCar.createCarMethod(areaUsed));
-		}
-	}
 	
 	public int getNumStandardCar() {
 		return numStandardCar;
@@ -224,12 +217,22 @@ public class MyUber  {
 		this.listOfRide = listOfRide;
 	}
 
+	public void createStandardCarList(){
+
+		CreateCar createStandardCar = new CreateStandardCar();
+		for(int j = 0;j<numStandardCar; j++) {
+			listOfCar.add(0,createStandardCar.createCarMethod(areaUsed));
+			listOfStandardCar.add(listOfCar.get(0));
+		}
+		}
+	
+	
 	public void createBerlineCarList(){
 
 		CreateCar createBerlineCar = new CreateBerlineCar();
 		for(int j = 0;j<numBerlineCar; j++) {
-			listOfCar.add(createBerlineCar.createCarMethod(areaUsed));
-			listOfBerlineCar.add(createBerlineCar.createCarMethod(areaUsed));
+			listOfCar.add(0,createBerlineCar.createCarMethod(areaUsed));
+			listOfBerlineCar.add(listOfCar.get(0));
 		}
 	}	
 	
@@ -237,8 +240,8 @@ public class MyUber  {
 
 		CreateCar createVanCar = new CreateVanCar();
 		for(int j = 0;j<numVanCar; j++) {
-			listOfCar.add(createVanCar.createCarMethod(areaUsed));
-			listOfVanCar.add(createVanCar.createCarMethod(areaUsed));
+			listOfCar.add(0,createVanCar.createCarMethod(areaUsed));
+			listOfVanCar.add(listOfCar.get(0));
 		}
 	}
 	
@@ -265,6 +268,7 @@ public class MyUber  {
 	/**
 	 * generate customers 
 	 */
+	
 	public void createCostomerList(){
 		for(int i = 0; i<numCustomer;i++) {
 			Customer customer = new Customer(customerNameList[i],customerSurnameList[i]);
@@ -404,7 +408,10 @@ public class MyUber  {
 	
 	public void searchDriver(Ride ride) {
 		List<Car> carListToNotify = this.sortByDistance(ride);
+		System.out.println(ride.getRideType());
 		for (Car car : carListToNotify) {
+			System.out.println(car.getIdCar());
+			System.out.println(car.getCurrentDriver());
 			System.out.println(this.getDriverObject(car.getCurrentDriver()).getStatus());
 			if (this.getDriverObject(car.getCurrentDriver()).getStatus()== "on-duty") {
 			Boolean acceptOrNot = this.getDriverObject(car.getCurrentDriver()).acceptRequest();
@@ -414,12 +421,13 @@ public class MyUber  {
 						ride.getEndPosition(), ride.getLength(), ride.getStartTime(),ride.getEndTime());
 				ride.setDriver(this.getDriverObject(car.getCurrentDriver()));
 				ride.setCar(car);
-				System.out.println(ride.getDriver().getDriverId()+" someone accept, driver infomation");
+				System.out.println(ride.getDriver().getDriverId()+" accept this ride.");
 				this.bookOfRideList.add(bookOfRide);
 				ride.setState("confirmed");
 				break;
 			}
 			else {
+				System.out.println("this driver "+car.getCurrentDriver()+" refuse this ride.");
 				continue;
 			}
 			}
@@ -446,7 +454,7 @@ public class MyUber  {
 	 * @return
 	 */
 	public double RideFinished(Ride ride) {
-		if(ride.getRideType() == "UberPool") {
+		if(ride.getRideType() == "uberPool") {
 			ride.getCustomer().setRideNum(ride.getCustomer().getRideNum()+1);
 			ride.getCustomer().setOnCarMoney(ride.getCustomer().getOnCarMoney()+ride.price());
 			ride.getCustomer2().setRideNum(ride.getCustomer2().getRideNum()+1);
