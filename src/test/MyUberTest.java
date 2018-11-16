@@ -64,6 +64,7 @@ public class MyUberTest extends TestCase {
 				System.out.println(driver.getDriverId());
 			}
 		}
+
 		*/
 		
 		myUber.RideFinished(myUber.getListOfRide().get(0));
@@ -77,5 +78,6 @@ public class MyUberTest extends TestCase {
 		assertTrue(myUber.getListOfCustomer().get(1).getRideNum() == 2);
 		assertTrue(myUber.getListOfCustomer().get(0).getRideNum() == 1);
 		}
+
 
 }

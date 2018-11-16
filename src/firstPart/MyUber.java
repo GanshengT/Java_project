@@ -495,12 +495,11 @@ public class MyUber  {
 		
 	}
 	
-	/**
+	
 
 	public static void main(String[] args) throws InvalidFileFormatException, FileNotFoundException, IOException {
 		MyUber myUber = new MyUber("my_uber.ini");
-		System.out.println(myUber.getNumBerlineCar());
-		 *
+		 /**
 		 * create myUber done
 		 * customer make request
 		 *  driverallocation -> bookofride add, driver , ride state change 
@@ -509,13 +508,23 @@ public class MyUber  {
  		 *  
  		 *  Uberpool:
  		 *  
-		 *
+		 */
 		//System.out.println(myUber.getListOfDriver().size());
 		//System.out.println(myUber.getDriverObject(3).getDriverId());
+		for(int i=0; i<7;i++) {
+			myUber.getListOfDriver().get(i).setStatus("on-duty");	
+			}
 		myUber.driverAllocation(myUber.getListOfCustomer().get(1).createANewRide(3, 44.1, 2.15 , 21, 7));
-		System.out.println((myUber.getListOfRide().get(0).getCustomer().getName()));
+		myUber.getListOfRide().get(0).getDriver().askMark(5);
+		for(Car car: myUber.getListOfCar()) {
+			System.out.println(car.getIdCar()+"car name");
+			for (Driver driver : car.getOwners()) {
+				System.out.println(driver.getName());
+			}
+		}
+
 	}
-	*/
+
 
 
 }

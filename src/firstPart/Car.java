@@ -109,7 +109,7 @@ public abstract class Car implements Comparable<Car> {
 			System.out.println(item.getOwnership());
 			if (item.getOwnership() == false) {
 				owners.add(item);
-				//System.out.println(owners.size());
+				//System.out.printmjmjn jn mjn ln(owners.size());
 				iter.remove();
 			}
 			else {
