@@ -1,6 +1,4 @@
 package firstPart;
-
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -10,7 +8,14 @@ import java.util.TimeZone;
 
 
 public class MyTime {
-
+/**
+ * yyyy :year
+ * MM: month
+ * dd: day
+ * HH: hour
+ * mm: minute
+ * ss:second
+ */
 	public static String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
 	private int yyyy;
 	private int MM;
@@ -19,30 +24,11 @@ public class MyTime {
 	private int mm;
 	private int ss;
 	
-	/**
-	 * compare two time
-	 */
-	public static String getInterval(String st, String ed) {
-		SimpleDateFormat myFormatter = new SimpleDateFormat(
-				"yyyy-MM-dd HH:mm:ss");
-		long day = 0;
-		long second = 0;
-		long millisSecond = 0;
-		try {
-			java.util.Date startDate = myFormatter.parse(st);
-			java.util.Date endDate = myFormatter.parse(ed);
-			day = (endDate.getTime() - startDate.getTime())
-					/ (24 * 60 * 60 * 1000);
-			second = (endDate.getTime() - startDate.getTime())/(1000);
-			millisSecond = (endDate.getTime() - startDate.getTime());
-		} catch (Exception e) {
-			return "";
-		}
-		return day + "";
-	}
 	
 	/**
+	 * input a new MyTime, output the difference between this two time
 	 * use to calculate onduty time
+	 * the unit is second
 	 * @param otherTime
 	 * @return
 	 */
@@ -52,6 +38,12 @@ public class MyTime {
 	return second;
 	}
 
+	/**
+	 * the first constructor is used for user-defined time in order to facilitate the test
+	 * @param HH
+	 * @param mm
+	 * @param ss
+	 */
 	public MyTime(int HH, int mm, int ss) {
 		Calendar calendar = Calendar.getInstance();	
 		this.yyyy = calendar.get(1);
@@ -62,6 +54,9 @@ public class MyTime {
 		this.ss = ss;
 	}
 	
+	/**
+	 * second constructor read the system time
+	 */
 	public  MyTime() {
 		Calendar calendar = Calendar.getInstance();
 		this.yyyy = calendar.get(1);
@@ -72,6 +67,11 @@ public class MyTime {
 		this.ss = calendar.get(Calendar.SECOND);
 	}
 	
+	
+	/**
+	 * setter and getter
+	 * @return
+	 */
 	public static String getTIME_FORMAT() {
 		return TIME_FORMAT;
 	}
@@ -129,21 +129,12 @@ public class MyTime {
 	}
 
 	/**
+	 * addTime to calculate the time after adding a duration
+	 * the unit of duration is second. 
 	 * add second!! not millis
 	 * @param durationS
 	 */
 	public void addTime(double durationS) {
-		/**
-		 * if (durationMillisS <= 1000) {
-		 *
-			this.ss+=0;
-		}
-		else if(this.ss + durationMillisS/1000 > 60) {
-			this.ss = this.ss  + durationMillisS/1000 - 60;
-			this.mm = 
-					
-		}
-		*/
 		Calendar cal=java.util.Calendar.getInstance();
 		cal.set(this.yyyy, this.MM, this.dd, this.HH, this.mm, this.ss);  
 		cal.add(java.util.Calendar.SECOND,(int) durationS); 
@@ -152,37 +143,24 @@ public class MyTime {
 		this.dd = cal.get(Calendar.DAY_OF_MONTH);
 		this.HH = cal.get(Calendar.HOUR_OF_DAY);
 		this.mm = cal.get(Calendar.MINUTE);
-		this.ss = cal.get(Calendar.SECOND);
-				
-		
+		this.ss = cal.get(Calendar.SECOND);		
 	}
+	
+
+
 	/**
-	 * date format to number and the inverse
-	 * @param longStr
+	 * advised get latter time method
+	 * advantage: shorter, code reuse, normal thinking is to substract two time
+	 * public static MyTime getLaterTime(MyTime mytime1, MyTime mytime2) {
+	 * if(mytime1.timeMinus(mytime2>=0){
+	 * return mytime1	 
+	 * }
+	 * else{
+	 * return mytime2}}
+	 * @param mytime1
+	 * @param mytime2
 	 * @return
 	 */
-	public static String millis2Time(String longStr) {
-		long seconds = Long.parseLong(longStr);
-		long millis = seconds * 1000;
-		Date date = new Date(millis);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",
-				Locale.FRANCE);
-		sdf.setTimeZone(TimeZone.getTimeZone("GMT+8"));
-		String formattedDate = sdf.format(date);
-		return formattedDate;
-	}
-	
-	public static long time2Millis(String date) {
-		Date dateFormat = null;
-		try {
-			dateFormat = new SimpleDateFormat(TIME_FORMAT).parse(date);
-		} catch (ParseException e) {
-			System.out.println(e.toString());
-		}
-		Long dateLong = dateFormat.getTime(); 
-		return dateLong;
-	}
-	
 	public static MyTime getLaterTime(MyTime mytime1, MyTime mytime2) {
 		if(mytime1.getYyyy() == mytime2.getYyyy()) {
 			if(mytime1.getMM() == mytime2.getMM()) {
@@ -223,19 +201,7 @@ public class MyTime {
 		}
 	}
 	
-	/**
-	
-	public static void main(String[] args) {
-		MyTime myTime = new MyTime(23,32,10);
-		myTime.addTime(1800);
-		System.out.println(myTime.getHH());
-		System.out.println(myTime.getMm()); 
-		System.out.println(myTime.getSs());
-		System.out.println(myTime.getHH());
-		System.out.println(myTime.getMm()); 
-		System.out.println(myTime.getSs());
-	}
-	*/
+
 
 }
 

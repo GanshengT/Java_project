@@ -35,7 +35,7 @@ public class MyUberTest extends TestCase {
 	 */
 	@Test
 	public void testMyUber() throws InvalidFileFormatException, FileNotFoundException, IOException { 
-		MyUber myUber = new MyUber("my_uber.ini");
+		MyUber myUber = new MyUber("eval/my_uber.ini");
 		assertTrue(myUber.getNumBerlineCar() == 2);
 		//assertTrue(myUber.getListOfCustomer().get(1).createANewRide(3, 44.1, 2.15 , 21, 7).getRideType()=="uberX");
 		//assertTrue(myUber.getListOfCustomer().get(1).createANewRide(5, 44.1, 2.15 , 21, 7).getRideType()=="uberVan");

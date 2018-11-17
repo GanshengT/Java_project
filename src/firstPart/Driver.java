@@ -4,6 +4,12 @@ package firstPart;
 import java.util.*;
 
 public class Driver {
+	
+	/**
+	 * attributes field
+	 * 	startOnduty endOnDuty averageMark occupiedRate;
+	are used to calculate the statistics
+	 */
 	private String name;
 	private String surName;
 	private int driverId;
@@ -11,32 +17,11 @@ public class Driver {
 	private MyTime startOnduty;
 	private MyTime endOnDuty;
 	private List<Integer> listOfMark = new ArrayList<>();
-	private double averageMark = 0;
-	public MyTime getEndOnDuty() {
-		return endOnDuty;
-	}
-
-	public void setEndOnDuty(MyTime endOnDuty) {
-		this.endOnDuty = endOnDuty;
-	}
-
-	private double OndutyTime;
-	public MyTime getStartOnduty() {
-		return startOnduty;
-	}
-
-	public void setStartOnduty(MyTime startOnduty) {
-		this.startOnduty = startOnduty;
-	}
-
-	public double getOndutyTime() {
-		return OndutyTime;
-	}
-
-	public void setOndutyTime(double ondutyTime) {
-		OndutyTime = ondutyTime;
-	}
-
+	private Double averageMark = (double) 0;
+	private Double OndutyTime=0.0;
+	private double onARideTime = 0.0;
+	private Double occupiedRate;
+	
 	/**
 	 * ownership= true means it has its own car
 	 */
@@ -44,12 +29,7 @@ public class Driver {
 	private static int counter = 0;
 	private int rideNum;
 	private double moneyCashed;
-	/**
-	 * accept method change status to on a ride
-	 */
-	
 
-	
 	/**
 	 * if ownership is True, we will add a new car in the list in main method of test class
 	 * @param name
@@ -59,33 +39,33 @@ public class Driver {
 	 * @param owneship
 	 */
 	
-	public void askMark(int mark) {
-		this.getListOfMark().add(mark);	
-		double sum = 0;
-		for (int m : this.getListOfMark()) {
-			sum += m;
-		}
-		this.averageMark = sum/(this.getListOfMark().size());
-	}
-	
-	public Driver(String name, String surName, Boolean ownership) {
-		super();
-		this.name = name;
-		this.surName = surName;
-		this.ownership = ownership;
-		counter++;
-		this.driverId = counter;
-		this.status = "offline";
-		this.ownership = ownership;
-		/*Random r = new Random();
-		int randomNum = r.nextInt(1);
-		if (randomNum == 1) {
-			this.ownership = true; 
-		}
-		else this.ownership = false;
-		*/
+	/**
+	 * getters and setters
+	 * @return
+	 */
+	public MyTime getEndOnDuty() {
+		return endOnDuty;
 	}
 
+	public void setEndOnDuty(MyTime endOnDuty) {
+		this.endOnDuty = endOnDuty;
+	}
+
+	public MyTime getStartOnduty() {
+		return startOnduty;
+	}
+
+	public void setStartOnduty(MyTime startOnduty) {
+		this.startOnduty = startOnduty;
+	}
+
+	public Double getOndutyTime() {
+		return OndutyTime;
+	}
+
+	public void setOndutyTime(double ondutyTime) {
+		OndutyTime = ondutyTime;
+	}
 	public String getName() {
 		return name;
 	}
@@ -114,12 +94,21 @@ public class Driver {
 		return status;
 	}
 
+	/**
+	 * automatically calculate in duty time
+	 * each time the driver switch to onduty
+	 * startondutytime note the begining time
+	 * when he switch to other status, the duration will be recorded in ondutytime
+	 * @param status
+	 */
 	public void setStatus(String status) {
-		this.status = status;
+
 		if (status=="on-duty") {
+			this.status = "on-duty";
 			this.startOnduty = new MyTime();
 		}
-		else if(status == "off-duty" || status == "on-a-ride") {
+		else if(status == "off-duty" ) {
+			this.status = "off-duty";
 			this.endOnDuty= new MyTime();
 			this.OndutyTime+=this.getStartOnduty().timeMinus(this.endOnDuty);		}
 	}
@@ -147,9 +136,77 @@ public class Driver {
 	public void setMoneyCashed(double moneyCashed) {
 		this.moneyCashed = moneyCashed;
 	}
+	public List<Integer> getListOfMark() {
+		return listOfMark;
+	}
+
+	public void setListOfMark(List<Integer> listOfMark) {
+		this.listOfMark = listOfMark;
+	}
+
+	public Double getAverageMark() {
+		return averageMark;
+	}
+
+	public void setAverageMark(double averageMark) {
+		this.averageMark = averageMark;
+	}
+
+	public double getOnARideTime() {
+		return onARideTime;
+	}
+
+	public void setOnARideTime(double onARideTime) {
+		this.onARideTime = onARideTime;
+	}
+
+	public Double getOccupiedRate() {
+		return occupiedRate;
+	}
+
+	public void setOccupiedRate(double occupiedRate) {
+		this.occupiedRate = occupiedRate;
+	}
+	
+
 
 
 	
+	/**
+	 * when ride finish, driver ask the appreciation mark from customers
+	 * @param mark
+	 */
+	public void askMark(int mark) {
+		this.getListOfMark().add(mark);	
+		double sum = 0;
+		for (int m : this.getListOfMark()) {
+			sum += m;
+		}
+		this.averageMark = sum/(this.getListOfMark().size());
+	}
+	
+	/**
+	 * driver cnstructor
+	 * @param name
+	 * @param surName
+	 * @param ownership
+	 */
+	public Driver(String name, String surName, Boolean ownership) {
+		super();
+		this.name = name;
+		this.surName = surName;
+		this.ownership = ownership;
+		counter++;
+		this.driverId = counter;
+		this.status = "offline";
+		this.ownership = ownership;
+		this.startOnduty = new MyTime();
+	}
+
+
+	/**
+	 * accept method change status to on a ride
+	 */
 	public Boolean acceptRequest() {
 		double i = Math.random();
 		if (i>=0.5) {
@@ -160,23 +217,6 @@ public class Driver {
 			return false;
 		}
 	}
-
-	public List<Integer> getListOfMark() {
-		return listOfMark;
-	}
-
-	public void setListOfMark(List<Integer> listOfMark) {
-		this.listOfMark = listOfMark;
-	}
-
-	public double getAverageMark() {
-		return averageMark;
-	}
-
-	public void setAverageMark(double averageMark) {
-		this.averageMark = averageMark;
-	}
-	
 
 
 }

@@ -1,6 +1,9 @@
 package firstPart;
 
 public class StandardCar extends Car{
+	/**
+	 * standardcar is the subclass of Car and specify its attributes
+	 */
 
 	private static int seatNum = 4;
 	private String idCar;

@@ -6,9 +6,9 @@ public class Customer {
 	private String name;
 	private String surName;
 	private int idNum;
-	private int rideNum = 0;
+	private Integer rideNum = 0;
 	private double onCarTime = 0;
-	private double onCarMoney = 0;
+	private Double onCarMoney = 0.0;
 	private GPSLocation gpsStart;
 	private Ride currentRide;
 	
@@ -46,7 +46,7 @@ public class Customer {
 		this.idNum = idNum;
 	}
 
-	public int getRideNum() {
+	public Integer getRideNum() {
 		return rideNum;
 	}
 
@@ -62,7 +62,7 @@ public class Customer {
 		this.onCarTime = onCarTime;
 	}
 
-	public double getOnCarMoney() {
+	public Double getOnCarMoney() {
 		return onCarMoney;
 	}
 

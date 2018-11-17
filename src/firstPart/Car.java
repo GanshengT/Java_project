@@ -11,26 +11,42 @@ public abstract class Car implements Comparable<Car> {
 	
 	/**
 	 * StandardN will calculate automatically
+	 * currentDriverId we might want to modify afterwards
+	 * areaUsed to show which area is this car driven
 	 */
 	private String idCar;
 	private int seatNum;
 	private AreaUsed areaUsed;
 	private int availableSeatNum;
 	private List<Driver> owners = new ArrayList<>();
-	
-	/**
-	 * currentDriverId we might want to modify afterwards
-	 */
 	private int currentDriver;
 	private Driver currentDirverObject;
 	private GPSLocation carLocation;
-	public static List<Driver> nonAssignedDrivers = new ArrayList();
+	public static List<Driver> nonAssignedDrivers = new ArrayList<Driver>();
 	private Integer distanceFromCustomer;
 	
-	/**
-	 * from resource
-	 * @return
-	 */
+/**
+ * getter and setter
+ * @return
+ */
+	public Integer getDistanceFromCustomer() {
+		return distanceFromCustomer;
+	}
+	public void setDistanceFromCustomer(int d) {
+		this.distanceFromCustomer = d;
+	}
+	public void calculateDistance(Ride ride) {
+		this.setDistanceFromCustomer(LocationUtils.GetDistance(this.carLocation, ride.getStartPosition()));
+	}
+	public int compareTo(Car arg0) {
+        return this.getDistanceFromCustomer().compareTo(arg0.getDistanceFromCustomer());
+    }
+	public int getCurrentDriver() {
+		return currentDriver;
+	}
+	public void setCurrentDriver(int currentDriver) {
+		this.currentDriver = currentDriver;
+	}
 	public List<Driver> getOwners() {
 		return owners;
 	}
@@ -48,9 +64,7 @@ public abstract class Car implements Comparable<Car> {
 	}
 	public void setSeatNum(int seatNum) {
 		this.seatNum = seatNum;
-	
-	}
-	
+	}	
 	public Driver getCurrentDirverObject() {
 		return currentDirverObject;
 	}
@@ -75,28 +89,28 @@ public abstract class Car implements Comparable<Car> {
 	public void setCarLocation(GPSLocation carLocation) {
 		this.carLocation = carLocation;
 	}
-	
-	/**another way to construct
-	 * public Car(AreaUsed areaUsed, List<Driver> listOfDriver) {
-	 
-		this.areaUsed = areaUsed;
-		this.carLocation = LocationUtils.GetRandomLocation(areaUsed.getCenter(), areaUsed.getRadius());
-		this.nonAssignedDrivers = listOfDriver;
-	}
-	*/
-	
-	public Car(AreaUsed areaUsed) {
-		this.areaUsed = areaUsed;
-		this.carLocation = LocationUtils.GetRandomLocation(areaUsed.getCenter(), areaUsed.getRadius());
-	}
-	
-	
 	public static List<Driver> getNonAssignedDrivers() {
 		return nonAssignedDrivers;
 	}
 	public static void setNonAssignedDrivers(List<Driver> nonAssignedDrivers) {
 		Car.nonAssignedDrivers = nonAssignedDrivers;
 	}
+	
+	/**
+	 * constructor
+	 * other infomation is assigned when car is assigned driver or customer succeed find a car
+	 * @param areaUsed
+	 */
+	public Car(AreaUsed areaUsed) {
+		this.areaUsed = areaUsed;
+		this.carLocation = LocationUtils.GetRandomLocation(areaUsed.getCenter(), areaUsed.getRadius());
+	}
+	
+	
+/**
+ * assignDriver use to assign owner to a car when setting up myUber system
+ * and we let someone be current driver and change its status to onduty
+ */
 	public void AssignDriver() {
 		//System.out.println(Car.nonAssignedDrivers.get(0).getOwnership());
 		owners.add(Car.nonAssignedDrivers.get(0));
@@ -116,39 +130,20 @@ public abstract class Car implements Comparable<Car> {
 				//System.out.println("Assignment completed");
 				break;
 			}
-
 		}
 		this.currentDirverObject = this.RandomDriver();
 		this.setCurrentDriver(this.currentDirverObject.getDriverId());
 		this.currentDirverObject.setStatus("on-duty");
-		//this.changeDriver();
-		/**
-		 * 
-		 *
-		for(Driver driver : nonAssignedDrivers) {
-			if (driver.getOwnership() == false) {
-				System.out.println(driver.getName());
-				owners.add(driver);
-				nonAssignedDrivers.remove(driver);
-				System.out.println(Car.nonAssignedDrivers.get(0).getName());
-			}
-			else {
-				System.out.println("assignment for this car is done");;
-			}
-		}
-		*/
-		
 	}
 	
+	
+	/**
+	 * randomDriver is used to return one of car's owner
+	 * @return
+	 */
 	public Driver RandomDriver() {
 		Random random = new Random();
 		int RandomNum = random.nextInt(this.owners.size());
-		//double RandomNum = random.nextDouble()*this.owners.size()-1;
-		//System.out.println(this.getIdCar()+"  this car");
-		//System.out.println(this.owners.get(0).getName());
-		
-		//System.out.println(this.owners.size()+"num of owners");
-		//System.out.println(RandomNum+"randomNum");
 		if (RandomNum <= 0) {
 			RandomNum =0;
 		}
@@ -168,31 +163,6 @@ public abstract class Car implements Comparable<Car> {
 				driver.setStatus("on-duty");
 			}
 		}
-		//System.out.println(this.owners.get(0).getStatus());
 		}
-	
-	public Integer getDistanceFromCustomer() {
-		return distanceFromCustomer;
-	}
-	public void setDistanceFromCustomer(int d) {
-		this.distanceFromCustomer = d;
-	}
-	public void calculateDistance(Ride ride) {
-		this.setDistanceFromCustomer(LocationUtils.GetDistance(this.carLocation, ride.getStartPosition()));
-	}
-	public int compareTo(Car arg0) {
-        return this.getDistanceFromCustomer().compareTo(arg0.getDistanceFromCustomer());
-    }
-	public int getCurrentDriver() {
-		return currentDriver;
-	}
-	public void setCurrentDriver(int currentDriver) {
-		this.currentDriver = currentDriver;
-	}
-
-
-
-
-	
 
 }

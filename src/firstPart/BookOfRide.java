@@ -10,6 +10,18 @@ public class BookOfRide {
 	private MyTime pickupTime;
 	private MyTime arrivalTime;
 	
+	/**
+	 * this class record all the information of a book 
+	 * and it will be recorded in myuber system
+	 * @param idOfDriver
+	 * @param idOfCar
+	 * @param idOfCustomer
+	 * @param startingPoint
+	 * @param endingPoint
+	 * @param lengthOfRide
+	 * @param pickupTime
+	 * @param arrivalTime
+	 */
 	public BookOfRide(int idOfDriver, String idOfCar, int idOfCustomer, GPSLocation startingPoint,
 			GPSLocation endingPoint, double lengthOfRide, MyTime pickupTime, MyTime arrivalTime) {
 		super();

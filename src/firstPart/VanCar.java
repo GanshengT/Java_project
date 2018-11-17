@@ -2,6 +2,10 @@ package firstPart;
 
 public class VanCar extends Car {
 	
+	/**
+	 * Vancar is the subclass of Car and specify its attributes
+	 */
+	
 	private static int seatNum = 6;
 	private String idCar;
 	private static int counter = 0;
@@ -17,7 +21,7 @@ public class VanCar extends Car {
 		return seatNum;
 	}
 	public void setSeatNum(int seatNum) {
-		this.seatNum = seatNum;
+		VanCar.seatNum = seatNum;
 	}
 	public String getIdCar() {
 		return idCar;

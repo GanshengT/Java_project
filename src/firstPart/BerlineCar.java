@@ -1,11 +1,15 @@
 package firstPart;
 
 public class BerlineCar extends Car {
+	/**
+	 * Berlinecar is the subclass of Car and specify its attributes
+	 */
 	
 	private static int seatNum = 4;
 	private String idCar;
 	private static int counter = 0;
 	
+
 
 	public BerlineCar(AreaUsed areaUsed) {
 		super(areaUsed);

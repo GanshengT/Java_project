@@ -150,7 +150,9 @@ public abstract class Ride {
 				this.setLength2(p1_p2 + p1_d1 + d1_d2);
 				//return this.cost;
 			}
-		}}
+		}
+		this.trafficState = returnTrafficInfo( MyTime.getLaterTime(this.getStartTime(), this.getStartTime2()));	
+	}
 	
 	public Ride(Customer customer, int passengerNum, GPSLocation startPosition, GPSLocation endPosition, MyTime startTime) {
 		super();
@@ -196,6 +198,15 @@ public abstract class Ride {
 		
 	}
 	
+	
+	public static Map<String, Double> getTrafficSpeedMap() {
+		return trafficSpeedMap;
+	}
+
+	public static void setTrafficSpeedMap(Map<String, Double> trafficSpeedMap) {
+		Ride.trafficSpeedMap = trafficSpeedMap;
+	}
+
 	public double getCost() {
 		return cost;
 	}

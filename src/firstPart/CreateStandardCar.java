@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreateStandardCar extends CreateCar {
-	//private static int counter = 0;
+	/**
+	 * the factoy pattern to generate Standardcar
+	 */
+
 	@Override
 	protected Car createCarMethod(AreaUsed areaUsed) {
-		//counter++;
 		return new StandardCar(areaUsed);
 	}
 

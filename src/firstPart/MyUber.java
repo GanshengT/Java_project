@@ -340,6 +340,10 @@ public class MyUber  {
 							Ride newRideUberPool = new RideUberPool(poolRequest.get(i),poolRequest.get(j));
 							this.listOfRide.add(newRideUberPool);
 							this.searchDriver(newRideUberPool);
+							ride.calculateLowestRideCost(ride.getCar());
+							ride.setDurationMin(Ride.calculateDuration(ride.getLength(), Ride.getTrafficSpeedMap().get(ride.getTrafficState())));
+							ride.setDurationMin2(Ride.calculateDuration(ride.getLength2(), Ride.getTrafficSpeedMap().get(ride.getTrafficState())));
+							ride.getDriver().setOnARideTime(ride.getDurationMin()+ride.getDurationMin2());
 							poolRequest.remove(i);
 							poolRequest.remove(j);
 							break OUT;
@@ -355,6 +359,7 @@ public class MyUber  {
 		else {
 			this.listOfRide.add(ride);
 			this.searchDriver(ride);
+			ride.getDriver().setOnARideTime((ride.getDuration()));
 		}
 		/**
 		 * search nearest driver
@@ -496,35 +501,68 @@ public class MyUber  {
 	}
 	
 	
-
-	public static void main(String[] args) throws InvalidFileFormatException, FileNotFoundException, IOException {
-		MyUber myUber = new MyUber("my_uber.ini");
-		 /**
-		 * create myUber done
-		 * customer make request
-		 *  driverallocation -> bookofride add, driver , ride state change 
-		 *  customer board  ride->ongoing  
- 		 *  customer finish ride -> completed driver.random(offduty or offline or onduty) + command offduty setstatus add record time
- 		 *  
- 		 *  Uberpool:
- 		 *  
-		 */
-		//System.out.println(myUber.getListOfDriver().size());
-		//System.out.println(myUber.getDriverObject(3).getDriverId());
-		for(int i=0; i<7;i++) {
-			myUber.getListOfDriver().get(i).setStatus("on-duty");	
-			}
-		myUber.driverAllocation(myUber.getListOfCustomer().get(1).createANewRide(3, 44.1, 2.15 , 21, 7));
-		myUber.getListOfRide().get(0).getDriver().askMark(5);
-		for(Car car: myUber.getListOfCar()) {
-			System.out.println(car.getIdCar()+"car name");
-			for (Driver driver : car.getOwners()) {
-				System.out.println(driver.getName());
-			}
+public void displayDrivers(String sortPolicy) {
+	List<Driver> appreciatedDriverList = new ArrayList<>();
+	List<Driver> occupiedDriverList = new ArrayList<>();
+	appreciatedDriverList.addAll(this.listOfDriver);
+	occupiedDriverList.addAll(this.listOfDriver);
+	if(sortPolicy == "mostappreciated") {
+		Collections.sort(appreciatedDriverList,new Comparator<Driver>(){
+            public int compare(Driver arg0, Driver arg1) {
+                return arg0.getAverageMark().compareTo(arg1.getAverageMark());
+            }
+        });
+		for (Driver driver : appreciatedDriverList) {
+			System.out.println(driver.getDriverId());
 		}
-
 	}
+	else if(sortPolicy == "mostoccupied") {
+		for (Driver driver:occupiedDriverList) {
+			driver.setOccupiedRate(driver.getOnARideTime()/driver.getOndutyTime());
+		}
+		Collections.sort(occupiedDriverList,new Comparator<Driver>(){
+            public int compare(Driver arg0, Driver arg1) {
+                return arg0.getOccupiedRate().compareTo(arg1.getOccupiedRate());
+            }
+        });
+		for (Driver driver : occupiedDriverList) {
+			System.out.println(driver.getDriverId());
+		}		
+	}
+	else {
+		System.out.println("please input 'mostoccupied' or 'mostappreciated'.");
+	}
+}
 
+public void displayCustomers(String sortPolicy) {
+	List<Customer> frequentCustomerList = new ArrayList<>();
+	List<Customer> chargedCustomerList = new ArrayList<>();
+	frequentCustomerList.addAll(this.listOfCustomer);
+	chargedCustomerList.addAll(this.listOfCustomer);
+	if(sortPolicy == "mostfrequent") {
+		Collections.sort(frequentCustomerList,new Comparator<Customer>(){
+            public int compare(Customer arg0, Customer arg1) {
+                return arg0.getRideNum().compareTo(arg1.getRideNum());
+            }
+        });
+		for (Customer customer : frequentCustomerList) {
+			System.out.println(customer.getIdNum());
+		}
+	}
+	else if(sortPolicy == "mostcharged") {
+		Collections.sort(chargedCustomerList,new Comparator<Customer>(){
+            public int compare(Customer arg0, Customer arg1) {
+                return arg0.getOnCarMoney().compareTo(arg1.getOnCarMoney());
+            }
+        });
+		for (Customer customer : chargedCustomerList) {
+			System.out.println(customer.getIdNum());
+		}		
+	}
+	else {
+		System.out.println("please input 'mostcharged or 'mostfrequent'.");
+	}
+}
 
 
 }
