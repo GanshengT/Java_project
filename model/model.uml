@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_kNoRUOpKEeiIvp1wxbWy6A" name="model">
   <packagedElement xmi:type="uml:Enumeration" xmi:id="_q8FboOpxEeiIvp1wxbWy6A" name="String"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_O3NbcOpMEeiIvp1wxbWy6A" name="Car" visibility="public" isActive="true">
+  <packagedElement xmi:type="uml:Class" xmi:id="_O3NbcOpMEeiIvp1wxbWy6A" name="Car" visibility="public" isAbstract="true" isActive="true">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_p_Kq8OpyEeiIvp1wxbWy6A" name="idCar" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>

@@ -4,7 +4,16 @@ import java.util.*;
 import org.ini4j.*;
 import org.junit.platform.commons.util.CollectionUtils;
 
+/**
+ * This is the main class of our project. 
+ * We instance this class in order to obtain a MyUber system(object).
+ * @author gaelle
+ *
+ */
 public class MyUber  {
+	/**
+	 * We use these attributes to initialize myUber system.
+	 */
 	private int numStandardCar;
 	private int numBerlineCar;
 	private int numVanCar;
@@ -26,6 +35,10 @@ public class MyUber  {
 	private List<Driver> listOfDriver = new ArrayList<>();
 	private List<Boolean> listOfOwnership = new ArrayList<>();
 	private List<Customer> listOfCustomer = new ArrayList<>();
+	
+	/**
+	 * Attributes for ride's request operations.
+	 */
 	private List<BookOfRide> bookOfRideList = new ArrayList<>();
 	private List<Ride> poolRequest = new ArrayList<>();
 	private List<Ride> listOfRide = new ArrayList<>();
@@ -36,7 +49,14 @@ public class MyUber  {
 
 	
 	
-
+	/**
+	 * Constructor
+	 * We use an ".ini" file to initialize myUber system.
+	 * @param iniFileName
+	 * @throws InvalidFileFormatException
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public MyUber(String iniFileName) throws InvalidFileFormatException, FileNotFoundException, IOException {
 		this.ini = new Ini(new FileReader(new File(iniFileName)));
 		Ini.Section section = ini.get("case1");
@@ -117,6 +137,9 @@ public class MyUber  {
 		}
 	}
 	
+	/**
+	 * Main method to do an initialization through a .ini file.
+	 */
 	public void initialisation() {
 		this.stringToBoolean();
 		this.createCostomerList();
@@ -128,6 +151,10 @@ public class MyUber  {
 		this.assignDriver(listOfDriver);
 	}
 	
+	/**
+	 * Method to distribute driver to a ride
+	 * @param ride
+	 */
 	public void driverAllocation(Ride ride) {
 		if (ride.getRideType() == "uberPool") {
 			this.poolRequest.add(0,ride);
@@ -147,7 +174,7 @@ public class MyUber  {
 							newRideUberPool.setEndTime2(newRideUberPool.returnEndTime(newRideUberPool.getStartTime2()));
 							newRideUberPool.getCustomer().setCurrentRide(newRideUberPool);
 							newRideUberPool.getCustomer2().setCurrentRide(newRideUberPool);
-							newRideUberPool.getDriver().setOnARideTime(newRideUberPool.getDurationMin()+newRideUberPool.getDurationMin2());
+							newRideUberPool.getDriver().setOnARideTime(newRideUberPool.getDriver().getOnARideTime()+newRideUberPool.getDurationMin()+newRideUberPool.getDurationMin2());
 							poolRequest.remove(i);
 							poolRequest.remove(j);
 							break OUT;
@@ -161,13 +188,19 @@ public class MyUber  {
 		else {
 			this.listOfRide.add(ride);
 			this.searchDriver(ride);
-			ride.getDriver().setOnARideTime((ride.getDuration()));
+			ride.getDriver().setOnARideTime(ride.getDuration()+ride.getDriver().getOnARideTime());
 		}
 		/**
 		 * search nearest driver
 		 */	
 	}
 	
+	/**
+	 * Sorting a list of a specific type cars according to the distance between the car and the customer(s) of this ride.
+	 * Then return this list for the nest allocation task.
+	 * @param ride
+	 * @return
+	 */
 	public List<Car> sortByDistance(Ride ride) {
 		List<Car> listSorted = new ArrayList<>();
 		if (ride.getRideType()=="uberX") {
@@ -205,7 +238,12 @@ public class MyUber  {
 		}
 		return listSorted;
 	}
-		
+	
+	/**
+	 * Setting driver and car for a ride.
+	 * Then changing ride and driver's states.
+	 * @param ride
+	 */
 	public void searchDriver(Ride ride) {
 		List<Car> carListToNotify = this.sortByDistance(ride);
 		System.out.println(ride.getRideType());
@@ -214,7 +252,7 @@ public class MyUber  {
 			System.out.println(car.getCurrentDriver());
 			System.out.println(this.getDriverObject(car.getCurrentDriver()).getStatus());
 			if (this.getDriverObject(car.getCurrentDriver()).getStatus()== "on-duty") {
-			Boolean acceptOrNot = this.getDriverObject(car.getCurrentDriver()).acceptRequest();
+			Boolean acceptOrNot = this.getDriverObject(car.getCurrentDriver()).acceptRequest(); //We change driver's state in acceptRequest method.
 			//System.out.println("if succeed");
 			if (acceptOrNot == true) {
 				BookOfRide	bookOfRide = new BookOfRide(car.getCurrentDriver(), car.getIdCar(), ride.getCustomer().getIdNum(), ride.getStartPosition(),
@@ -249,7 +287,11 @@ public class MyUber  {
 	}
 	
 	/**
-	 * manulelly change status offduty to onduty
+	 * When a ride is finished, we use this method to change car's, driver's, customer's and ride's state.
+	 * At the same time, we update the total ride number and money cashed for the customer and the driver.
+	 * Then we give the car and the customer in this ride a new GPS location for the next ride.
+	 * We also change the driver's state after a ride(from on-a-ride to on-duty or take a break or offline).
+	 * We need to manually change a driver's status from off-duty to on-duty/
 	 * @param ride
 	 * @return
 	 */
@@ -307,7 +349,11 @@ public class MyUber  {
 		
 		
 	}
-		
+	
+	/**
+	 * We use this method to print out a list of drivers sorted by a specific policy.
+	 * @param sortPolicy
+	 */
 	public void displayDrivers(String sortPolicy) {
 	List<Driver> appreciatedDriverList = new ArrayList<>();
 	List<Driver> occupiedDriverList = new ArrayList<>();
@@ -340,7 +386,10 @@ public class MyUber  {
 		System.out.println("please input 'mostoccupied' or 'mostappreciated'.");
 	}
 }
-
+	/**
+	 * We use this method to print out a list of customer sorted by a specific policy.
+	 * @param sortPolicy
+	 */
 	public void displayCustomers(String sortPolicy) {
 	List<Customer> frequentCustomerList = new ArrayList<>();
 	List<Customer> chargedCustomerList = new ArrayList<>();
@@ -371,6 +420,9 @@ public class MyUber  {
 	}
 }
 
+	/**
+	 * We use this method to calculate the total money cashed by all of the drivers in our system.
+	 */
 	public void totalCashed() {
 		for(Driver driver: this.listOfDriver) {
 			this.totalCashed += driver.getMoneyCashed();

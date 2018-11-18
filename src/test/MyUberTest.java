@@ -41,7 +41,7 @@ public class MyUberTest extends TestCase {
 		//assertTrue(myUber.getListOfCustomer().get(1).createANewRide(5, 44.1, 2.15 , 21, 7).getRideType()=="uberVan");
 
 		myUber.driverAllocation(myUber.getListOfCustomer().get(1).createANewRide(3, 48.849976, 2.3300023 , 21, 7,"ubervan"));
-		
+		myUber.getListOfCustomer().get(1).aboard(); //customer aboard (change ride state)
 		//System.out.println(myUber.getListOfRide().get(0).getLength() + "the length");
 		assertTrue(myUber.getListOfRide().size()==1); 
 		myUber.getListOfCustomer().get(1).aboard();

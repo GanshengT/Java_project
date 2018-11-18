@@ -172,7 +172,7 @@ public class Customer {
 		this.currentRide = currentRide;
 	}
 
-	public int getCounter() {
+	public static int getCounter() {
 		return counter;
 	}
 	
