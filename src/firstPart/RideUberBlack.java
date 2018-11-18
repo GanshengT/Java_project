@@ -5,20 +5,16 @@ import java.util.List;
 import java.util.Map;
 
 public class RideUberBlack extends Ride {
-	
+	/**
+	 * We use two hush map to store the coefficients about ride length and ride traffic states which will be used for calculation of the total ride price.
+	 */
 	private static Map<String, Double> trafficRateMap = new HashMap<String, Double>() {
-		/**
-		 * 
-		 */
 		private static final long serialVersionUID = 9037172862240003605L;
 
 		{put("lowTraffic",  1.0);
 		put("mediumTraffic",1.3);
 		put("heavyTraffic", 1.6);}};
 	private static Map<String, Double> lengthTypeMap = new HashMap<String, Double>(){
-			/**
-		 * 
-		 */
 		private static final long serialVersionUID = -1279100275807087297L;
 
 			{
@@ -28,16 +24,15 @@ public class RideUberBlack extends Ride {
 				put("MoreThanTwenty",2.6);
 			}
 		};
+	
 	public RideUberBlack(Customer customer, int passengerNum, GPSLocation startPosition, GPSLocation endPosition, MyTime startTime) {
 		super(customer, passengerNum, startPosition, endPosition, startTime);
 		this.setRideType("uberBlack");
-		//this.setPricePerKmLessThanFive(6.2);
-		//this.setPricePerKmFiveToTen(5.5);
-		//this.setPricePerKmTenToTwenty(3.25);
-		//this.setPricePerKmMoreThanTwenty(2.6);
-		// TODO Auto-generated constructor stub
+	
 	}
-
+	/**
+	 * We override price method by using class specific coefficients to calculate the total price of a UberBlack ride.
+	 */
 	@Override
 	public double price() {
 		this.setPriceToPay(this.getLength()*RideUberBlack.lengthTypeMap.get(this.getLengthType())*RideUberBlack.trafficRateMap.

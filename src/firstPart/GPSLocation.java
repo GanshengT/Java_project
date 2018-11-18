@@ -4,12 +4,20 @@ public class GPSLocation {
 	private double latitude;
 	private double longitude;
 	
-	
+	/**
+	 * Constructor
+	 * Class used for GPS location store
+	 * @param longitude
+	 * @param latitude
+	 */
 	public GPSLocation(double longitude, double latitude) {
 		this.longitude = longitude;
 		this.latitude = latitude;
 	}
 	
+	/**
+	 * Default constructor  
+	 */
 	public GPSLocation() {
 		
 	}

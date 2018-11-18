@@ -4,27 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/***
- * 
- * @author gaelle
- * rideuber
- */
+
 
 
 public class RideUberPool extends Ride {
+	/**
+	 * coStartTime is the beginning time of a two customers UberPool ride
+	 * We use two hush map to store the coefficients about ride length and ride traffic states which will be used for calculation of the total ride price.
+	 */
 	private MyTime coStartTime;
-	
-	
-	public MyTime getCoStartTime() {
-		return coStartTime;
-	}
-
-	public void setCoStartTime(MyTime coStartTime) {
-		this.coStartTime = coStartTime;
-	}
-
-	
-
 	private static Map<String, Double> trafficRateMap = new HashMap<String, Double>() {
 		{put("lowTraffic", (double) 1);
 		put("mediumTraffic",(double)1.1);
@@ -37,6 +25,10 @@ public class RideUberPool extends Ride {
 				put("MoreThanTwenty",1.1);
 			}
 		};
+	
+	/**
+	 * We override price method by using class specific coefficients to calculate the total price of a UberPool ride for the first customer.
+	 */
 	@Override
 	public double price() {
 		this.setPriceToPay(this.getLength()*lengthTypeMap.get(this.getLengthType())*trafficRateMap.
@@ -44,50 +36,15 @@ public class RideUberPool extends Ride {
 		return this.getPriceToPay();
 	}
 	
+	/**
+	 * We override price method by using class specific coefficients to calculate the total price of a UberPool ride for the second customer.
+	 */
 	@Override
 	public double price2() {
 		this.setPriceToPay2(this.getLength2()*lengthTypeMap.get(this.getLengthType2())*trafficRateMap.
 				get(this.getTrafficState2()));
 		return this.getPriceToPay2();
 	};
-	/***
-	public void calculateLowestRideCost(Car car) {
-		double c_p1 = LocationUtils.GetDistance(car.getCarLocation(), this.getStartPosition());
-		double c_p2 = LocationUtils.GetDistance(car.getCarLocation(), this.getStartPosition2());
-		double p1_p2 = LocationUtils.GetDistance(car.getCarLocation(), this.getStartPosition2());
-		double d1_d2 = LocationUtils.GetDistance(this.getEndPosition(), this.getEndPosition2());
-		double p1_d1 = LocationUtils.GetDistance(this.getStartPosition(), this.getEndPosition());
-		double p1_d2 = LocationUtils.GetDistance(this.getStartPosition(), this.getEndPosition2());
-		double p2_d1 = LocationUtils.GetDistance(this.getStartPosition2(), this.getEndPosition());
-		double p2_d2 = LocationUtils.GetDistance(this.getStartPosition2(), this.getEndPosition2());;
-		if(c_p1 < c_p2) {
-			if(p2_d1< p2_d2) {
-				this.setCost( c_p1 + p1_p2 + p2_d1 + d1_d2);
-				this.setLength(p1_p2 + p2_d1);
-				this.setLength2(p2_d1 + d1_d2);
-				//return this.cost;		
-			}else {
-				this.setCost (c_p1 + p1_p2 + p2_d2 + d1_d2);
-				this.setLength(p1_p2 + p2_d2 + d1_d2);
-				//return this.cost;
-			}
-				
-		}else {
-			if(p1_d2<p1_d1) {
-				this.setCost(c_p2 + p1_p2 + p1_d2 + d1_d2);
-				this.setLength(p1_d2 + d1_d2);
-				this.setLength2(p1_p2 + p1_d2);
-				//return this.cost;		
-			}else {
-				this.setCost(c_p2 + p1_p2 + p1_d1 + d1_d2);
-				this.setLength2(p1_p2 + p1_d1 + d1_d2);
-				//return this.cost;
-			}
-		}
-		
-		
-	}*/
-	
 
 	public RideUberPool(Customer customer, int passengerNum, GPSLocation startPosition, GPSLocation endPosition, MyTime startTime) {
 		super(customer, passengerNum, startPosition, endPosition, startTime);
@@ -104,7 +61,20 @@ public class RideUberPool extends Ride {
 				ride2.getCustomer(), ride2.getPassengerNum(),ride2.getStartPosition(),ride2.getEndPosition(),ride2.getStartTime());
 		this.setRideType("uberPool");
 		this.coStartTime = MyTime.getLaterTime(this.getStartTime(), this.getStartTime2());
-		
+		this.setStartTime(this.coStartTime);
+		this.setStartTime2(this.coStartTime);
+	}
+
+	/**
+	 * setter and getter
+	 * @return
+	 */
+	public MyTime getCoStartTime() {
+		return coStartTime;
+	}
+
+	public void setCoStartTime(MyTime coStartTime) {
+		this.coStartTime = coStartTime;
 	}
 
 }

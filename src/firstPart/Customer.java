@@ -2,87 +2,44 @@ package firstPart;
 
 public class Customer {
 	
+	/**
+	 * We use attribute "counter" to calculate automatically the total amount of customers.
+	 */
 	private static int counter = 0;
 	private String name;
 	private String surName;
 	private int idNum;
+	private GPSLocation gpsStart;
+	private Ride currentRide;
+	/**
+	 * We use the followings attributes to store the information of all the rides that a customer object has ordered.
+	 */
 	private Integer rideNum = 0;
 	private double onCarTime = 0;
 	private Double onCarMoney = 0.0;
-	private GPSLocation gpsStart;
-	private Ride currentRide;
 	
+	/**
+	 * Constructor
+	 * @param name
+	 * @param surName
+	 */
 	public Customer(String name, String surName){
 		counter++;
 		this.name = name;
 		this.surName = surName;
 		this.idNum = counter;
 	}
-
-	
-	/* whaterver */
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurName() {
-		return surName;
-	}
-
-	public void setSurName(String surName) {
-		this.surName = surName;
-	}
-
-
-	public int getIdNum() {
-		return idNum;
-	}
-
-	public void setIdNum(int idNum) {
-		this.idNum = idNum;
-	}
-
-	public Integer getRideNum() {
-		return rideNum;
-	}
-
-	public void setRideNum(int rideNum) {
-		this.rideNum = rideNum;
-	}
-
-	public double getOnCarTime() {
-		return onCarTime;
-	}
-
-	public void setOnCarTime(double onCarTime) {
-		this.onCarTime = onCarTime;
-	}
-
-	public Double getOnCarMoney() {
-		return onCarMoney;
-	}
-
-	public void setOnCarMoney(double onCarMoney) {
-		this.onCarMoney = onCarMoney;
-	}
-
-	public GPSLocation getGpsStart() {
-		return gpsStart;
-	}
-
-	public void setGpsStart(GPSLocation gpsStart) {
-		this.gpsStart = gpsStart;
-	}
-	
-	/* get the amount of the customers registered*/
-	public int getCounter() {
-		return counter;
-	}
-	
+   
+	/**
+	 * We use this method of a customer object to request a new ride, and it will return a requested ride.
+	 * @param passengerNumRequested 
+	 * @param desLongtude 
+	 * @param desLatitude
+	 * @param startHH
+	 * @param startMM
+	 * @param type
+	 * @return
+	 */
 	public Ride createANewRide(int passengerNumRequested, double desLongtude, double desLatitude, int startHH, int startMM,String type) {
 		MyTime startTime = new MyTime(startHH, startMM, 0);
 		System.out.println("one request is sent");
@@ -129,6 +86,9 @@ public class Customer {
 		}
 		}
 	
+	/**
+	 * We use this method to cancel a ride which is already accepted by a driver but the customer has not yet been on aboard.
+	 */
 	public void cancelBook() {
 		this.currentRide.setState("canceled");
 		/**
@@ -137,8 +97,85 @@ public class Customer {
 		//this.currentRide.getCar().reAssignDriver;
 	}
 	
+	/**
+	 * We use this method to declare that the customer is on aboard and to change the ride state.
+	 */
 	public void aboard() {
 		this.currentRide.setState("ongoing");
 	}
+	
+	/**
+	 * setter and getter
+	 * @return
+	 */
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurName() {
+		return surName;
+	}
+
+	public void setSurName(String surName) {
+		this.surName = surName;
+	}
+
+	public int getIdNum() {
+		return idNum;
+	}
+
+	public void setIdNum(int idNum) {
+		this.idNum = idNum;
+	}
+
+	public Integer getRideNum() {
+		return rideNum;
+	}
+
+	public void setRideNum(int rideNum) {
+		this.rideNum = rideNum;
+	}
+
+	public double getOnCarTime() {
+		return onCarTime;
+	}
+
+	public void setOnCarTime(double onCarTime) {
+		this.onCarTime = onCarTime;
+	}
+
+	public Double getOnCarMoney() {
+		return onCarMoney;
+	}
+
+	public void setOnCarMoney(double onCarMoney) {
+		this.onCarMoney = onCarMoney;
+	}
+
+	public GPSLocation getGpsStart() {
+		return gpsStart;
+	}
+
+	public void setGpsStart(GPSLocation gpsStart) {
+		this.gpsStart = gpsStart;
+	}
+	
+	public Ride getCurrentRide() {
+		return currentRide;
+	}
+
+	public void setCurrentRide(Ride currentRide) {
+		this.currentRide = currentRide;
+	}
+
+	public int getCounter() {
+		return counter;
+	}
+	
+	
 	
 }

@@ -1,7 +1,5 @@
 package firstPart;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * the superclass of create specified car class
@@ -12,7 +10,6 @@ import java.util.List;
  */
 public abstract class CreateCar {
 	
-	private final List<Car> cars = new ArrayList<>();	
 	abstract protected Car createCarMethod(AreaUsed areaUsed); 
 
 	

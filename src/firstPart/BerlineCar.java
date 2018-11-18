@@ -5,7 +5,6 @@ public class BerlineCar extends Car {
 	 * Berlinecar is the subclass of Car and specify its attributes
 	 */
 	
-	private static int seatNum = 4;
 	private String idCar;
 	private static int counter = 0;
 	
@@ -15,13 +14,8 @@ public class BerlineCar extends Car {
 		super(areaUsed);
 		BerlineCar.counter++;
 		this.idCar = "Berline"+BerlineCar.counter;
+		this.setSeatNum(4);
 		// TODO Auto-generated constructor stub
-	}
-	public int getSeatNum() {
-		return seatNum;
-	}
-	public void setSeatNum(int seatNum) {
-		BerlineCar.seatNum = seatNum;
 	}
 	public String getIdCar() {
 		return idCar;

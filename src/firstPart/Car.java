@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 
-public abstract class Car implements Comparable<Car> {
+public class Car implements Comparable<Car> {
 	
 	/**
 	 * StandardN will calculate automatically
@@ -17,7 +17,6 @@ public abstract class Car implements Comparable<Car> {
 	private String idCar;
 	private int seatNum;
 	private AreaUsed areaUsed;
-	private int availableSeatNum;
 	private List<Driver> owners = new ArrayList<>();
 	private int currentDriver;
 	private Driver currentDirverObject;
@@ -71,12 +70,6 @@ public abstract class Car implements Comparable<Car> {
 	public void setCurrentDirverObject(Driver currentDirverObject) {
 		this.currentDirverObject = currentDirverObject;
 	}
-	public int getAvailableSeatNum() {
-		return availableSeatNum;
-	}
-	public void setAvailableSeatNum(int availableSeatNum) {
-		this.availableSeatNum = availableSeatNum;
-	}
 	public AreaUsed getAreaUsed() {
 		return areaUsed;
 	}
@@ -98,7 +91,7 @@ public abstract class Car implements Comparable<Car> {
 	
 	/**
 	 * constructor
-	 * other infomation is assigned when car is assigned driver or customer succeed find a car
+	 * other information is assigned when car is assigned driver or customer succeed find a car
 	 * @param areaUsed
 	 */
 	public Car(AreaUsed areaUsed) {

@@ -1,12 +1,21 @@
 package firstPart;
 import java.util.Random;
 
+/**
+ * We use this class for some necessary GPS location calculates.
+ * @author gaelle
+ *
+ */
 public class LocationUtils {
 	static final double EARTH_RADIUS  = 6372.796924;
 	static final double PI = 3.1415926535898;
  
 	/**
-
+	 * We use this static method in order to get a random GPS location 
+	 * within a certain range of the center position.
+	 * @param center
+	 * @param distance
+	 * @return
 	 */
 	public static GPSLocation GetRandomLocation(GPSLocation center, double distance) {
 		if (distance <= 0) distance = 50;
@@ -32,7 +41,12 @@ public class LocationUtils {
 		return location;
 	}
  
-
+    /**
+     * We use this static method to calculate the distance between two GPS locations.
+     * @param start
+     * @param end
+     * @return
+     */
 	public static int GetDistance(GPSLocation start, GPSLocation end) {
 		double radLat1 = rad(start.getLatitude());
 		double radLat2 = rad(end.getLatitude());
@@ -45,8 +59,7 @@ public class LocationUtils {
 	}
  
 	/**
-	
-	 * 
+	 * Transformed calculate from degree to rad
 	 * @param d
 	 * @return
 	 */
@@ -55,8 +68,7 @@ public class LocationUtils {
 	}
  
 	/**
-	
-	 * 
+	 * Transformed calculate from rad to degree
 	 * @param rd
 	 * @return
 	 */

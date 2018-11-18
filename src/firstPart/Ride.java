@@ -3,18 +3,7 @@ import java.util.*;
 
 
 public abstract class Ride {
-	private static int counter = 0;
-	private int rideId;
 	private String rideType;
-	public String getRideType() {
-		return rideType;
-	}
-
-	public void setRideType(String rideType) {
-		this.rideType = rideType;
-	}
-
-
 	private Customer customer;
 	private Car car;
 	private Driver driver;
@@ -26,14 +15,10 @@ public abstract class Ride {
 	private GPSLocation startPosition;
 	private GPSLocation endPosition;
 	private double length;
-	//private double pricePerKmLessThanFive;
-	//private double pricePerKmFiveToTen;
-	//private double pricePerKmTenToTwenty;
-	//private double pricePerKmMoreThanTwenty;
 	private double priceToPay;
-	private int rideQuality;
 	private String trafficState;
 	private String lengthType;
+	
 	private Customer customer2;
 	private int passengerNum2;
 	private GPSLocation startPosition2;
@@ -46,6 +31,9 @@ public abstract class Ride {
 	private MyTime endTime2;
 	private double priceToPay2;
 	private double cost;
+	/**
+	 * Some static attributes for calculation of traffic states.
+	 */
 	private static double[] midnightCoef = {0.95,0.04,0.01};
 	private static double[] morningCoef = {0.05,0.20,0.75};
 	private static double[] afternoonCoef = {0.15,0.70,0.15};
@@ -54,12 +42,78 @@ public abstract class Ride {
 		{put("lowTraffic", (double) 15);
 		put("mediumTraffic",(double)7.5);
 		put("heavyTraffic",(double)3);}};
+		
+	/**
+	 * The first kind of constructor: to generate a simple rideX, a rideBlack, a rideVan or a ridePool for one customer.	
+	 * @param customer
+	 * @param passengerNum
+	 * @param startPosition
+	 * @param endPosition
+	 * @param startTime
+	 */
+	public Ride(Customer customer, int passengerNum, GPSLocation startPosition, GPSLocation endPosition, MyTime startTime) {
+			super();
+			this.customer = customer;
+			this.passengerNum = passengerNum;
+			this.startPosition = startPosition;
+			this.endPosition = endPosition;
+			this.startTime = startTime;
+			this.length = LocationUtils.GetDistance(startPosition, endPosition);
+			this.lengthType = Ride.returnLengthType(this.length);
+			this.trafficState = returnTrafficInfo(startTime);
+			this.durationMin = calculateDuration(length, trafficSpeedMap.get(trafficState));
+			this.endTime = returnEndTime(this.startTime);
+		}
+	/**
+	 * The second kind of constructor: especially for a ride pool of two customers.	
+	 * @param customer
+	 * @param passengerNum
+	 * @param startPosition
+	 * @param endPosition
+	 * @param startTime
+	 * @param customer2
+	 * @param passengerNum2
+	 * @param startPosition2
+	 * @param endPosition2
+	 * @param startTime2
+	 */
+	public Ride(Customer customer, int passengerNum, GPSLocation startPosition, GPSLocation endPosition, MyTime startTime,
+				Customer customer2, int passengerNum2, GPSLocation startPosition2, GPSLocation endPosition2, MyTime startTime2) {
+			super();
+			this.customer = customer;
+			this.passengerNum = passengerNum;
+			this.startPosition = startPosition;
+			this.endPosition = endPosition;
+			this.startTime = startTime;
+			this.length = LocationUtils.GetDistance(startPosition, endPosition);
+			this.lengthType = Ride.returnLengthType(this.length);
+			this.trafficState = returnTrafficInfo(startTime);
+			this.durationMin = calculateDuration(length, trafficSpeedMap.get(trafficState));
+			this.endTime = returnEndTime(this.startTime);
+			this.customer2 = customer2;
+			this.passengerNum2 = passengerNum2;
+			this.startPosition2 = startPosition2;
+			this.endPosition2 = endPosition2;
+			this.startTime2 = startTime2;
+			this.length2 = LocationUtils.GetDistance(startPosition2, endPosition2);
+			this.lengthType2 = Ride.returnLengthType(this.length2);
+			this.trafficState2 = this.trafficState;
+			this.durationMin2 = calculateDuration(length2, trafficSpeedMap.get(trafficState2));
+			this.endTime2 = returnEndTime(this.startTime2);
+			
+		}
+	/**
+	 * Abstract method to calculate the total price for a ride considering the ride length and a traffic state		
+	 * @return
+	 */
+	public abstract double price();
 	
-	//private static int[] midnightTime = {0,1,2,3,4,5,6,22,23};
-	//private static int[] morningTime = {7,8,9,10};
-	//private static int[] afternoonTime = {11,12,13,14,15,16};
-	//private static int[] eveningTime = {17,18,19,20,21};
-	//private double speed; speed = trafficSpeedMap.get(trafficState)
+	/**
+	 * Price calculation used for a UberPool ride of two customers
+	 * @return
+	 */
+	public abstract double price2();	
+	
 	public static String returnLengthType(double length) {
 		if(length>= 0 && length<= 5) {
 			return "LessThanFive";
@@ -72,6 +126,7 @@ public abstract class Ride {
 		}return "Error";																	
 	}
 
+	
 	public static String returnTrafficInfo(MyTime startTime) {
 		double[] currentCoef = new double[3];
 		String m ;
@@ -108,9 +163,6 @@ public abstract class Ride {
 		
 	}
 	
-	public static double calculateDuration(double length, double speed) {
-		return length/speed*60;
-	}
 	
 	public MyTime returnEndTime(MyTime oneStartTime) {
 		MyTime oneEndTime = startTime;
@@ -118,6 +170,15 @@ public abstract class Ride {
 		return oneEndTime;
 	}
 	
+	
+	public static double calculateDuration(double length, double speed) {
+		return length/speed*60;
+	}
+	
+	/**
+	 * Method used for seeking out the minimal pick-up/drop-off trajectory for a two customers UberPool ride
+	 * @param car
+	 */
 	public void calculateLowestRideCost(Car car) {
 		double c_p1 = LocationUtils.GetDistance(car.getCarLocation(), this.getStartPosition());
 		double c_p2 = LocationUtils.GetDistance(car.getCarLocation(), this.getStartPosition2());
@@ -154,51 +215,11 @@ public abstract class Ride {
 		this.trafficState = returnTrafficInfo( MyTime.getLaterTime(this.getStartTime(), this.getStartTime2()));	
 	}
 	
-	public Ride(Customer customer, int passengerNum, GPSLocation startPosition, GPSLocation endPosition, MyTime startTime) {
-		super();
-		counter++;
-		this.rideId =counter;
-		this.customer = customer;
-		this.passengerNum = passengerNum;
-		this.startPosition = startPosition;
-		this.endPosition = endPosition;
-		this.startTime = startTime;
-		this.length = LocationUtils.GetDistance(startPosition, endPosition);
-		this.lengthType = this.returnLengthType(this.length);
-		this.trafficState = returnTrafficInfo(startTime);
-		this.durationMin = calculateDuration(length, trafficSpeedMap.get(trafficState));
-		this.endTime = returnEndTime(this.startTime);
-	}
 	
-	public Ride(Customer customer, int passengerNum, GPSLocation startPosition, GPSLocation endPosition, MyTime startTime,
-			Customer customer2, int passengerNum2, GPSLocation startPosition2, GPSLocation endPosition2, MyTime startTime2) {
-		super();
-		//counter++;
-		//this.rideId =counter;
-		this.customer = customer;
-		this.passengerNum = passengerNum;
-		this.startPosition = startPosition;
-		this.endPosition = endPosition;
-		this.startTime = startTime;
-		this.length = LocationUtils.GetDistance(startPosition, endPosition);
-		this.lengthType = this.returnLengthType(this.length);
-		this.trafficState = returnTrafficInfo(startTime);
-		this.durationMin = calculateDuration(length, trafficSpeedMap.get(trafficState));
-		this.endTime = returnEndTime(this.startTime);
-		this.customer2 = customer2;
-		this.passengerNum2 = passengerNum2;
-		this.startPosition2 = startPosition2;
-		this.endPosition2 = endPosition2;
-		this.startTime2 = startTime2;
-		this.length2 = LocationUtils.GetDistance(startPosition2, endPosition2);
-		this.lengthType2 = this.returnLengthType(this.length2);
-		this.trafficState2 = returnTrafficInfo(startTime2);
-		this.durationMin2 = calculateDuration(length2, trafficSpeedMap.get(trafficState2));
-		this.endTime2 = returnEndTime(this.startTime2);
-		
-	}
-	
-	
+	/**
+	 * getter and setter
+	 * @return
+	 */
 	public static Map<String, Double> getTrafficSpeedMap() {
 		return trafficSpeedMap;
 	}
@@ -313,20 +334,6 @@ public abstract class Ride {
 	public void setLength(double length) {
 		this.length = length;
 	}
-	public int getRideId() {
-		return rideId;
-	}
-
-	public void setRideId(int rideId) {
-		this.rideId = rideId;
-	}
-
-	public int getRideQuality() {
-		return rideQuality;
-	}
-	public void setRideQuality(int rideQuality) {
-		this.rideQuality = rideQuality;
-	}
 	public Car getCar() {
 		return car;
 	}
@@ -414,10 +421,13 @@ public abstract class Ride {
 	public void setLengthType(String lengthType) {
 		this.lengthType = lengthType;
 	}
-
+	public String getRideType() {
+		return rideType;
+	}
+	public void setRideType(String rideType) {
+		this.rideType = rideType;
+	}
 	
-	public abstract double price();
 	
-	public abstract double price2();
 	
 }

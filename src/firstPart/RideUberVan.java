@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 public class RideUberVan extends Ride {
+	/**
+	 * We use two hush map to store the coefficients about ride length and ride traffic states which will be used for calculation of the total ride price.
+	 */
 	private static Map<String, Double> trafficRateMap = new HashMap<String, Double>() {
 		{put("lowTraffic", (double) 1);
 		put("mediumTraffic",(double)1.5);
@@ -17,16 +20,14 @@ public class RideUberVan extends Ride {
 				put("MoreThanTwenty",2.6);
 			}
 		};
+	
 	public RideUberVan(Customer customer, int passengerNum, GPSLocation startPosition, GPSLocation endPosition, MyTime startTime) {
 		super(customer, passengerNum, startPosition,endPosition,startTime);
 		this.setRideType("uberVan");
-		//this.setPricePerKmLessThanFive(6.2);
-		//this.setPricePerKmFiveToTen(7.7);
-		//this.setPricePerKmTenToTwenty(3.25);
-		//this.setPricePerKmMoreThanTwenty(2.6);
-		// TODO Auto-generated constructor stub
 	}
-
+	/**
+	 * We override price method by using class specific coefficients to calculate the total price of a UberVan ride.
+	 */
 	@Override
 	public double price() {
 		this.setPriceToPay(this.getLength()*lengthTypeMap.get(this.getLengthType())*trafficRateMap.

@@ -39,12 +39,13 @@ public class MyUberTest extends TestCase {
 		assertTrue(myUber.getNumBerlineCar() == 2);
 		//assertTrue(myUber.getListOfCustomer().get(1).createANewRide(3, 44.1, 2.15 , 21, 7).getRideType()=="uberX");
 		//assertTrue(myUber.getListOfCustomer().get(1).createANewRide(5, 44.1, 2.15 , 21, 7).getRideType()=="uberVan");
-		for(int i=0; i<7;i++) {
-			myUber.getListOfDriver().get(i).setStatus("on-duty");	
-			}
-		myUber.driverAllocation(myUber.getListOfCustomer().get(1).createANewRide(3, 44.1, 2.17 , 21, 7,"ubervan"));
+
+		myUber.driverAllocation(myUber.getListOfCustomer().get(1).createANewRide(3, 48.849976, 2.3300023 , 21, 7,"ubervan"));
+		
 		//System.out.println(myUber.getListOfRide().get(0).getLength() + "the length");
 		assertTrue(myUber.getListOfRide().size()==1); 
+		myUber.getListOfCustomer().get(1).aboard();
+		assertTrue(myUber.getListOfCustomer().get(1).getCurrentRide().getState() == "ongoing");
 		assertTrue(myUber.getListOfRide().get(0).getRideType()=="uberVan");
 		assertTrue(myUber.getListOfRide().get(0).getPriceToPay()!=0);
 		/**
@@ -70,8 +71,8 @@ public class MyUberTest extends TestCase {
 		myUber.RideFinished(myUber.getListOfRide().get(0));
 		System.out.println(myUber.getListOfCustomer().get(1).getRideNum()+"the first ride done");
 		assertTrue(myUber.getListOfRide().get(0).getPriceToPay()>3);
-		myUber.driverAllocation(myUber.getListOfCustomer().get(0).createANewRide(3, 44.1, 2.17 , 22, 7,"uberpool"));
-		myUber.driverAllocation(myUber.getListOfCustomer().get(1).createANewRide(1, 44.1, 2.17 , 22, 15,"uberpool"));
+		myUber.driverAllocation(myUber.getListOfCustomer().get(0).createANewRide(3, 48.8500002, 2.33009 , 22, 7,"uberpool"));
+		myUber.driverAllocation(myUber.getListOfCustomer().get(1).createANewRide(1, 48.8500011, 2.33007 , 22, 15,"uberpool"));
 		assertTrue(myUber.getListOfRide().size()==2); 
 		assertTrue(myUber.getListOfRide().get(1).getRideType()=="uberPool");
 		myUber.RideFinished(myUber.getListOfRide().get(1));
