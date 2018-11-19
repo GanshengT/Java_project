@@ -22,23 +22,23 @@ public class Car implements Comparable<Car> {
 	private Driver currentDirverObject;
 	private GPSLocation carLocation;
 	public static List<Driver> nonAssignedDrivers = new ArrayList<Driver>();
-	private Integer distanceFromCustomer;
+	private Integer distanceForSort;
 	
 /**
  * getter and setter
  * @return
  */
-	public Integer getDistanceFromCustomer() {
-		return distanceFromCustomer;
+	public Integer getDistanceForSort() {
+		return distanceForSort;
 	}
-	public void setDistanceFromCustomer(int d) {
-		this.distanceFromCustomer = d;
+	public void setDistanceForSort(int d) {
+		this.distanceForSort = d;
 	}
 	public void calculateDistance(Ride ride) {
-		this.setDistanceFromCustomer(LocationUtils.GetDistance(this.carLocation, ride.getStartPosition()));
+		this.setDistanceForSort(LocationUtils.GetDistance(this.carLocation, ride.getStartPosition()));
 	}
 	public int compareTo(Car arg0) {
-        return this.getDistanceFromCustomer().compareTo(arg0.getDistanceFromCustomer());
+        return this.getDistanceForSort().compareTo(arg0.getDistanceForSort());
     }
 	public int getCurrentDriver() {
 		return currentDriver;
@@ -113,7 +113,7 @@ public class Car implements Comparable<Car> {
 		while (iter.hasNext()) {
 			Driver item = iter.next();
 			//System.out.println(item.getName());
-			System.out.println(item.getOwnership());
+			//System.out.println(item.getOwnership());
 			if (item.getOwnership() == false) {
 				owners.add(item);
 				//System.out.printmjmjn jn mjn ln(owners.size());
@@ -150,6 +150,7 @@ public class Car implements Comparable<Car> {
 	public void changeDriver() {
 		Driver currentD = RandomDriver();
 		this.currentDriver = currentD.getDriverId();
+		this.currentDirverObject = currentD;
 		System.out.println(this.currentDriver);
 		for (Driver driver : this.owners) {
 			if (driver.getDriverId() == currentD.getDriverId()){

@@ -229,7 +229,7 @@ public class MyUber  {
 			for (Car car: listSorted) {
 				ride.calculateLowestRideCost(car);
 				double cost = ride.getCost();
-				car.setDistanceFromCustomer((int) (cost));
+				car.setDistanceForSort((int) (cost));
 			}
 			Collections.sort(listSorted);
 		}
@@ -319,7 +319,7 @@ public class MyUber  {
 		
 		ride.getDriver().setRideNum(ride.getDriver().getRideNum()+1);
 		ride.getDriver().askMark(5);
-		ride.getCar().setDistanceFromCustomer(0);
+		ride.getCar().setDistanceForSort(0);
 		ride.getCar().setCarLocation(LocationUtils.GetRandomLocation(this.areaUsed.getCenter(), this.areaUsed.getRadius()));
 		ride.setState("completed");
 		
@@ -337,7 +337,7 @@ public class MyUber  {
 		else if(randomNum <= 0.66) {
 			ride.getDriver().setStatus("offline");
 			//System.out.println(ride.getCar().getIdCar());
-			System.out.println(ride.getCar().getIdCar()+" ride get car");
+			//System.out.println(ride.getCar().getIdCar()+" ride get car");
 			ride.getCar().changeDriver();
 			
 		}
@@ -371,7 +371,12 @@ public class MyUber  {
 	}
 	else if(sortPolicy == "mostoccupied") {
 		for (Driver driver:occupiedDriverList) {
-			driver.setOccupiedRate(driver.getOnARideTime()/driver.getOndutyTime());
+			if(driver.getStatus()=="offline" || driver.getStatus() == "off-duty") {
+			    driver.setOccupiedRate(driver.getOnARideTime()/driver.getOndutyTime());
+			}else {
+				MyTime timeNow = new MyTime();
+				driver.setOccupiedRate(driver.getOnARideTime()/(driver.getOndutyTime()+driver.getStartOnduty().timeMinus(timeNow)));
+			}
 		}
 		Collections.sort(occupiedDriverList,new Comparator<Driver>(){
             public int compare(Driver arg0, Driver arg1) {

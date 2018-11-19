@@ -41,6 +41,8 @@ public class Customer {
 	 * @return
 	 */
 	public Ride createANewRide(int passengerNumRequested, double desLongtude, double desLatitude, int startHH, int startMM,String type) {
+		//waiting for a good update to trait exception.
+		if(this.currentRide == null) {
 		MyTime startTime = new MyTime(startHH, startMM, 0);
 		System.out.println("one request is sent");
 		String rideType = "";
@@ -83,6 +85,9 @@ public class Customer {
 			return ridePool;
 		}else {
 			return rideError;
+		}}else {
+			System.out.println("You have already ordered one ride in our system.");
+			return null;
 		}
 		}
 	

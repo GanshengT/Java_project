@@ -104,13 +104,33 @@ public class Driver {
 	public void setStatus(String status) {
 
 		if (status=="on-duty") {
+			if(this.status == "on-duty" || this.status == "on-a-ride") {
+				this.status = "on-duty";
+			}else {
 			this.status = "on-duty";
 			this.startOnduty = new MyTime();
+			}
 		}
 		else if(status == "off-duty" ) {
-			this.status = "off-duty";
-			this.endOnDuty= new MyTime();
-			this.OndutyTime+=this.getStartOnduty().timeMinus(this.endOnDuty);		}
+			if(this.status == "on-duty" || this.status == "on-a-ride") {
+				this.status = "off-duty";
+				this.endOnDuty= new MyTime();
+				this.OndutyTime+=this.getStartOnduty().timeMinus(this.endOnDuty);
+			}else {
+			this.status = "off-duty";		
+			}
+		}
+		else if(status == "offline"){
+			if(this.status == "on-a-ride" || this.status == "on-duty") {
+				this.status = "offline";
+				this.endOnDuty= new MyTime();
+				this.OndutyTime+=this.getStartOnduty().timeMinus(this.endOnDuty);	
+			}else {
+			this.status = "offline";
+			}
+		}else if(status == "on-a-ride") {
+			this.status = "on-a-ride";
+		}
 	}
 
 	public Boolean getOwnership() {
@@ -186,7 +206,7 @@ public class Driver {
 	}
 	
 	/**
-	 * driver cnstructor
+	 * driver constructor
 	 * @param name
 	 * @param surName
 	 * @param ownership
