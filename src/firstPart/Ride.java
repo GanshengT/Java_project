@@ -428,6 +428,7 @@ public abstract class Ride {
 		this.rideType = rideType;
 	}
 	
+
 	
 	
 }
