@@ -5,11 +5,11 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import firstPart.AreaUsed;
-import firstPart.Car;
-import firstPart.Driver;
-import firstPart.GPSLocation;
-import firstPart.StandardCar;
+import Cars.Car;
+import Cars.StandardCar;
+import myUberSystem.AreaUsed;
+import myUberSystem.Driver;
+import otherTools.GPSLocation;
 
 public class CarTest {
 	protected Driver driver1;

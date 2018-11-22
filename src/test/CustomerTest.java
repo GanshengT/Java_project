@@ -6,11 +6,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import firstPart.Customer;
-import firstPart.GPSLocation;
-import firstPart.MyTime;
-import firstPart.Ride;
-import firstPart.RideUberX;
+import Rides.Ride;
+import Rides.RideUberX;
+import myUberSystem.Customer;
+import otherTools.GPSLocation;
+import otherTools.MyTime;
 
 public class CustomerTest {
 	protected String name;

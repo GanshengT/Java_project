@@ -2,8 +2,8 @@ package test;
 
 import org.junit.Test;
 
-import firstPart.MyTime;
 import junit.framework.TestCase;
+import otherTools.MyTime;
 
 public class MyTimeTest extends TestCase {
 

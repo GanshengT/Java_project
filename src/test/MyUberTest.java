@@ -10,11 +10,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import firstPart.Car;
-import firstPart.Driver;
-import firstPart.MyUber;
-import firstPart.RideUberX;
+import Cars.Car;
+import Rides.RideUberX;
 import junit.framework.TestCase;
+import myUberSystem.Driver;
+import myUberSystem.MyUber;
 
 public class MyUberTest extends TestCase {
 	

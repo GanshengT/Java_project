@@ -5,11 +5,11 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import firstPart.Customer;
-import firstPart.GPSLocation;
-import firstPart.MyTime;
-import firstPart.Ride;
-import firstPart.RideUberBlack;
+import Rides.Ride;
+import Rides.RideUberBlack;
+import myUberSystem.Customer;
+import otherTools.GPSLocation;
+import otherTools.MyTime;
 
 public class RideUberBlackTest {
 	

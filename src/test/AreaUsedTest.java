@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
-import firstPart.AreaUsed;
-import firstPart.GPSLocation;
+import myUberSystem.AreaUsed;
+import otherTools.GPSLocation;
 
 class AreaUsedTest{
 	protected GPSLocation gps;

@@ -1,0 +1,32 @@
+package Cars;
+
+import myUberSystem.AreaUsed;
+
+public class BerlineCar extends Car {
+	/**
+	 * Berlinecar is the subclass of Car and specify its attributes
+	 */
+	
+	private String idCar;
+	private static int counter = 0;
+	
+
+
+	public BerlineCar(AreaUsed areaUsed) {
+		super(areaUsed);
+		BerlineCar.counter++;
+		this.idCar = "Berline"+BerlineCar.counter;
+		this.setSeatNum(4);
+		// TODO Auto-generated constructor stub
+	}
+	public String getIdCar() {
+		return idCar;
+	}
+	public void setIdCar(String idCar) {
+		this.idCar = idCar;
+	}
+
+
+	
+
+}
