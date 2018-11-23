@@ -56,8 +56,8 @@ public class MyUber  {
 	private CreateCar createStandardCar = new CreateStandardCar();
 	private CreateCar createBerlineCar = new CreateBerlineCar();
 	private CreateCar createVanCar = new CreateVanCar();
-	
-
+	private Map<String, Car> carMap = new HashMap<String, Car>();
+	private Map<String, Customer> customerMap = new HashMap<String, Customer>();
 	
 	
 	/**
@@ -78,7 +78,6 @@ public class MyUber  {
 		this.numDriver = Integer.parseInt(section.get("driverNumber"));
 		this.areaUsed = new AreaUsed(new GPSLocation(Double.parseDouble(section.get("longitude")),Double.parseDouble(section.get("latitude"))),
 									Double.parseDouble(section.get("radius"))) ; 
-
 		this.customerNameList =section.getAll("customername", String[].class);
 		this.customerSurnameList =section.getAll("customersurname", String[].class);
 		this.driverNameList =section.getAll("drivername", String[].class);
@@ -90,10 +89,22 @@ public class MyUber  {
 
 	}
 	
+	public MyUber(String nStandardCars, String nBerlinCars, String nVanCars, String nCustomers) {
+		this.numCustomer = Integer.parseInt(nCustomers);
+		this.numStandardCar = Integer.parseInt(nStandardCars);
+		this.numBerlineCar = Integer.parseInt(nStandardCars);
+		this.numVanCar = Integer.parseInt(nStandardCars);
+		this.numDriver = this.numStandardCar + this.numBerlineCar + this.numVanCar;
+		this.areaUsed = new AreaUsed(new GPSLocation(48.85, 23.33),40.00) ; 
+		this.setup_initialisation();
+		
+	}
+	
 	public void createStandardCarList(){
 		for(int j = 0;j<numStandardCar; j++) {
 			listOfCar.add(0,createStandardCar.createCarMethod(areaUsed));
 			listOfStandardCar.add(listOfCar.get(0));
+			this.carMap.put(listOfCar.get(0).getIdCar(), listOfCar.get(0));
 		}
 		}
 	
@@ -101,6 +112,7 @@ public class MyUber  {
 		for(int j = 0;j<numBerlineCar; j++) {
 			listOfCar.add(0,createBerlineCar.createCarMethod(areaUsed));
 			listOfBerlineCar.add(listOfCar.get(0));
+			this.carMap.put(listOfCar.get(0).getIdCar(), listOfCar.get(0));
 		}
 	}	
 	
@@ -108,6 +120,7 @@ public class MyUber  {
 		for(int j = 0;j<numVanCar; j++) {
 			listOfCar.add(0,createVanCar.createCarMethod(areaUsed));
 			listOfVanCar.add(listOfCar.get(0));
+			this.carMap.put(listOfCar.get(0).getIdCar(), listOfCar.get(0));
 		}
 	}
 	
@@ -124,18 +137,26 @@ public class MyUber  {
 			//System.out.println(i);
 			//System.out.println(driverNameList[0]);
 			//System.out.println(driverOwnershipList[i]);
-			listOfDriver.add(new Driver(driverNameList[i],driverSurnameList[i],driverOwnershipList[i]));
 			//System.out.println(this.listOfDriver.size()+"driverlist");
 			//System.out.println(listOfDriver.get(i).getOwnership());
+			
+			//listOfDriver.add(new Driver(driverNameList[i],driverSurnameList[i],driverOwnershipList[i]));
+			listOfDriver.add(new Driver("driver"+(i+1)+"name","driver"+(i+1)+"surname",true));
 		}
 
 	}
 	
 	public void createCostomerList(){
 		for(int i = 0; i<numCustomer;i++) {
+			/*
 			Customer customer = new Customer(customerNameList[i],customerSurnameList[i]);
 			customer.setGpsStart(LocationUtils.GetRandomLocation(this.areaUsed.getCenter(),this.areaUsed.getRadius()));
 			listOfCustomer.add(customer);
+			*/
+			Customer customer = new Customer("customer"+(i+1)+"name","customer"+(i+1)+"surname");
+			customer.setGpsStart(LocationUtils.GetRandomLocation(this.areaUsed.getCenter(),this.areaUsed.getRadius()));
+			listOfCustomer.add(customer);	
+			customerMap.put("customer.getIdNum()", customer);
 		}
 	}
 	
@@ -156,6 +177,19 @@ public class MyUber  {
 		this.createCostomerList();
 		this.createDriverList();
 		//System.out.println(listOfDriver+"listofdriver");
+		this.createStandardCarList();
+		this.createBerlineCarList();
+		this.createVanCarList();
+		this.assignDriver(listOfDriver);
+		
+	}
+	
+	/**
+	 * The main method in the setup method of CLUI to create a new MyUber System according to 4 principal numbers.
+	 */
+	public void setup_initialisation() {
+		this.createCostomerList();
+		this.createCostomerList();
 		this.createStandardCarList();
 		this.createBerlineCarList();
 		this.createVanCarList();
@@ -377,7 +411,7 @@ public class MyUber  {
             }
         });
 		for (Driver driver : appreciatedDriverList) {
-			System.out.println(driver.getDriverId());
+			System.out.printf("Driver"+driver.getDriverId()+"'s average mark is: %.3f\n", driver.getAverageMark());
 		}
 	}
 	else if(sortPolicy == "mostoccupied") {
@@ -395,7 +429,7 @@ public class MyUber  {
             }
         });
 		for (Driver driver : occupiedDriverList) {
-			System.out.println(driver.getDriverId());
+			System.out.printf("Driver"+driver.getDriverId()+"'s occupied ratio is: %.3f\n", driver.getOccupiedRate());
 		}		
 	}
 	else {
@@ -418,7 +452,7 @@ public class MyUber  {
             }
         });
 		for (Customer customer : frequentCustomerList) {
-			System.out.println(customer.getIdNum());
+			System.out.println("Customer"+customer.getIdNum()+" has taken "+customer.getRideNum()+" rides.");
 		}
 	}
 	else if(sortPolicy == "mostcharged") {
@@ -428,7 +462,7 @@ public class MyUber  {
             }
         });
 		for (Customer customer : chargedCustomerList) {
-			System.out.println(customer.getIdNum());
+			System.out.println("Customer"+customer.getIdNum()+" has spent "+customer.getOnCarMoney()+"euros in this system.");
 		}		
 	}
 	else {
@@ -443,7 +477,7 @@ public class MyUber  {
 		for(Driver driver: this.listOfDriver) {
 			this.totalCashed += driver.getMoneyCashed();
 		}
-		System.out.println("The total amount of mont cashed by drivers is : "+this.totalCashed);
+		System.out.println("The total amount of mont cashed by all drivers in our system is : "+this.totalCashed);
 	}
 	
 	/**
@@ -636,5 +670,21 @@ public class MyUber  {
 		this.totalCashed = totalCashed;
 	}
 
+	public Map<String, Car> getCarMap() {
+		return carMap;
+	}
+
+	public void setCarMap(Map<String, Car> carMap) {
+		this.carMap = carMap;
+	}
+
+	public Map<String, Customer> getCustomerMap() {
+		return customerMap;
+	}
+
+	public void setCustomerMap(Map<String, Customer> customerMap) {
+		this.customerMap = customerMap;
+	}
+	
 	
 }

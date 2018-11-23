@@ -39,6 +39,54 @@ public class Customer {
 	}
    
 	/**
+	 * We use this method in CLUI class(method: ask4pricer), in order to return a list of prices for 4 types of ride.
+	 * @param desLongtude Destination's longitude
+	 * @param desLatitude Destination's latitude
+	 * @param startHH Ride start hour. If startHH < 0, we consider the system time as the ride start time.
+	 */
+	public void askForPrice(double desLongtude, double desLatitude, int startHH) {
+		if(startHH < 0) {
+			MyTime startTime = new MyTime();
+			int passengerNumRequested = 1;
+			GPSLocation gpsEnd = new GPSLocation(desLongtude, desLatitude);
+			Ride rideX = new RideUberX(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+			Ride rideBlack = new RideUberBlack(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+			Ride rideVan = new RideUberVan(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+			Ride ridePool = new RideUberPool(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+			rideBlack.setTrafficState(rideX.getTrafficState());
+			rideVan.setTrafficState(rideX.getTrafficState());
+			ridePool.setTrafficState(rideX.getTrafficState());
+			//Ride rideError = new RideUberX(this,0,this.gpsStart, new GPSLocation(0,0),startTime);
+			System.out.printf("An UberX price is: %geuros.\n"
+						+ "An UberBlack price is: %geuros.\n"
+						+ "An UberVan price is: %geuros.\n"
+						+ "An UberPool price is: %geuros.\n", 
+						rideX.price(),rideBlack.price(),rideVan.price(),ridePool.price());
+		}else if(startHH <= 23 && startHH >=0 ) {
+		    MyTime startTime = new MyTime(startHH, 0, 0);
+		    int passengerNumRequested = 1;
+			GPSLocation gpsEnd = new GPSLocation(desLongtude, desLatitude);
+			Ride rideX = new RideUberX(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+			Ride rideBlack = new RideUberBlack(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+			Ride rideVan = new RideUberVan(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+			Ride ridePool = new RideUberPool(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+			rideBlack.setTrafficState(rideX.getTrafficState());
+			rideVan.setTrafficState(rideX.getTrafficState());
+			ridePool.setTrafficState(rideX.getTrafficState());
+			//Ride rideError = new RideUberX(this,0,this.gpsStart, new GPSLocation(0,0),startTime);
+			System.out.printf("An UberX price is: %geuros.\n"
+						+ "An UberBlack price is: %geuros.\n"
+						+ "An UberVan price is: %geuros.\n"
+						+ "An UberPool price is: %geuros.\n", 
+						rideX.price(),rideBlack.price(),rideVan.price(),ridePool.price());
+		}else {
+			System.out.println("You have input a wrong time which is over 24 hours.");
+			return;
+		}
+	}
+	
+	
+	/**
 	 * We use this method of a customer object to request a new ride, and it will return a requested ride.
 	 * @param passengerNumRequested 
 	 * @param desLongtude 

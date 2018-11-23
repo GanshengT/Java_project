@@ -13,6 +13,7 @@ import Cars.VanCar;
 import myUberSystem.Customer;
 import myUberSystem.Driver;
 import myUberSystem.MyUber;
+import otherTools.GPSLocation;
 
 public class CLUI {
 	
@@ -129,6 +130,100 @@ public class CLUI {
 	protected void setDriverStatus(String driverName, String driverSurname, String status) {
 		
 	}
+	
+	/**
+	 * Initialize myUber system.
+	 * @param nStandardCars The number of Standard car in the initialized myUber system.
+	 * @param nBerlinCars The number of Berline car in the initialized myUber system.
+	 * @param nVanCars The number of van car in the initialized myUber system.
+	 * @param nCustomers The number of customer in the initialized myUber system.
+	 */
+	protected void setup(String nStandardCars, String nBerlinCars, String nVanCars, String nCustomers) {
+		this.myUber = new MyUber(nStandardCars, nBerlinCars, nVanCars, nCustomers);
+		//whether we need to change driver‘s initial state？
+		System.out.println("Your system myUber has been set up.");
+	}
+	/**
+	 * We use this method to change a car's current situation.
+	 * @param carID The car ID in String, like"Standard1"
+	 * @param xPos The longitude coordinate that we want to set the car to.
+	 * @param yPos The latitude coordinate that we want set the car to.
+	 */
+	protected void moveCar(String carID, String xPos, String yPos) {
+		try {
+			Car carToMove = this.myUber.getCarMap().get(carID);
+			GPSLocation des = new GPSLocation(Double.parseDouble(xPos),Double.parseDouble(yPos));
+			carToMove.setCarLocation(des);
+			}catch(Exception e) {
+				e.printStackTrace();
+				System.out.println("You can not move this car because of some unknown error.");
+		}finally {
+			for(Car car: myUber.getListOfCar()) {
+				System.out.println(car.getIdCar() + " is situated at " + "longitude "+car.getCarLocation().getLongitude()
+																	+ ", latitude "+car.getCarLocation().getLatitude());
+			}
+		}
+	}
+	/**
+	 * We use this method to change a customer's current/start location.
+	 * @param custID The custID in String type, like "1", "2"
+	 * @param xPos The longitude coordinate that we want to set the customer to.
+	 * @param yPos The latitude coordinate that we want set the car to.
+	 */
+	protected void moveCustomer(String custID, String xPos, String yPos) {
+		try {
+			Customer custToMove = this.myUber.getCustomerMap().get(custID);
+			GPSLocation desC = new GPSLocation(Double.parseDouble(xPos),Double.parseDouble(yPos));
+			custToMove.setGpsStart(desC);
+			
+			}catch(Exception e) {
+				e.printStackTrace();
+				System.out.println("You can not move this customer because of some unknown error.");
+		}finally {
+			for(Customer c:myUber.getListOfCustomer()) {
+				System.out.println("Customer "+c.getIdNum()+" is at longitude "+c.getGpsStart().getLongitude()
+					+", latitude "+c.getGpsStart().getLatitude());
+			}
+		}
+	}
+	
+	/**
+	 * Method to return a list of prices matching 4 kinds of ride. 
+	 * @param custID Id of the customer who wants to ask for a new ride.
+	 * @param xPos Destination longitude coordination.
+	 * @param yPos Destination latitude coordination.
+	 * @param time The start hour of this asked ride. We use 0-23 as input number. If time < 0, it means regarding system time as ride beginning time.
+	 */
+	protected void ask4pricer(String custID, String xPos, String yPos, String time) {
+		Customer customer = myUber.getCustomerMap().get(custID);
+		Double x = Double.parseDouble(xPos);
+		Double y = Double.parseDouble(yPos);
+		Integer startHH = Integer.parseInt(time);
+		customer.askForPrice(x, y, startHH);
+	}
+	
+	/** 
+	 * Method to sort and display all drivers according to a specific policy.
+	 * @param sortpolicy There are two choices for the "sortpolicy". If sortpolicy = "mostappreciated", we use average mark to sort our drivers, if sortpolicy = "mostoccupied", we use occupied-ratio to sort them.
+	 */
+	protected void displayDrivers(String sortpolicy) {
+		myUber.displayDrivers(sortpolicy);
+	}
+	
+	/**
+	 * Method to sort and display all customers according to a specific policy.
+	 * @param sortpolicy There are two choices for the "sortpolicy". If sortpolicy = "mostfrequent", we use total amount of rides each customer has taken to sort, if sortpolicy = "mostcharged", we use the total amount of money each customer has spent in our system to sort.
+	 */
+	protected void diaplayCustomers(String sortpolicy) {
+		myUber.displayCustomers(sortpolicy);
+	}
+	
+	/**
+	 * Method to display the total amount of money cashed by all drivers in myUber system.
+	 */
+	protected void totalCashed() {
+		myUber.totalCashed();
+	}
 	/**
 	 * Tan: addCustomer
 	 * 		addDriver
@@ -138,14 +233,15 @@ public class CLUI {
 	 * 		simRide i
 	 * 
 	 * Gezheng:
-	 * ini, setup
-	 * moveCar
-	 * moveCustomer
-	 * ask4price
+	 * ini
+	 * setup [done]
+	 * moveCar [done]
+	 * moveCustomer [done]
+	 * ask4price [done]
 	 * simRide
-	 * display drivers
-	 * displaycustomer
-	 * totalcashed
+	 * display drivers [done]
+	 * displaycustomer [done]
+	 * totalcashed [done]
 	 * run test
 	 * 
 	 */
