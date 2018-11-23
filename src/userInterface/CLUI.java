@@ -115,20 +115,63 @@ public class CLUI {
 	 * @param driverName
 	 * @param driverSurname
 	 * @param status
+	 * @throws IOException 
 	 */
-	protected Driver[] findDriverByName(String driverName, String driverSurname) {
-		List<Driver> 
+	protected Driver findDriverByName(String driverName, String driverSurname) throws IOException {
+		List<Driver> foundDriver= new ArrayList<>();
 		for (Driver driver:myUber.getListOfDriver()) {
 			if (driver.getName()==driverName) {
 				if(driver.getSurName()==driverSurname) {
-					
+					foundDriver.add(driver);
 				}
 			}
 		}
+		if(foundDriver.isEmpty()==true) {
+			System.out.println("no such driver");
+		}
+		if(foundDriver.size()>1) {
+			System.out.println("there are more than one driver statisfy searching criterium, please select the driver by typing the ID");
+			for(Driver driver: foundDriver) {
+			System.out.println(driver.getDriverId()+"name and surname"+driver.getName()+" "+driver.getSurName());
+		}}
+		String[] selectID = readCommand();
+		for(Driver driver: foundDriver) {
+			if(Integer.toString(driver.getDriverId())==selectID[0]) {
+				return driver;
+			}
+		}
+		return null;
 	}
 	
-	protected void setDriverStatus(String driverName, String driverSurname, String status) {
-		
+	protected void setDriverStatus(String driverName, String driverSurname, String status) throws IOException {
+		Driver driver = findDriverByName(driverName, driverSurname);
+		driver.setStatus(status);		
+	}
+	
+	/**
+	 * display summary information of the current state of the system,
+including the list of cars (with their position), the list of drivers (with their status,
+their statistics, etc), the list of customers (with their position, their statistics, etc).
+output: the list of car the list of drivers the list of customers (with their relevant
+information).
+difficulties : to manage the sout format
+!!!!get customer's position!!!
+	 */
+	protected void displayState() {
+		System.out.println("Car information");
+		for (Car car:myUber.getListOfCar()) {
+			System.out.println(car.getIdCar()+"its position: "+car.getCarLocation());
+		}
+		System.out.println("Driver infomation");
+		for (Driver driver : myUber.getListOfDriver()) {
+			System.out.println("DriverID: "+driver.getDriverId()+"status: "+driver.getStatus()+"occupied rate: "+driver.getOccupiedRate()+
+					"average mark: " +driver.getAverageMark());
+		}
+		System.out.println("Customers infomation");
+		for(Customer customer : myUber.getListOfCustomer()) {
+			System.out.println("customer's ID "+customer.getIdNum()+"customer's name and surname"+customer.getName()+customer.getSurName()+
+					"ride number: "+customer.getRideNum()+ "location: "+customer.getGpsStart()+"consumming money: "+customer.getOnCarMoney());
+		}
 	}
 	
 	/**
@@ -140,7 +183,6 @@ public class CLUI {
 	 */
 	protected void setup(String nStandardCars, String nBerlinCars, String nVanCars, String nCustomers) {
 		this.myUber = new MyUber(nStandardCars, nBerlinCars, nVanCars, nCustomers);
-		//whether we need to change driver‘s initial state？
 		System.out.println("Your system myUber has been set up.");
 	}
 	/**
