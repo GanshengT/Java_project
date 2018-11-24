@@ -298,6 +298,10 @@ difficulties : to manage the sout format
 	protected void totalCashed() {
 		myUber.totalCashed();
 	}
+	
+	protected void simRide() {
+		
+	}
 	/**
 	 * Tan: addCustomer
 	 * 		addDriver

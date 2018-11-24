@@ -159,7 +159,7 @@ public class MyUber  {
 			Customer customer = new Customer("customer"+(i+1)+"name","customer"+(i+1)+"surname");
 			customer.setGpsStart(LocationUtils.GetRandomLocation(this.areaUsed.getCenter(),this.areaUsed.getRadius()));
 			listOfCustomer.add(customer);	
-			customerMap.put("customer.getIdNum()", customer);
+			customerMap.put(Integer.toString(customer.getIdNum()), customer);
 		}
 	}
 	
