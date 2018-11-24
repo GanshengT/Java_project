@@ -14,6 +14,7 @@ import myUberSystem.Customer;
 import myUberSystem.Driver;
 import myUberSystem.MyUber;
 import otherTools.GPSLocation;
+import otherTools.LocationUtils;
 
 public class CLUI {
 	
@@ -22,8 +23,30 @@ public class CLUI {
 	
 	public static void main(String[] args) throws IOException {
 		CLUI myUberCLUI = new CLUI();
+		System.out.println("welcome to my Uber, please input your command");
+		boolean readSucceed = false;
+		boolean continueCommand = true;
+		while(continueCommand == true) {
+			continueCommand =false;
+		while (readSucceed == false) {
+			commandMatching();
+		}
+		System.out.println("do you want to continue? Y/N");
+		if(myUberCLUI.yesOrNo()==true) {
+			continueCommand = true;
+		}
+		}
+		
 		// System.out.println(myUberCLUI.readCommand()[1]);
 		
+	}
+	
+	public boolean yesOrNo() throws IOException {
+		String yesNo = br.readLine();
+		if (yesNo =="Y") {
+			return true;
+		}
+		else return false;
 	}
 	
 	public String[] readCommand() throws IOException {
@@ -32,10 +55,25 @@ public class CLUI {
 		return command.split(" ");
 	}
 	
+	public boolean commandMatching () throws IOException {
+		String[] command = readCommand();
+		if (command[0]=="init") {
+			
+		}
+		else if (command[0] == "setup") {
+			if(command.length != 4) {
+				System.out.println("setup syntext not right");
+				return false;
+			}
+			this.setup(command[1], command[2], command[3], command[4]);
+			return true;
+		}
+	}
+	
+	
 	protected void addCustomer(String customerName, String customerSurname) throws NoSuchFieldException {
-		myUber.getListOfCustomer().add(new Customer(customerName,customerSurname));
+		myUber.addCustomer(customerName, customerSurname);
 		System.out.println(myUber.getListOfCustomer());
-		
 	}
 	
 	/**
@@ -54,23 +92,13 @@ public class CLUI {
 		// we add one driver so evidently this driver is the car's owner.
 		driverGeneration(driverName, driverSurname);
 		if (carType == "berline") {
-			BerlineCar newcar = new BerlineCar(myUber.getAreaUsed());
-			newcar.AssignDriver();
-			myUber.getListOfBerlineCar().add(newcar);
-			myUber.getListOfCar().add(newcar);
+			myUber.addBerlineCar();
 			}
 		else if (carType == "standard") {
-			StandardCar newcar = new StandardCar(myUber.getAreaUsed());
-			newcar.AssignDriver();
-			myUber.getListOfStandardCar().add(newcar);
-			myUber.getListOfCar().add(newcar);
-			
+			myUber.addStandardCar();
 		}
 		else if (carType =="van") {
-			VanCar newcar = new VanCar(myUber.getAreaUsed());
-			newcar.AssignDriver();
-			myUber.getListOfVanCar().add(newcar);
-			myUber.getListOfCar().add(newcar);
+			myUber.addVanCar();
 		}
 		else {
 			System.out.println("please enter the carType among berline, standard and van");
@@ -167,11 +195,15 @@ difficulties : to manage the sout format
 			System.out.println("DriverID: "+driver.getDriverId()+"status: "+driver.getStatus()+"occupied rate: "+driver.getOccupiedRate()+
 					"average mark: " +driver.getAverageMark());
 		}
+		myUber.displayDrivers("mostappreciated");
+		myUber.displayDrivers("mostoccupied");
 		System.out.println("Customers infomation");
 		for(Customer customer : myUber.getListOfCustomer()) {
 			System.out.println("customer's ID "+customer.getIdNum()+"customer's name and surname"+customer.getName()+customer.getSurName()+
 					"ride number: "+customer.getRideNum()+ "location: "+customer.getGpsStart()+"consumming money: "+customer.getOnCarMoney());
 		}
+		myUber.displayCustomers("mostfrequent");
+		myUber.displayCustomers("mostcharged");
 	}
 	
 	/**

@@ -4,11 +4,14 @@ import java.util.*;
 import org.ini4j.*;
 import org.junit.platform.commons.util.CollectionUtils;
 
+import Cars.BerlineCar;
 import Cars.Car;
 import Cars.CreateBerlineCar;
 import Cars.CreateCar;
 import Cars.CreateStandardCar;
 import Cars.CreateVanCar;
+import Cars.StandardCar;
+import Cars.VanCar;
 import Rides.Ride;
 import Rides.RideUberPool;
 import otherTools.GPSLocation;
@@ -478,6 +481,45 @@ public class MyUber  {
 			this.totalCashed += driver.getMoneyCashed();
 		}
 		System.out.println("The total amount of mont cashed by all drivers in our system is : "+this.totalCashed);
+	}
+	
+	/**
+	 * add customer, this function will be used in CLI
+	 * @param customerName
+	 * @param customerSurname
+	 * @throws NoSuchFieldException
+	 */
+	public void addCustomer(String customerName, String customerSurname) throws NoSuchFieldException {
+		Customer customer =new Customer(customerName,customerSurname);
+		customer.setGpsStart(LocationUtils.GetRandomLocation(this.getAreaUsed().getCenter(),this.getAreaUsed().getRadius()));
+		this.getListOfCustomer().add(customer);
+		this.getCustomerMap().put(Integer.toString(customer.getIdNum()),customer);}
+	
+	
+	//multimorphisme why do I need convert
+	public void addBerlineCar() {
+	BerlineCar newcar =  (BerlineCar) createBerlineCar.createCarMethod(areaUsed);
+	newcar.AssignDriver();
+	this.getListOfBerlineCar().add(newcar);
+	this.getListOfCar().add(newcar);
+	this.getCarMap().put(newcar.getIdCar(),newcar);
+	}
+	
+	
+	public void addStandardCar() {
+		StandardCar newcar = (StandardCar) createStandardCar.createCarMethod(areaUsed);
+		newcar.AssignDriver();
+		this.getListOfStandardCar().add(newcar);
+		this.getListOfCar().add(newcar);
+		this.getCarMap().put(newcar.getIdCar(), newcar);
+	}
+	
+	public void addVanCar() {
+		VanCar newcar = (VanCar) createVanCar.createCarMethod(areaUsed);
+		newcar.AssignDriver();
+		this.getListOfVanCar().add(newcar);
+		this.getListOfCar().add(newcar);
+		this.getCarMap().put(newcar.getIdCar(), newcar);
 	}
 	
 	/**

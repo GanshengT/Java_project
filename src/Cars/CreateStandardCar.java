@@ -12,7 +12,7 @@ public class CreateStandardCar extends CreateCar {
 	 */
 
 	@Override
-	public Car createCarMethod(AreaUsed areaUsed) {
+	public StandardCar createCarMethod(AreaUsed areaUsed) {
 		return new StandardCar(areaUsed);
 	}
 
