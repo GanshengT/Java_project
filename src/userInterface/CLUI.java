@@ -1,6 +1,9 @@
 package userInterface;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -10,6 +13,7 @@ import Cars.BerlineCar;
 import Cars.Car;
 import Cars.StandardCar;
 import Cars.VanCar;
+import Rides.Ride;
 import myUberSystem.Customer;
 import myUberSystem.Driver;
 import myUberSystem.MyUber;
@@ -20,8 +24,9 @@ public class CLUI {
 	
 	MyUber myUber;
 	BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
+	//private BufferedReader brOfIni;
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, NoSuchFieldException {
 		CLUI myUberCLUI = new CLUI();
 		System.out.println("welcome to my Uber, please input your command");
 		boolean readSucceed = false;
@@ -29,7 +34,7 @@ public class CLUI {
 		while(continueCommand == true) {
 			continueCommand =false;
 		while (readSucceed == false) {
-			commandMatching();
+			myUberCLUI.commandMatching(myUberCLUI.readCommand());
 		}
 		System.out.println("do you want to continue? Y/N");
 		if(myUberCLUI.yesOrNo()==true) {
@@ -55,21 +60,168 @@ public class CLUI {
 		return command.split(" ");
 	}
 	
-	public boolean commandMatching () throws IOException {
-		String[] command = readCommand();
+	public boolean commandMatching (String[] stringLine) throws IOException, NoSuchFieldException {
+		String[] command = stringLine;
 		if (command[0]=="init") {
-			
+			if (command.length != 2) {
+				System.out.println("init syntax not right");
+				return false;
+			}else {
+				this.init(command[1]);
+				return true;
+			}
 		}
 		else if (command[0] == "setup") {
-			if(command.length != 4) {
+			if(command.length != 5) {
 				System.out.println("setup syntext not right");
 				return false;
+			}else {
+				this.setup(command[1], command[2], command[3], command[4]);
+				return true;
 			}
-			this.setup(command[1], command[2], command[3], command[4]);
-			return true;
 		}
+		else if(command[0] == "addCustomer") {
+			if(command.length != 3) {
+				System.out.println("addCustomer syntext not right");
+				return false;
+			}else {
+				this.addCustomer(command[1], command[2]);
+				return true;
+			}
+		}
+		else if(command[0] == "addCarDriver") {
+			if(command.length != 4) {
+				System.out.println("addCarDriver syntext not right");
+				return false;
+			}else {
+				this.addCarDriver(command[1], command[2], command[3]);
+				return true;
+			}
+		}
+		else if(command[0] == "addDriver") {
+			if(command.length != 4) {
+				System.out.println("addDriver syntext not right");
+				return false;
+			}else {
+				this.addDriver(command[1], command[2], command[3]);
+				return true;
+			}
+		}
+		else if(command[0] == "setDriverStatus") {
+			if(command.length != 4) {
+				System.out.println("setDriverStatus syntext not right");
+				return false;
+			}else {
+				this.setDriverStatus(command[1], command[2], command[3]);
+				return true;
+			}
+		}
+		else if(command[0] == "moveCar") {
+			if(command.length != 4) {
+				System.out.println("moveCar syntext not right");
+				return false;
+			}else {
+				this.moveCar(command[1], command[2], command[3]);
+				return true;
+			}
+		}
+		else if(command[0] == "moveCustomer") {
+			if(command.length != 4) {
+				System.out.println("moveCustomer syntext not right");
+				return false;
+			}else {
+				this.moveCustomer(command[1], command[2], command[3]);
+				return true;
+			}
+		}
+		else if(command[0] == "displayState") {
+			if(command.length != 1) {
+				System.out.println("displayState syntext not right");
+				return false;
+			}else {
+				this.displayState();
+				return true;
+			}
+		}
+		else if(command[0] == "ask4price") {
+			if(command.length != 5) {
+				System.out.println("ask4price syntext not right");
+				return false;
+			}else {
+				this.ask4price(command[1], command[2], command[3], command[4]);
+				return true;
+			}
+		}
+		else if(command[0] == "simRide") {
+			if(command.length != 9) {
+				System.out.println("simRide syntext not right");
+				return false;
+			}else {
+				this.simRide(command[1], command[2], command[3], command[4], command[5], command[6], command[7], command[8]);
+				return true;
+			}
+		}
+		else if(command[0] == "simRide_i") {
+			if(command.length != 4) {
+				System.out.println("simRide_i syntext not right");
+				return false;
+			}else {
+				this.simRide_i(command[1], command[2], command[3]);
+				return true;
+			}
+		}
+		else if(command[0] == "displayDrivers") {
+			if(command.length != 2) {
+				System.out.println("displayDrivers syntext not right");
+				return false;
+			}else {
+				this.displayDrivers(command[1]);
+				return true;
+			}
+		}
+		else if(command[0] == "displayCustomers") {
+			if(command.length != 2) {
+				System.out.println("displayCustomers syntext not right");
+				return false;
+			}else {
+				this.displayCustomers(command[1]);
+				return true;
+			}
+		}
+		else if(command[0] == "totalCashed") {
+			if(command.length != 1) {
+				System.out.println("totalCashed syntext not right");
+				return false;
+			}else {
+				this.totalCashed();
+				return true;
+			}
+		}
+		return false;
 	}
 	
+	
+
+	protected void init(String filename) throws IOException, NoSuchFieldException {
+		List<String> initCommandList = new ArrayList<>();
+		File f = new File(filename);
+		FileInputStream in = new FileInputStream(f);
+		InputStreamReader inr = new InputStreamReader(in);
+		BufferedReader brOfIni = new BufferedReader(inr);
+		String lineCommand =null;
+		Boolean judgement;
+		while((lineCommand = brOfIni.readLine()) != null) {
+			System.out.println(lineCommand);
+			initCommandList.add(lineCommand);
+		}
+		//System.out.println(commandString.size());
+		for(String line: initCommandList) {
+			String[] commandInit = line.split(" ");
+			judgement = commandMatching(commandInit);
+			//System.out.println(command[0]);
+		}
+		this.displayState();
+	}
 	
 	protected void addCustomer(String customerName, String customerSurname) throws NoSuchFieldException {
 		myUber.addCustomer(customerName, customerSurname);
@@ -268,12 +420,17 @@ difficulties : to manage the sout format
 	 * @param yPos Destination latitude coordination.
 	 * @param time The start hour of this asked ride. We use 0-23 as input number. If time < 0, it means regarding system time as ride beginning time.
 	 */
-	protected void ask4pricer(String custID, String xPos, String yPos, String time) {
+	protected void ask4price(String custID, String xPos, String yPos, String time) {
 		Customer customer = myUber.getCustomerMap().get(custID);
 		Double x = Double.parseDouble(xPos);
 		Double y = Double.parseDouble(yPos);
 		Integer startHH = Integer.parseInt(time);
 		customer.askForPrice(x, y, startHH);
+	}
+	
+	private void simRide_i(String string, String string2, String string3) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	/** 
@@ -288,7 +445,7 @@ difficulties : to manage the sout format
 	 * Method to sort and display all customers according to a specific policy.
 	 * @param sortpolicy There are two choices for the "sortpolicy". If sortpolicy = "mostfrequent", we use total amount of rides each customer has taken to sort, if sortpolicy = "mostcharged", we use the total amount of money each customer has spent in our system to sort.
 	 */
-	protected void diaplayCustomers(String sortpolicy) {
+	protected void displayCustomers(String sortpolicy) {
 		myUber.displayCustomers(sortpolicy);
 	}
 	
@@ -299,9 +456,34 @@ difficulties : to manage the sout format
 		myUber.totalCashed();
 	}
 	
-	protected void simRide() {
+	/**
+	 * Method to execute a ride automatically, and print out the state of ride.
+	 * @param customerID To indicate the customer who wants to do this order.
+	 * @param passengerNum To indicate the number of passengers for this new ride.
+	 * @param xPos The longitude coordinate of ride destination.
+	 * @param yPos The latitude coordinate of ride destination.
+	 * @param timeHH Ride beginning hour.
+	 * @param timeMM Ride beginning minute.
+	 * @param rideType Ride type. Choices: "uberx", "uberblack", "ubervan", "uberpool".
+	 * @param driverMark Customer's evaluation for this ride(driver). From 1 to 5. 
+	 */
+	protected void simRide(String customerID, String passengerNum, String xPos, String yPos, String timeHH, String timeMM, String rideType, String driverMark) {
+		Customer customer = myUber.getCustomerMap().get(customerID);
+		Ride simRide = customer.createANewRideAuto(Integer.parseInt(passengerNum),Double.parseDouble(xPos), Double.parseDouble(yPos), Integer.parseInt(timeHH), Integer.parseInt(timeMM), rideType);
+		myUber.driverAllocation(simRide);
+		customer.aboard();
+		myUber.RideFinished(simRide, Integer.parseInt(driverMark));
+		System.out.println("The current ride is a "+simRide.getRideType()+" ride, it is "+simRide.getState());
+		System.out.println("For this ride, the dirver ID is: "+simRide.getDriver().getDriverId()+", the car ID is: "+simRide.getCar().getIdCar()
+								+", the customer is Customer "+simRide.getCustomer().getIdNum()+".");
+		System.out.println("The ride length is "+simRide.getLength()+"km, the traffic state is "+simRide.getTrafficState()
+							+", and the cost is "+simRide.getPriceToPay()+".");
+		System.out.println("This ride began at "+simRide.getStartTime().getTime()+", the end time is "+simRide.getEndTime().getTime()
+							+", and the duration is "+simRide.getDuration()+"min.");
 		
 	}
+	
+	
 	/**
 	 * Tan: addCustomer
 	 * 		addDriver

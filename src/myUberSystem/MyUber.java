@@ -343,7 +343,7 @@ public class MyUber  {
 	 * @param ride
 	 * @return
 	 */
-	public double RideFinished(Ride ride) {
+	public double RideFinished(Ride ride, int mark) {
 		if(ride.getRideType() == "uberPool") {
 			ride.getCustomer().setRideNum(ride.getCustomer().getRideNum()+1);
 			ride.getCustomer().setOnCarMoney(ride.getCustomer().getOnCarMoney()+ride.price());
@@ -366,7 +366,7 @@ public class MyUber  {
 		}
 		
 		ride.getDriver().setRideNum(ride.getDriver().getRideNum()+1);
-		ride.getDriver().askMark(5);
+		ride.getDriver().askMark(mark);
 		ride.getCar().setDistanceForSort(0);
 		ride.getCar().setCarLocation(LocationUtils.GetRandomLocation(this.areaUsed.getCenter(), this.areaUsed.getRadius()));
 		ride.setState("completed");

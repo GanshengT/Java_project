@@ -68,14 +68,14 @@ public class MyUberTest extends TestCase {
 
 		*/
 		
-		myUber.RideFinished(myUber.getListOfRide().get(0));
+		myUber.RideFinished(myUber.getListOfRide().get(0),1);
 		System.out.println(myUber.getListOfCustomer().get(1).getRideNum()+"the first ride done");
 		assertTrue(myUber.getListOfRide().get(0).getPriceToPay()>3);
 		myUber.driverAllocation(myUber.getListOfCustomer().get(0).createANewRide(3, 48.8500002, 2.33009 , 22, 7,"uberpool"));
 		myUber.driverAllocation(myUber.getListOfCustomer().get(1).createANewRide(1, 48.8500011, 2.33007 , 22, 15,"uberpool"));
 		assertTrue(myUber.getListOfRide().size()==2); 
 		assertTrue(myUber.getListOfRide().get(1).getRideType()=="uberPool");
-		myUber.RideFinished(myUber.getListOfRide().get(1));
+		myUber.RideFinished(myUber.getListOfRide().get(1),5);
 		assertTrue(myUber.getListOfCustomer().get(1).getRideNum() == 2);
 		assertTrue(myUber.getListOfCustomer().get(0).getRideNum() == 1);
 		}

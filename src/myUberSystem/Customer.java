@@ -85,6 +85,64 @@ public class Customer {
 		}
 	}
 	
+	/**
+	 * Method used for a automatic ride.
+	 * @param passengerNumRequested Total number of passengers in a ride
+	 * @param desLongitude The coordinate of longitude of destination.
+	 * @param desLatitude The coordinate of latitude of destination.
+	 * @param startHH Ride beginning hour, if <0, we regard it as system current time.
+	 * @param type Ride type that the customer want to order.
+	 * @return
+	 */
+	public Ride createANewRideAuto(int passengerNumRequested, double desLongtude, double desLatitude, int startHH, int startMM, String type) {
+		if(this.currentRide == null) {
+			MyTime startTime;
+			if(startHH < 0) {startTime = new MyTime();}
+			else { startTime = new MyTime(startHH, startMM, 0);}
+			String rideType = type;
+			double price = 0;
+			GPSLocation gpsEnd = new GPSLocation(desLongtude, desLatitude);
+			Ride rideX = new RideUberX(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+			Ride rideBlack = new RideUberBlack(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+			Ride rideVan = new RideUberVan(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+			Ride ridePool = new RideUberPool(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+			Ride rideError = new RideUberX(this,0,this.gpsStart, new GPSLocation(0,0),startTime);
+			if (passengerNumRequested>=5 && passengerNumRequested <= 6 && rideType != "ubervan" ) {
+				System.out.printf("Your can only choose a Van car for this ride, the price is: %g.\n", rideVan.price());
+				this.currentRide = rideVan;
+				price = rideVan.price();
+				return rideVan;
+			}else if(passengerNumRequested >= 1 & passengerNumRequested <=4) {
+				if(rideType == "uberx") {
+					this.currentRide = rideX;
+					price = rideX.price();
+					return rideX;
+				}else if(rideType == "uberblack") {
+					this.currentRide = rideBlack;
+					price = rideBlack.price();
+					return rideBlack;
+				}else if(rideType == "ubervan") {
+					this.currentRide = rideVan;
+					price = rideVan.price();
+					return rideVan;
+				}else if (rideType == "uberpool") {
+					this.currentRide = ridePool;
+					price = ridePool.price();
+					return ridePool;
+				}else {
+					System.out.println("You have input a wrong ride type, please choose from uberx, uberblack, ubervan, uberpool");
+					return rideError;
+				}
+			}else {
+				System.out.println("You have input a wrong passenger number.");
+				return rideError;
+			}
+		
+			}else {
+				System.out.println("You have already ordered one ride in our system.");
+				return null;
+			}
+	}
 	
 	/**
 	 * We use this method of a customer object to request a new ride, and it will return a requested ride.
@@ -111,11 +169,11 @@ public class Customer {
 		rideVan.setTrafficState(rideX.getTrafficState());
 		ridePool.setTrafficState(rideX.getTrafficState());
 		Ride rideError = new RideUberX(this,0,this.gpsStart, new GPSLocation(0,0),startTime);
-		if (passengerNumRequested>=5 & passengerNumRequested <= 6) {
+		if (passengerNumRequested>=5 && passengerNumRequested <= 6) {
 			System.out.printf("Your can choose a Van car for this ride, the price is: %g.\n"
 					+ "If you want to order, please input 'ubervan'.", rideVan.price());
 			rideType = "ubervan";
-		}else if(passengerNumRequested >= 1 & passengerNumRequested <=4) {
+		}else if(passengerNumRequested >= 1 && passengerNumRequested <=4) {
 			System.out.printf("An UberX price is: %geuros.\n"
 					+ "An UberBlack price is: %geuros.\n"
 					+ "An UberVan price is: %geuros.\n"

@@ -127,6 +127,10 @@ public class MyTime {
 	public void setSs(int ss) {
 		this.ss = ss;
 	}
+	
+	public String getTime() {
+		return this.yyyy+"-"+this.MM+"-"+this.dd+" "+this.HH+":"+this.mm+":"+this.ss;
+	}
 
 	/**
 	 * addTime to calculate the time after adding a duration
