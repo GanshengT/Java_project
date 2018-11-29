@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import Cars.BerlineCar;
 import Cars.Car;
@@ -19,6 +20,7 @@ import myUberSystem.Driver;
 import myUberSystem.MyUber;
 import otherTools.GPSLocation;
 import otherTools.LocationUtils;
+import otherTools.MyTime;
 
 public class CLUI {
 	
@@ -200,7 +202,7 @@ public class CLUI {
 		return false;
 	}
 	
-	
+
 
 	protected void init(String filename) throws IOException, NoSuchFieldException {
 		List<String> initCommandList = new ArrayList<>();
@@ -428,9 +430,34 @@ difficulties : to manage the sout format
 		customer.askForPrice(x, y, startHH);
 	}
 	
-	private void simRide_i(String string, String string2, String string3) {
-		// TODO Auto-generated method stub
-		
+	private void simRide_i(String custID, String xPos, String yPos, String time) {
+		Customer customer = myUber.getCustomerMap().get(custID);
+		Double x = Double.parseDouble(xPos);
+		Double y = Double.parseDouble(yPos);
+		MyTime startTime = new MyTime(Integer.parseInt(time.split(":")[0]), Integer.parseInt(time.split(":")[1]),Integer.parseInt(time.split(":")[2]));
+		customer.askForPrice(x, y, startTime.getHH());
+		System.out.println("select which kind of ride you want");
+		Scanner scan = new Scanner(System.in);
+		String rideType = new String();
+		int passengerNum = 0;
+		if (scan.hasNext()) {
+			rideType = scan.next();}
+		System.out.println("enter the passenger number");
+		if (scan.hasNext()) {
+           passengerNum = Integer.parseInt(scan.next());}
+		Ride simRide = customer.createANewRideAuto(passengerNum,Double.parseDouble(xPos), Double.parseDouble(yPos),startTime.getHH(),startTime.getMm(),rideType);
+		myUber.driverAllocation(simRide);
+		System.out.println("driverID: " +simRide.getDriver().getDriverId()+
+				"customerID"+simRide.getCustomer().getIdNum()+"carID:"+
+				simRide.getCar().getIdCar()+"rideType: " +simRide.getRideType()
+				+"time departure" +simRide.getStartTime()+"time arrival: "+ simRide.getEndTime());
+		System.out.println("please enter your evaluation for the driver");
+		int mark = 0;
+		if (scan.hasNext()) {
+	          mark = Integer.parseInt(scan.next());}
+		simRide.getDriver().askMark(mark);
+		displayState();
+		scan.close();
 	}
 	
 	/** 
