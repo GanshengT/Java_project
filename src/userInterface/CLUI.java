@@ -528,7 +528,9 @@ difficulties : to manage the sout format
 		
 	}
 	
-	
+	protected void runtest(String txtFile) {
+		
+	}
 	/**
 	 * Tan: addCustomer
 	 * 		addDriver

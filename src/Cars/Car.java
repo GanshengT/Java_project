@@ -26,7 +26,7 @@ public class Car implements Comparable<Car> {
 	private List<Driver> owners = new ArrayList<>();
 	private int currentDriver;
 	private Driver currentDirverObject;
-	private GPSLocation carLocation;
+	private GPSLocation carLocation ;
 	public static List<Driver> nonAssignedDrivers = new ArrayList<Driver>();
 	private Integer distanceForSort;
 	
