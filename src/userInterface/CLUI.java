@@ -24,8 +24,24 @@ import otherTools.MyTime;
 
 public class CLUI {
 	
-	MyUber myUber;
-	BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
+	private MyUber myUber;
+	public MyUber getMyUber() {
+		return myUber;
+	}
+
+	public void setMyUber(MyUber myUber) {
+		this.myUber = myUber;
+	}
+
+	public BufferedReader getBr() {
+		return br;
+	}
+
+	public void setBr(BufferedReader br) {
+		this.br = br;
+	}
+
+	private BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
 	//private BufferedReader brOfIni;
 	
 	public static void main(String[] args) throws IOException, NoSuchFieldException {
@@ -46,6 +62,18 @@ public class CLUI {
 		
 		// System.out.println(myUberCLUI.readCommand()[1]);
 		
+	}
+	
+	/**
+	 * Initialize myUber system.
+	 * @param nStandardCars The number of Standard car in the initialized myUber system.
+	 * @param nBerlinCars The number of Berline car in the initialized myUber system.
+	 * @param nVanCars The number of van car in the initialized myUber system.
+	 * @param nCustomers The number of customer in the initialized myUber system.
+	 */
+	public void setup(String nStandardCars, String nBerlinCars, String nVanCars, String nCustomers) {
+		this.myUber = new MyUber(nStandardCars, nBerlinCars, nVanCars, nCustomers);
+		System.out.println("Your system myUber has been set up.");
 	}
 	
 	public boolean yesOrNo() throws IOException {
@@ -168,7 +196,7 @@ public class CLUI {
 				System.out.println("simRide_i syntext not right");
 				return false;
 			}else {
-				this.simRide_i(command[1], command[2], command[3]);
+				this.simRide_i(command[1], command[2], command[3],command[4]);
 				return true;
 			}
 		}
@@ -204,7 +232,7 @@ public class CLUI {
 	
 
 
-	protected void init(String filename) throws IOException, NoSuchFieldException {
+	public void init(String filename) throws IOException, NoSuchFieldException {
 		List<String> initCommandList = new ArrayList<>();
 		File f = new File(filename);
 		FileInputStream in = new FileInputStream(f);
@@ -235,14 +263,14 @@ public class CLUI {
 	 * @param driverName
 	 * @param driverSurname
 	 */
-	protected Driver driverGeneration(String driverName, String driverSurname) {
+	public Driver driverGeneration(String driverName, String driverSurname) {
 		Driver newDriver = new Driver(driverName, driverSurname, true);
 		Car.nonAssignedDrivers.add(newDriver);
 		myUber.getListOfDriver().add(newDriver);
 		return newDriver;
 	}
 	
-	protected void addCarDriver(String driverName, String driverSurname, String carType) {
+	public void addCarDriver(String driverName, String driverSurname, String carType) {
 		// we add one driver so evidently this driver is the car's owner.
 		driverGeneration(driverName, driverSurname);
 		if (carType == "berline") {
@@ -263,7 +291,7 @@ public class CLUI {
 	/**
 	 * used to tell user updated infomation
 	 */
-	protected void printInfoCarDriver() {
+	public void printInfoCarDriver() {
 		System.out.println("car information");
 		for(Car car: myUber.getListOfCar() ) {
 		System.out.println(car.getIdCar());
@@ -277,7 +305,7 @@ public class CLUI {
 	}
 	
 	//carID is a String
-	protected boolean addDriver(String driverName, String driverSurname, String carID) {
+	public boolean addDriver(String driverName, String driverSurname, String carID) {
 		Driver newDriver = driverGeneration(driverName,driverSurname);
 		for (Car car : myUber.getListOfCar()) {
 			if (car.getIdCar()==carID) {
@@ -299,7 +327,7 @@ public class CLUI {
 	 * @param status
 	 * @throws IOException 
 	 */
-	protected Driver findDriverByName(String driverName, String driverSurname) throws IOException {
+	public Driver findDriverByName(String driverName, String driverSurname) throws IOException {
 		List<Driver> foundDriver= new ArrayList<>();
 		for (Driver driver:myUber.getListOfDriver()) {
 			if (driver.getName()==driverName) {
@@ -325,7 +353,7 @@ public class CLUI {
 		return null;
 	}
 	
-	protected void setDriverStatus(String driverName, String driverSurname, String status) throws IOException {
+	public void setDriverStatus(String driverName, String driverSurname, String status) throws IOException {
 		Driver driver = findDriverByName(driverName, driverSurname);
 		driver.setStatus(status);		
 	}
@@ -339,10 +367,10 @@ information).
 difficulties : to manage the sout format
 !!!!get customer's position!!!
 	 */
-	protected void displayState() {
+	public void displayState() {
 		System.out.println("Car information");
 		for (Car car:myUber.getListOfCar()) {
-			System.out.println(car.getIdCar()+"its position: "+car.getCarLocation());
+			System.out.println(car.getIdCar()+"its position: "+"("+car.getCarLocation().getLatitude()+","+car.getCarLocation().getLongitude()+")");
 		}
 		System.out.println("Driver infomation");
 		for (Driver driver : myUber.getListOfDriver()) {
@@ -360,24 +388,14 @@ difficulties : to manage the sout format
 		myUber.displayCustomers("mostcharged");
 	}
 	
-	/**
-	 * Initialize myUber system.
-	 * @param nStandardCars The number of Standard car in the initialized myUber system.
-	 * @param nBerlinCars The number of Berline car in the initialized myUber system.
-	 * @param nVanCars The number of van car in the initialized myUber system.
-	 * @param nCustomers The number of customer in the initialized myUber system.
-	 */
-	protected void setup(String nStandardCars, String nBerlinCars, String nVanCars, String nCustomers) {
-		this.myUber = new MyUber(nStandardCars, nBerlinCars, nVanCars, nCustomers);
-		System.out.println("Your system myUber has been set up.");
-	}
+
 	/**
 	 * We use this method to change a car's current situation.
 	 * @param carID The car ID in String, like"Standard1"
 	 * @param xPos The longitude coordinate that we want to set the car to.
 	 * @param yPos The latitude coordinate that we want set the car to.
 	 */
-	protected void moveCar(String carID, String xPos, String yPos) {
+	public void moveCar(String carID, String xPos, String yPos) {
 		try {
 			Car carToMove = this.myUber.getCarMap().get(carID);
 			GPSLocation des = new GPSLocation(Double.parseDouble(xPos),Double.parseDouble(yPos));

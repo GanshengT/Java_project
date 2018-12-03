@@ -192,7 +192,7 @@ public class MyUber  {
 	 */
 	public void setup_initialisation() {
 		this.createCostomerList();
-		this.createCostomerList();
+		this.createDriverList();
 		this.createStandardCarList();
 		this.createBerlineCarList();
 		this.createVanCarList();
