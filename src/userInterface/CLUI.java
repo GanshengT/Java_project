@@ -265,7 +265,7 @@ public class CLUI {
     
 	public boolean commandMatchingTxt (String[] stringLine, BufferedWriter bw) throws IOException, NoSuchFieldException {
 		String[] command = stringLine;
-		System.out.println(command[0]);
+		//System.out.println(command[0]);
 		if (command[0].equals("init")) {
 			if (command.length != 2) {
 				System.out.println("init syntax not right");
@@ -280,7 +280,6 @@ public class CLUI {
 				System.out.println("setup syntext not right");
 				return false;
 			}else {
-				System.out.println("ici");
 				this.setup(command[1], command[2], command[3], command[4],bw);
 				return true;
 			}
@@ -402,7 +401,7 @@ public class CLUI {
 				return true;
 			}
 		}
-		System.out.println("die");
+		//System.out.println("die");
 		return false;
 	}
 
