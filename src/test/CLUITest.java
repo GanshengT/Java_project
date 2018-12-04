@@ -38,8 +38,22 @@ public class CLUITest extends CLUI {
 		
 	}
 	*/
+	/*
+	@Test
+	public void testAsk4Price() {
+		myUberCLUI.setup("10","8","9","3");
+		myUberCLUI.ask4price("2","48.8502745","23.32993407","4");
+	}
+	*/
+	
+	@Test
+	public void testSimRide_i() {
+		myUberCLUI.setup("10","9","8","3");
+		myUberCLUI.simRide_i("2","48.8502745","23.32993407", "3:12:22");
+	}
 	
 	
+	/*
 	@Test
 	public void testRuntest() {
 		try {
@@ -49,5 +63,6 @@ public class CLUITest extends CLUI {
 			e.printStackTrace();
 		}
 	}
+	*/
 
 }
