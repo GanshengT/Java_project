@@ -420,10 +420,10 @@ public class MyUber  {
 	else if(sortPolicy.equals("mostoccupied")) {
 		for (Driver driver:occupiedDriverList) {
 			if(driver.getStatus().equals("offline") || driver.getStatus().equals("off-duty")) {
-			    driver.setOccupiedRate(driver.getOnARideTime()/driver.getOndutyTime());
+			    driver.setOccupiedRate(driver.getOnARideTime()/(driver.getOndutyTime()*10000));
 			}else {
 				MyTime timeNow = new MyTime();
-				driver.setOccupiedRate(driver.getOnARideTime()/(driver.getOndutyTime()+driver.getStartOnduty().timeMinus(timeNow)));
+				driver.setOccupiedRate(driver.getOnARideTime()/((driver.getOndutyTime()+timeNow.timeMinus(driver.getStartOnduty()))*10000));
 			}
 		}
 		Collections.sort(occupiedDriverList,new Comparator<Driver>(){
@@ -465,10 +465,10 @@ public class MyUber  {
 		else if(sortPolicy.equals("mostoccupied")) {
 			for (Driver driver:occupiedDriverList) {
 				if(driver.getStatus().equals("offline") || driver.getStatus().equals("off-duty")) {
-				    driver.setOccupiedRate(driver.getOnARideTime()/driver.getOndutyTime());
+				    driver.setOccupiedRate(driver.getOnARideTime()/(driver.getOndutyTime()*10000));
 				}else {
 					MyTime timeNow = new MyTime();
-					driver.setOccupiedRate(driver.getOnARideTime()/(driver.getOndutyTime()+driver.getStartOnduty().timeMinus(timeNow)));
+					driver.setOccupiedRate(driver.getOnARideTime()/(10000*(driver.getOndutyTime()+timeNow.timeMinus(driver.getStartOnduty()))));
 				}
 			}
 			Collections.sort(occupiedDriverList,new Comparator<Driver>(){
