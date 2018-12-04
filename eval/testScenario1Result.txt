@@ -17,92 +17,92 @@ Driver James Hunt has been added to Berline1.
 moveCar:
 Berline2's current position is: (48.32,23.99).
 Cars location informations: 
-Van5 is situated at (48.8501277,23.32970936).
-Van4 is situated at (48.8498777,23.33021969).
-Van3 is situated at (48.84984367,23.33012247).
-Van2 is situated at (48.85015012,23.32990342).
-Van1 is situated at (48.85012845,23.32971526).
-Berline5 is situated at (48.84969114,23.32988202).
-Berline4 is situated at (48.85019662,23.32999004).
-Berline3 is situated at (48.84967305,23.3301495).
+Van5 is situated at (48.84999102,23.33001653).
+Van4 is situated at (48.85008829,23.32973246).
+Van3 is situated at (48.84975421,23.33020642).
+Van2 is situated at (48.85008305,23.33005893).
+Van1 is situated at (48.8498688,23.32979223).
+Berline5 is situated at (48.84987396,23.32979147).
+Berline4 is situated at (48.8502388,23.33003784).
+Berline3 is situated at (48.84996806,23.33001423).
 Berline2 is situated at (48.32,23.99).
-Berline1 is situated at (48.85014898,23.33011068).
-Standard10 is situated at (48.84981256,23.32999814).
-Standard9 is situated at (48.85006774,23.33007303).
-Standard8 is situated at (48.84997786,23.32992774).
-Standard7 is situated at (48.85000709,23.32983124).
-Standard6 is situated at (48.85016995,23.33016483).
-Standard5 is situated at (48.85016001,23.33016019).
-Standard4 is situated at (48.85019532,23.33023524).
-Standard3 is situated at (48.85017773,23.32983486).
-Standard2 is situated at (48.85010897,23.33018817).
-Standard1 is situated at (48.84963734,23.33001592).
+Berline1 is situated at (48.84986453,23.33001751).
+Standard10 is situated at (48.85019203,23.33022275).
+Standard9 is situated at (48.84980686,23.32971295).
+Standard8 is situated at (48.84997001,23.32968374).
+Standard7 is situated at (48.8499126,23.33009123).
+Standard6 is situated at (48.84994956,23.32993374).
+Standard5 is situated at (48.84998037,23.33007787).
+Standard4 is situated at (48.8501692,23.32982575).
+Standard3 is situated at (48.85030301,23.32991153).
+Standard2 is situated at (48.84969971,23.32984569).
+Standard1 is situated at (48.84983682,23.33006237).
 
 moveCustomer:
 Customer1's current position is: (48.84889,23.32899).
 Customers location informations: 
 Customer 1 is at (48.84889,23.32899).
-Customer 2 is at (48.84974788,23.33024933).
-Customer 3 is at (48.84979271,23.32984022).
-Customer 4 is at (48.85011673,23.32969421).
-Customer 5 is at (48.84992371,23.33034501).
-Customer 6 is at (48.85028458,23.33005565).
+Customer 2 is at (48.8498758,23.33020384).
+Customer 3 is at (48.84965281,23.33004959).
+Customer 4 is at (48.8496881,23.33012274).
+Customer 5 is at (48.85024148,23.33024681).
+Customer 6 is at (48.84984523,23.32991193).
 
 askForPrice:
-Customer3 wants to leave now, an UberX price is: 1757.2500000000002, an UberBlack price is: 3599.7000000000003, an UberVan price is: 4153.5, an UberPool price is: 1288.65.
+Customer3 wants to leave now, an UberX price is: 2385.0, an UberBlack price is: 4409.6, an UberVan price is: 4960.8, an UberPool price is: 1399.2.
 simRide:
 The current ride is a uberX ride, it is completed.
-For this ride, the dirver ID is: 11, the car ID is: Standard10, the customer is Customer2.
-The ride length is: 1135.0km, the traffic state is heavyTraffic, and the cost is 2553.75.
-This ride began at: 2027-8-31 11:30:0, the end time is: 2027-8-31 11:30:0, and the duration is: 22700.0 min.
+For this ride, the dirver ID is: 14, the car ID is: Standard7, the customer is Customer2.
+The ride length is: 1136.0km, the traffic state is heavyTraffic, and the cost is 2556.0.
+This ride began at: 2027-8-31 12:26:0, the end time is: 2027-8-31 12:26:0, and the duration is: 22720.0 min.
 simRide:
 The current ride is a uberBlack ride, it is completed.
 For this ride, the dirver ID is: 6, the car ID is: Berline5, the customer is Customer1.
 The ride length is: 368.0km, the traffic state is mediumTraffic, and the cost is 1243.8400000000001.
-This ride began at: 2027-7-28 9:23:0, the end time is: 2027-7-28 9:23:0, and the duration is: 2944.0 min.
+This ride began at: 2027-7-29 9:55:0, the end time is: 2027-7-29 9:55:0, and the duration is: 2944.0 min.
 simRide:
 The current ride is a uberVan ride, it is completed.
-For this ride, the dirver ID is: 2, the car ID is: Van4, the customer is Customer2.
-The ride length is: 8.0km, the traffic state is lowTraffic, and the cost is 61.6.
-This ride began at: 2021-1-4 11:21:0, the end time is: 2021-1-4 11:21:0, and the duration is: 32.0 min.
+For this ride, the dirver ID is: 3, the car ID is: Van3, the customer is Customer2.
+The ride length is: 35.0km, the traffic state is heavyTraffic, and the cost is 163.8.
+This ride began at: 2021-1-5 18:17:0, the end time is: 2021-1-5 18:17:0, and the duration is: 700.0 min.
 
 displayState
 Car information:
-Van5, its position: 23.32970936.
-Van4, its position: 23.32986795.
-Van3, its position: 23.33012247.
-Van2, its position: 23.32990342.
-Van1, its position: 23.32971526.
-Berline5, its position: 23.32976316.
-Berline4, its position: 23.32999004.
-Berline3, its position: 23.3301495.
+Van5, its position: 23.33001653.
+Van4, its position: 23.32973246.
+Van3, its position: 23.32984775.
+Van2, its position: 23.33005893.
+Van1, its position: 23.32979223.
+Berline5, its position: 23.33019235.
+Berline4, its position: 23.33003784.
+Berline3, its position: 23.33001423.
 Berline2, its position: 23.99.
-Berline1, its position: 23.33011068.
-Standard10, its position: 23.33009074.
-Standard9, its position: 23.33007303.
-Standard8, its position: 23.32992774.
-Standard7, its position: 23.32983124.
-Standard6, its position: 23.33016483.
-Standard5, its position: 23.33016019.
-Standard4, its position: 23.33023524.
-Standard3, its position: 23.32983486.
-Standard2, its position: 23.33018817.
-Standard1, its position: 23.33001592.
+Berline1, its position: 23.33001751.
+Standard10, its position: 23.33022275.
+Standard9, its position: 23.32971295.
+Standard8, its position: 23.32968374.
+Standard7, its position: 23.32985438.
+Standard6, its position: 23.32993374.
+Standard5, its position: 23.33007787.
+Standard4, its position: 23.32982575.
+Standard3, its position: 23.32991153.
+Standard2, its position: 23.32984569.
+Standard1, its position: 23.33006237.
 Driver information:
 DriverID: 1, status: on-duty, occupied rate: null, average mark: 0.0.
-DriverID: 2, status: on-duty, occupied rate: null, average mark: 3.0.
-DriverID: 3, status: on-duty, occupied rate: null, average mark: 0.0.
+DriverID: 2, status: on-duty, occupied rate: null, average mark: 0.0.
+DriverID: 3, status: on-duty, occupied rate: null, average mark: 3.0.
 DriverID: 4, status: on-duty, occupied rate: null, average mark: 0.0.
 DriverID: 5, status: on-duty, occupied rate: null, average mark: 0.0.
-DriverID: 6, status: off-duty, occupied rate: null, average mark: 5.0.
+DriverID: 6, status: on-duty, occupied rate: null, average mark: 5.0.
 DriverID: 7, status: on-duty, occupied rate: null, average mark: 0.0.
 DriverID: 8, status: on-duty, occupied rate: null, average mark: 0.0.
 DriverID: 9, status: on-duty, occupied rate: null, average mark: 0.0.
 DriverID: 10, status: on-duty, occupied rate: null, average mark: 0.0.
-DriverID: 11, status: on-duty, occupied rate: null, average mark: 4.0.
+DriverID: 11, status: on-duty, occupied rate: null, average mark: 0.0.
 DriverID: 12, status: on-duty, occupied rate: null, average mark: 0.0.
 DriverID: 13, status: on-duty, occupied rate: null, average mark: 0.0.
-DriverID: 14, status: on-duty, occupied rate: null, average mark: 0.0.
+DriverID: 14, status: off-duty, occupied rate: null, average mark: 4.0.
 DriverID: 15, status: on-duty, occupied rate: null, average mark: 0.0.
 DriverID: 16, status: on-duty, occupied rate: null, average mark: 0.0.
 DriverID: 17, status: on-duty, occupied rate: null, average mark: 0.0.
@@ -112,16 +112,16 @@ DriverID: 20, status: on-duty, occupied rate: null, average mark: 0.0.
 DriverID: 21, status: offline, occupied rate: null, average mark: 0.0.
 displayDrivers by appreciated level:
 Driver1's average mark is: 0.0.
-Driver3's average mark is: 0.0.
+Driver2's average mark is: 0.0.
 Driver4's average mark is: 0.0.
 Driver5's average mark is: 0.0.
 Driver7's average mark is: 0.0.
 Driver8's average mark is: 0.0.
 Driver9's average mark is: 0.0.
 Driver10's average mark is: 0.0.
+Driver11's average mark is: 0.0.
 Driver12's average mark is: 0.0.
 Driver13's average mark is: 0.0.
-Driver14's average mark is: 0.0.
 Driver15's average mark is: 0.0.
 Driver16's average mark is: 0.0.
 Driver17's average mark is: 0.0.
@@ -129,24 +129,24 @@ Driver18's average mark is: 0.0.
 Driver19's average mark is: 0.0.
 Driver20's average mark is: 0.0.
 Driver21's average mark is: 0.0.
-Driver2's average mark is: 3.0.
-Driver11's average mark is: 4.0.
+Driver3's average mark is: 3.0.
+Driver14's average mark is: 4.0.
 Driver6's average mark is: 5.0.
 displayDrivers by occupied level:
-Driver2's occupied ratio is: Infinity.
+Driver3's occupied ratio is: Infinity.
 Driver6's occupied ratio is: Infinity.
-Driver11's occupied ratio is: Infinity.
+Driver14's occupied ratio is: Infinity.
 Driver1's occupied ratio is: NaN.
-Driver3's occupied ratio is: NaN.
+Driver2's occupied ratio is: NaN.
 Driver4's occupied ratio is: NaN.
 Driver5's occupied ratio is: NaN.
 Driver7's occupied ratio is: NaN.
 Driver8's occupied ratio is: NaN.
 Driver9's occupied ratio is: NaN.
 Driver10's occupied ratio is: NaN.
+Driver11's occupied ratio is: NaN.
 Driver12's occupied ratio is: NaN.
 Driver13's occupied ratio is: NaN.
-Driver14's occupied ratio is: NaN.
 Driver15's occupied ratio is: NaN.
 Driver16's occupied ratio is: NaN.
 Driver17's occupied ratio is: NaN.
@@ -155,12 +155,12 @@ Driver19's occupied ratio is: NaN.
 Driver20's occupied ratio is: NaN.
 Driver21's occupied ratio is: NaN.
 Customers information:
-customer's ID: 1, customer's name and surname:customer1name customer1surname, ride number: 1, location: (48.84969574,23.33022208), consumming money: 1243.8400000000001.
-customer's ID: 2, customer's name and surname:customer2name customer2surname, ride number: 2, location: (48.85022923,23.33021802), consumming money: 2615.35.
-customer's ID: 3, customer's name and surname:customer3name customer3surname, ride number: 0, location: (48.84979271,23.32984022), consumming money: 0.0.
-customer's ID: 4, customer's name and surname:customer4name customer4surname, ride number: 0, location: (48.85011673,23.32969421), consumming money: 0.0.
-customer's ID: 5, customer's name and surname:customer5name customer5surname, ride number: 0, location: (48.84992371,23.33034501), consumming money: 0.0.
-customer's ID: 6, customer's name and surname:Alan Turing, ride number: 0, location: (48.85028458,23.33005565), consumming money: 0.0.
+customer's ID: 1, customer's name and surname:customer1name customer1surname, ride number: 1, location: (48.84995115,23.33008727), consumming money: 1243.8400000000001.
+customer's ID: 2, customer's name and surname:customer2name customer2surname, ride number: 2, location: (48.84988597,23.33002298), consumming money: 2719.8.
+customer's ID: 3, customer's name and surname:customer3name customer3surname, ride number: 0, location: (48.84965281,23.33004959), consumming money: 0.0.
+customer's ID: 4, customer's name and surname:customer4name customer4surname, ride number: 0, location: (48.8496881,23.33012274), consumming money: 0.0.
+customer's ID: 5, customer's name and surname:customer5name customer5surname, ride number: 0, location: (48.85024148,23.33024681), consumming money: 0.0.
+customer's ID: 6, customer's name and surname:Alan Turing, ride number: 0, location: (48.84984523,23.32991193), consumming money: 0.0.
 displayCustomers by frequency:
 Customer3 has taken 0 rides.
 Customer4 has taken 0 rides.
@@ -174,20 +174,20 @@ Customer4 has spent 0.0 euros in this system.
 Customer5 has spent 0.0 euros in this system.
 Customer6 has spent 0.0 euros in this system.
 Customer1 has spent 1243.8400000000001 euros in this system.
-Customer2 has spent 2615.35 euros in this system.
+Customer2 has spent 2719.8 euros in this system.
 
 displayDrivers by appreciated level:
 Driver1's average mark is: 0.0.
-Driver3's average mark is: 0.0.
+Driver2's average mark is: 0.0.
 Driver4's average mark is: 0.0.
 Driver5's average mark is: 0.0.
 Driver7's average mark is: 0.0.
 Driver8's average mark is: 0.0.
 Driver9's average mark is: 0.0.
 Driver10's average mark is: 0.0.
+Driver11's average mark is: 0.0.
 Driver12's average mark is: 0.0.
 Driver13's average mark is: 0.0.
-Driver14's average mark is: 0.0.
 Driver15's average mark is: 0.0.
 Driver16's average mark is: 0.0.
 Driver17's average mark is: 0.0.
@@ -195,8 +195,8 @@ Driver18's average mark is: 0.0.
 Driver19's average mark is: 0.0.
 Driver20's average mark is: 0.0.
 Driver21's average mark is: 0.0.
-Driver2's average mark is: 3.0.
-Driver11's average mark is: 4.0.
+Driver3's average mark is: 3.0.
+Driver14's average mark is: 4.0.
 Driver6's average mark is: 5.0.
 
 displayDrivers failed.
@@ -207,4 +207,4 @@ Customer4 has spent 0.0 euros in this system.
 Customer5 has spent 0.0 euros in this system.
 Customer6 has spent 0.0 euros in this system.
 Customer1 has spent 1243.8400000000001 euros in this system.
-Customer2 has spent 2615.35 euros in this system.
+Customer2 has spent 2719.8 euros in this system.

@@ -8,6 +8,13 @@ import java.util.TimeZone;
 
 
 public class MyTime {
+@Override
+	public String toString() {
+		return "MyTime [yyyy=" + yyyy + ", MM=" + MM + ", dd=" + dd + ", HH=" + HH + ", mm=" + mm + ", ss=" + ss + "]";
+	}
+
+
+
 /**
  * yyyy :year
  * MM: month
@@ -46,9 +53,9 @@ public class MyTime {
 	 */
 	public MyTime(int HH, int mm, int ss) {
 		Calendar calendar = Calendar.getInstance();	
-		this.yyyy = calendar.get(1);
-		this.MM = calendar.get(2);
-		this.dd = calendar.get(3);
+		this.yyyy = calendar.get(Calendar.YEAR);
+		this.MM = calendar.get(Calendar.MONTH)+1;
+		this.dd = calendar.get(Calendar.DATE);
 		this.HH = HH;
 		this.mm = mm;
 		this.ss = ss;
@@ -59,9 +66,9 @@ public class MyTime {
 	 */
 	public  MyTime() {
 		Calendar calendar = Calendar.getInstance();
-		this.yyyy = calendar.get(1);
-		this.MM = calendar.get(2);
-		this.dd = calendar.get(3);
+		this.yyyy = calendar.get(Calendar.YEAR);
+		this.MM = calendar.get(Calendar.MONTH)+1;
+		this.dd = calendar.get(Calendar.DATE);
 		this.HH = calendar.get(Calendar.HOUR_OF_DAY);
 		this.mm = calendar.get(Calendar.MINUTE);
 		this.ss = calendar.get(Calendar.SECOND);
