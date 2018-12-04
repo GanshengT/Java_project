@@ -37,6 +37,14 @@ public class GPSLocation {
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "("+this.longitude+","+this.latitude+")";
+	}
+	
+	
 }
 
 

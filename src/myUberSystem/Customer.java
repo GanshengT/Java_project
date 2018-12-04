@@ -1,5 +1,7 @@
 package myUberSystem;
 
+import java.io.BufferedWriter;
+
 import Rides.Ride;
 import Rides.RideUberBlack;
 import Rides.RideUberPool;
@@ -85,6 +87,49 @@ public class Customer {
 		}
 	}
 	
+	public void askForPrice(double desLongtude, double desLatitude, int startHH, BufferedWriter bw) {
+		try {
+		if(startHH < 0) {
+			MyTime startTime = new MyTime();
+			int passengerNumRequested = 1;
+			GPSLocation gpsEnd = new GPSLocation(desLongtude, desLatitude);
+			Ride rideX = new RideUberX(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+			Ride rideBlack = new RideUberBlack(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+			Ride rideVan = new RideUberVan(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+			Ride ridePool = new RideUberPool(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+			rideBlack.setTrafficState(rideX.getTrafficState());
+			rideVan.setTrafficState(rideX.getTrafficState());
+			ridePool.setTrafficState(rideX.getTrafficState());
+			//Ride rideError = new RideUberX(this,0,this.gpsStart, new GPSLocation(0,0),startTime);
+			bw.write("\r\naskForPrice:\r\n"+"Customer"+this.idNum+" wants to leave now, "+"an UberX price is: "+rideX.price()
+						+ ", an UberBlack price is: "+rideBlack.price()
+						+ ", an UberVan price is: "+rideVan.price()
+						+ ", an UberPool price is: "+ridePool.price()+".\r\n");
+		}else if(startHH <= 23 && startHH >=0 ) {
+		    MyTime startTime = new MyTime(startHH, 0, 0);
+		    int passengerNumRequested = 1;
+			GPSLocation gpsEnd = new GPSLocation(desLongtude, desLatitude);
+			Ride rideX = new RideUberX(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+			Ride rideBlack = new RideUberBlack(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+			Ride rideVan = new RideUberVan(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+			Ride ridePool = new RideUberPool(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
+			rideBlack.setTrafficState(rideX.getTrafficState());
+			rideVan.setTrafficState(rideX.getTrafficState());
+			ridePool.setTrafficState(rideX.getTrafficState());
+			//Ride rideError = new RideUberX(this,0,this.gpsStart, new GPSLocation(0,0),startTime);
+			bw.write("\r\naskForPrice:\r\n"+"Customer"+this.idNum+" wants to leave at "+startHH+":00, "+"an UberX price is: "+rideX.price()
+			+ ", an UberBlack price is: "+rideBlack.price()
+			+ ", an UberVan price is: "+rideVan.price()
+			+ ", an UberPool price is: "+ridePool.price()+".\r\n");
+		}else {
+			bw.write("A wrong time which is over 24 hours has been input, askForPrice failed.\r\n");
+			return;
+		}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * Method used for a automatic ride.
 	 * @param passengerNumRequested Total number of passengers in a ride
@@ -113,19 +158,19 @@ public class Customer {
 				price = rideVan.price();
 				return rideVan;
 			}else if(passengerNumRequested >= 1 & passengerNumRequested <=4) {
-				if(rideType == "uberx") {
+				if(rideType.equals("uberx")) {
 					this.currentRide = rideX;
 					price = rideX.price();
 					return rideX;
-				}else if(rideType == "uberblack") {
+				}else if(rideType.equals("uberblack")) {
 					this.currentRide = rideBlack;
 					price = rideBlack.price();
 					return rideBlack;
-				}else if(rideType == "ubervan") {
+				}else if(rideType.equals("ubervan")) {
 					this.currentRide = rideVan;
 					price = rideVan.price();
 					return rideVan;
-				}else if (rideType == "uberpool") {
+				}else if (rideType.equals("uberpool")) {
 					this.currentRide = ridePool;
 					price = ridePool.price();
 					return ridePool;
@@ -185,16 +230,16 @@ public class Customer {
 			System.out.println("You have input a wrong passenger number.");
 		}
 	
-		if(rideType == "uberx") {
+		if(rideType.equals("uberx")) {
 			this.currentRide = rideX;
 			return rideX;
-		}else if(rideType == "uberblack") {
+		}else if(rideType.equals("uberblack")) {
 			this.currentRide = rideBlack;
 			return rideBlack;
-		}else if(rideType == "ubervan") {
+		}else if(rideType.equals("ubervan")) {
 			this.currentRide = rideVan;
 			return rideVan;
-		}else if (rideType == "uberpool") {
+		}else if (rideType.equals("uberpool")) {
 			this.currentRide = ridePool;
 			return ridePool;
 		}else {
@@ -294,6 +339,13 @@ public class Customer {
 	public static int getCounter() {
 		return counter;
 	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.name + " " + this.surName;
+	}
+	
 	
 	
 	

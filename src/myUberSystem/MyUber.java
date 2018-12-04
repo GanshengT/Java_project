@@ -95,8 +95,8 @@ public class MyUber  {
 	public MyUber(String nStandardCars, String nBerlinCars, String nVanCars, String nCustomers) {
 		this.numCustomer = Integer.parseInt(nCustomers);
 		this.numStandardCar = Integer.parseInt(nStandardCars);
-		this.numBerlineCar = Integer.parseInt(nStandardCars);
-		this.numVanCar = Integer.parseInt(nStandardCars);
+		this.numBerlineCar = Integer.parseInt(nBerlinCars);
+		this.numVanCar = Integer.parseInt(nVanCars);
 		this.numDriver = this.numStandardCar + this.numBerlineCar + this.numVanCar;
 		this.areaUsed = new AreaUsed(new GPSLocation(48.85, 23.33),40.00) ; 
 		this.setup_initialisation();
@@ -407,7 +407,7 @@ public class MyUber  {
 	List<Driver> occupiedDriverList = new ArrayList<>();
 	appreciatedDriverList.addAll(this.listOfDriver);
 	occupiedDriverList.addAll(this.listOfDriver);
-	if(sortPolicy == "mostappreciated") {
+	if(sortPolicy.equals("mostappreciated")) {
 		Collections.sort(appreciatedDriverList,new Comparator<Driver>(){
             public int compare(Driver arg0, Driver arg1) {
                 return arg0.getAverageMark().compareTo(arg1.getAverageMark());
@@ -417,9 +417,9 @@ public class MyUber  {
 			System.out.printf("Driver"+driver.getDriverId()+"'s average mark is: %.3f\n", driver.getAverageMark());
 		}
 	}
-	else if(sortPolicy == "mostoccupied") {
+	else if(sortPolicy.equals("mostoccupied")) {
 		for (Driver driver:occupiedDriverList) {
-			if(driver.getStatus()=="offline" || driver.getStatus() == "off-duty") {
+			if(driver.getStatus().equals("offline") || driver.getStatus().equals("off-duty")) {
 			    driver.setOccupiedRate(driver.getOnARideTime()/driver.getOndutyTime());
 			}else {
 				MyTime timeNow = new MyTime();
@@ -437,8 +437,58 @@ public class MyUber  {
 	}
 	else {
 		System.out.println("please input 'mostoccupied' or 'mostappreciated'.");
-	}
+	}	
 }
+	
+	/**
+	 * We use this method to sort drivers and write down a list of drivers sorted by a specific policy.
+	 * @param sortPolicy
+	 * @param bw
+	 */
+	public void displayDrivers(String sortPolicy, BufferedWriter bw) {
+		List<Driver> appreciatedDriverList = new ArrayList<>();
+		List<Driver> occupiedDriverList = new ArrayList<>();
+		appreciatedDriverList.addAll(this.listOfDriver);
+		occupiedDriverList.addAll(this.listOfDriver);
+		try {
+		if(sortPolicy.equals("mostappreciated")) {
+			Collections.sort(appreciatedDriverList,new Comparator<Driver>(){
+	            public int compare(Driver arg0, Driver arg1) {
+	                return arg0.getAverageMark().compareTo(arg1.getAverageMark());
+	            }
+	        });
+			bw.write("displayDrivers by appreciated level:\r\n");
+			for (Driver driver : appreciatedDriverList) {
+				bw.write("Driver"+driver.getDriverId()+"'s average mark is: "+driver.getAverageMark()+".\r\n");
+			}
+		}
+		else if(sortPolicy.equals("mostoccupied")) {
+			for (Driver driver:occupiedDriverList) {
+				if(driver.getStatus().equals("offline") || driver.getStatus().equals("off-duty")) {
+				    driver.setOccupiedRate(driver.getOnARideTime()/driver.getOndutyTime());
+				}else {
+					MyTime timeNow = new MyTime();
+					driver.setOccupiedRate(driver.getOnARideTime()/(driver.getOndutyTime()+driver.getStartOnduty().timeMinus(timeNow)));
+				}
+			}
+			Collections.sort(occupiedDriverList,new Comparator<Driver>(){
+	            public int compare(Driver arg0, Driver arg1) {
+	                return arg0.getOccupiedRate().compareTo(arg1.getOccupiedRate());
+	            }
+	        });
+			bw.write("displayDrivers by occupied level:\r\n");
+			for (Driver driver : occupiedDriverList) {
+				bw.write("Driver"+driver.getDriverId()+"'s occupied ratio is: "+driver.getOccupiedRate()+".\r\n");
+			}		
+		}
+		else {
+			bw.write("displayDrivers failed.\r\n");
+		}	
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * We use this method to print out a list of customer sorted by a specific policy.
 	 * @param sortPolicy
@@ -448,7 +498,7 @@ public class MyUber  {
 	List<Customer> chargedCustomerList = new ArrayList<>();
 	frequentCustomerList.addAll(this.listOfCustomer);
 	chargedCustomerList.addAll(this.listOfCustomer);
-	if(sortPolicy == "mostfrequent") {
+	if(sortPolicy.equals("mostfrequent")) {
 		Collections.sort(frequentCustomerList,new Comparator<Customer>(){
             public int compare(Customer arg0, Customer arg1) {
                 return arg0.getRideNum().compareTo(arg1.getRideNum());
@@ -458,21 +508,72 @@ public class MyUber  {
 			System.out.println("Customer"+customer.getIdNum()+" has taken "+customer.getRideNum()+" rides.");
 		}
 	}
-	else if(sortPolicy == "mostcharged") {
+	else if(sortPolicy.equals("mostcharged")) {
 		Collections.sort(chargedCustomerList,new Comparator<Customer>(){
             public int compare(Customer arg0, Customer arg1) {
                 return arg0.getOnCarMoney().compareTo(arg1.getOnCarMoney());
             }
         });
 		for (Customer customer : chargedCustomerList) {
-			System.out.println("Customer"+customer.getIdNum()+" has spent "+customer.getOnCarMoney()+"euros in this system.");
+			System.out.println("Customer"+customer.getIdNum()+" has spent "+customer.getOnCarMoney()+" euros in this system.");
 		}		
 	}
 	else {
 		System.out.println("please input 'mostcharged or 'mostfrequent'.");
 	}
+	
+	
+	
 }
-
+	
+	/**
+	 * Method to sort customers and write down the result 
+	 * @param sortPolicy
+	 * @param bw
+	 */
+	public void displayCustomers(String sortPolicy, BufferedWriter bw) {
+		List<Customer> frequentCustomerList = new ArrayList<>();
+		List<Customer> chargedCustomerList = new ArrayList<>();
+		frequentCustomerList.addAll(this.listOfCustomer);
+		chargedCustomerList.addAll(this.listOfCustomer);
+		if(sortPolicy.equals("mostfrequent")) {
+			Collections.sort(frequentCustomerList,new Comparator<Customer>(){
+	            public int compare(Customer arg0, Customer arg1) {
+	                return arg0.getRideNum().compareTo(arg1.getRideNum());
+	            }
+	        });
+			try {
+				bw.write("displayCustomers by frequency:\r\n");
+				for (Customer customer : frequentCustomerList) {
+					bw.write("Customer"+customer.getIdNum()+" has taken "+customer.getRideNum()+" rides.\r\n");
+				}}catch(Exception e) {
+					e.printStackTrace();
+			}
+		}
+		else if(sortPolicy.equals("mostcharged")) {
+			Collections.sort(chargedCustomerList,new Comparator<Customer>(){
+	            public int compare(Customer arg0, Customer arg1) {
+	                return arg0.getOnCarMoney().compareTo(arg1.getOnCarMoney());
+	            }
+	        });
+			try {
+				bw.write("displayCustomers by charged level:\r\n");
+				for (Customer customer : chargedCustomerList) {
+					bw.write("Customer"+customer.getIdNum()+" has spent "+customer.getOnCarMoney()+" euros in this system.\r\n");
+			}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else {
+			try {
+				bw.write("displayCustomers failed.\r\n");
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	/**
 	 * We use this method to calculate the total money cashed by all of the drivers in our system.
 	 */
@@ -481,6 +582,20 @@ public class MyUber  {
 			this.totalCashed += driver.getMoneyCashed();
 		}
 		System.out.println("The total amount of mont cashed by all drivers in our system is : "+this.totalCashed);
+	}
+	
+	/**
+	 * We use this method to calculate the total money cashed by all of the drivers in our system and write down the result.
+	 */
+	public void totalCashed(BufferedWriter bw) {
+		for(Driver driver: this.listOfDriver) {
+			this.totalCashed += driver.getMoneyCashed();
+		}
+		try {
+			bw.write("\r\ntotalCashed:\r\nThe total amount of mont cashed by all drivers in our system is : "+this.totalCashed);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**

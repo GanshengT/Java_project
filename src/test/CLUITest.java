@@ -20,18 +20,33 @@ public class CLUITest extends CLUI {
 	}
 	*/
 
+	/*
 	@Test
 	public void testSetup() {
 		myUberCLUI.setup("3","4","2","1");
 		assertTrue(myUberCLUI.getMyUber().getCarMap().isEmpty()==false);
 
 	}
+	*/
 	
+	/*
 	@Test
 	public void testDisplayState() {
+		myUberCLUI.setup("3","4","2","1");
 		myUberCLUI.displayState();
 		assertTrue(1==1);
 		
+	}
+	*/
+	
+	@Test
+	public void testRuntest() {
+		try {
+			myUberCLUI.runtest("eval/testScenario1");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
