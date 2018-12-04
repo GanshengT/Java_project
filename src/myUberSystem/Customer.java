@@ -341,6 +341,12 @@ public class Customer {
 		return counter;
 	}
 
+	
+	public static void setCounter(int counter) {
+		Customer.counter = counter;
+	}
+
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub

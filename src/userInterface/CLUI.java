@@ -883,6 +883,9 @@ Finally we write down the result in a TXT.
 	 */
 	public void ask4price(String custID, String xPos, String yPos, String time) {
 		Customer customer = myUber.getCustomerMap().get(custID);
+		for(Customer c: myUber.getListOfCustomer()) {
+		System.out.println(c);}
+		System.out.println(customer);
 		Double x = Double.parseDouble(xPos);
 		Double y = Double.parseDouble(yPos);
 		Integer startHH = Integer.parseInt(time);

@@ -93,6 +93,35 @@ public class MyUber  {
 	}
 	
 	public MyUber(String nStandardCars, String nBerlinCars, String nVanCars, String nCustomers) {
+		//translation
+		customerNameList =new String[numCustomer];
+		customerSurnameList = new String[numCustomer];
+		driverNameList =new String[numDriver];
+		driverSurnameList = new String[numDriver];
+		driverOwnershipListString = new String[numDriver];
+		driverOwnershipList = new Boolean[numDriver];
+	 	listOfCar = new ArrayList<>();
+		listOfStandardCar = new ArrayList<>();
+		listOfBerlineCar = new ArrayList<>();
+		listOfVanCar = new ArrayList<>();
+		listOfDriver = new ArrayList<>();
+		listOfOwnership = new ArrayList<>();
+		listOfCustomer = new ArrayList<>();
+		bookOfRideList = new ArrayList<>();
+		poolRequest = new ArrayList<>();
+		listOfRide = new ArrayList<>();
+		createStandardCar = new CreateStandardCar();
+		createBerlineCar = new CreateBerlineCar();
+		createVanCar = new CreateVanCar();
+		carMap = new HashMap<String, Car>();
+		customerMap = new HashMap<String, Customer>();
+		Customer.setCounter(0);
+		Driver.setCounter(0);
+		StandardCar.setCounter(0);
+		BerlineCar.setCounter(0);
+		VanCar.setCounter(0);
+		
+		
 		this.numCustomer = Integer.parseInt(nCustomers);
 		this.numStandardCar = Integer.parseInt(nStandardCars);
 		this.numBerlineCar = Integer.parseInt(nBerlinCars);

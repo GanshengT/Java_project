@@ -25,5 +25,12 @@ public class VanCar extends Car {
 	public void setIdCar(String idCar) {
 		this.idCar = idCar;
 	}
+	public static int getCounter() {
+		return counter;
+	}
+	public static void setCounter(int counter) {
+		VanCar.counter = counter;
+	}
+	
 
 }
