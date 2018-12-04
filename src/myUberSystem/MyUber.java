@@ -251,28 +251,28 @@ public class MyUber  {
 	 */
 	public List<Car> sortByDistance(Ride ride) {
 		List<Car> listSorted = new ArrayList<>();
-		if (ride.getRideType()=="uberX") {
+		if (ride.getRideType().equals("uberX")) {
 			listSorted = this.getListOfStandardCar();
 			for (Car car:listSorted) {
 				car.calculateDistance(ride);
 			}
 			Collections.sort(listSorted);
 		}
-		else if(ride.getRideType()=="uberBlack") {
+		else if(ride.getRideType().equals("uberBlack")) {
 			listSorted = this.getListOfBerlineCar();
 			for (Car car:listSorted) {
 				car.calculateDistance(ride);
 			}
 			Collections.sort(listSorted);
 		}
-		else if(ride.getRideType()=="uberVan") {
+		else if(ride.getRideType().equals("uberVan")){
 			listSorted = this.getListOfVanCar();
 			for (Car car:listSorted) {
 				car.calculateDistance(ride);
 			}
 			Collections.sort(listSorted);
 		}
-		else if(ride.getRideType()=="uberPool") {
+		else if(ride.getRideType().equals("uberPool")) {
 			listSorted = this.getListOfStandardCar();
 			for (Car car: listSorted) {
 				ride.calculateLowestRideCost(car);
@@ -344,7 +344,7 @@ public class MyUber  {
 	 * @return
 	 */
 	public double RideFinished(Ride ride, int mark) {
-		if(ride.getRideType() == "uberPool") {
+		if(ride.getRideType().equals("uberPool")) {
 			ride.getCustomer().setRideNum(ride.getCustomer().getRideNum()+1);
 			ride.getCustomer().setOnCarMoney(ride.getCustomer().getOnCarMoney()+ride.price());
 			ride.getCustomer().setCurrentRide(null);

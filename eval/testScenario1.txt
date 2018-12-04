@@ -9,5 +9,5 @@ simRide 1 1 48.848966 23.3323 13 23 uberblack 5
 simRide 2 3 48.8500023 23.33012 17 25 ubervan 3
 displayState
 displayDrivers mostappreciated
-displayDrivers mostcharged
+displayDrivers mostoccupied
 displayCustomers mostcharged

@@ -112,7 +112,7 @@ public class CLUI {
 	
 	public boolean commandMatching (String[] stringLine) throws IOException, NoSuchFieldException {
 		String[] command = stringLine;
-		if (command[0]=="init") {
+		if (command[0].equals("init")) {
 			if (command.length != 2) {
 				System.out.println("init syntax not right");
 				return false;
@@ -121,7 +121,7 @@ public class CLUI {
 				return true;
 			}
 		}
-		else if (command[0] == "setup") {
+		else if (command[0].equals("setup")) {
 			if(command.length != 5) {
 				System.out.println("setup syntext not right");
 				return false;
@@ -130,7 +130,7 @@ public class CLUI {
 				return true;
 			}
 		}
-		else if(command[0] == "runtest") {
+		else if(command[0].equals("runtest")) {
 			if(command.length != 2) {
 				System.out.println("init syntax not right");
 				return false;
@@ -143,7 +143,7 @@ public class CLUI {
 				return true;
 			}
 		}
-		else if(command[0] == "addCustomer") {
+		else if(command[0].equals("addCustomer")){
 			if(command.length != 3) {
 				System.out.println("addCustomer syntext not right");
 				return false;
@@ -152,7 +152,7 @@ public class CLUI {
 				return true;
 			}
 		}
-		else if(command[0] == "addCarDriver") {
+		else if(command[0].equals("addCarDriver")){
 			if(command.length != 4) {
 				System.out.println("addCarDriver syntext not right");
 				return false;
@@ -161,7 +161,7 @@ public class CLUI {
 				return true;
 			}
 		}
-		else if(command[0] == "addDriver") {
+		else if(command[0].equals("addDriver")){
 			if(command.length != 4) {
 				System.out.println("addDriver syntext not right");
 				return false;
@@ -170,7 +170,7 @@ public class CLUI {
 				return true;
 			}
 		}
-		else if(command[0] == "setDriverStatus") {
+		else if(command[0].equals("setDriverStatus")) {
 			if(command.length != 4) {
 				System.out.println("setDriverStatus syntext not right");
 				return false;
@@ -179,7 +179,7 @@ public class CLUI {
 				return true;
 			}
 		}
-		else if(command[0] == "moveCar") {
+		else if(command[0].equals("moveCar")) {
 			if(command.length != 4) {
 				System.out.println("moveCar syntext not right");
 				return false;
@@ -188,7 +188,7 @@ public class CLUI {
 				return true;
 			}
 		}
-		else if(command[0] == "moveCustomer") {
+		else if(command[0].equals("moveCustomer")) {
 			if(command.length != 4) {
 				System.out.println("moveCustomer syntext not right");
 				return false;
@@ -197,7 +197,7 @@ public class CLUI {
 				return true;
 			}
 		}
-		else if(command[0] == "displayState") {
+		else if(command[0].equals("displayState")) {
 			if(command.length != 1) {
 				System.out.println("displayState syntext not right");
 				return false;
@@ -206,7 +206,7 @@ public class CLUI {
 				return true;
 			}
 		}
-		else if(command[0] == "ask4price") {
+		else if(command[0].equals("ask4price")) {
 			if(command.length != 5) {
 				System.out.println("ask4price syntext not right");
 				return false;
@@ -215,7 +215,7 @@ public class CLUI {
 				return true;
 			}
 		}
-		else if(command[0] == "simRide") {
+		else if(command[0].equals("simRide")) {
 			if(command.length != 9) {
 				System.out.println("simRide syntext not right");
 				return false;
@@ -224,7 +224,7 @@ public class CLUI {
 				return true;
 			}
 		}
-		else if(command[0] == "simRide_i") {
+		else if(command[0].equals("simRide_i")){
 			if(command.length != 4) {
 				System.out.println("simRide_i syntext not right");
 				return false;
@@ -233,7 +233,7 @@ public class CLUI {
 				return true;
 			}
 		}
-		else if(command[0] == "displayDrivers") {
+		else if(command[0].equals("displayDrivers")) {
 			if(command.length != 2) {
 				System.out.println("displayDrivers syntext not right");
 				return false;
@@ -242,7 +242,7 @@ public class CLUI {
 				return true;
 			}
 		}
-		else if(command[0] == "displayCustomers") {
+		else if(command[0].equals("displayCustomers")) {
 			if(command.length != 2) {
 				System.out.println("displayCustomers syntext not right");
 				return false;
@@ -251,7 +251,7 @@ public class CLUI {
 				return true;
 			}
 		}
-		else if(command[0] == "totalCashed") {
+		else if(command[0].equals("totalCashed")) {
 			if(command.length != 1) {
 				System.out.println("totalCashed syntext not right");
 				return false;

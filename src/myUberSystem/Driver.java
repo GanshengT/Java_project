@@ -105,16 +105,16 @@ public class Driver {
 	 */
 	public void setStatus(String status) {
 
-		if (status=="on-duty") {
-			if(this.status == "on-duty" || this.status == "on-a-ride") {
+		if (status.equals("on-duty")) {
+			if(this.status.equals("on-duty") || this.status.equals("on-a-ride")) {
 				this.status = "on-duty";
 			}else {
 			this.status = "on-duty";
 			this.startOnduty = new MyTime();
 			}
 		}
-		else if(status == "off-duty" ) {
-			if(this.status == "on-duty" || this.status == "on-a-ride") {
+		else if(status.equals("off-duty") ) {
+			if(this.status.equals("on-duty") || this.status.equals("on-a-ride")) {
 				this.status = "off-duty";
 				this.endOnDuty= new MyTime();
 				this.OndutyTime+=this.getStartOnduty().timeMinus(this.endOnDuty);
@@ -122,15 +122,15 @@ public class Driver {
 			this.status = "off-duty";		
 			}
 		}
-		else if(status == "offline"){
-			if(this.status == "on-a-ride" || this.status == "on-duty") {
+		else if(status.equals("offline")){
+			if(this.status.equals("on-a-ride") || this.status.equals("on-duty")) {
 				this.status = "offline";
 				this.endOnDuty= new MyTime();
 				this.OndutyTime+=this.getStartOnduty().timeMinus(this.endOnDuty);	
 			}else {
 			this.status = "offline";
 			}
-		}else if(status == "on-a-ride") {
+		}else if(status.equals("on-a-ride")) {
 			this.status = "on-a-ride";
 		}
 	}
