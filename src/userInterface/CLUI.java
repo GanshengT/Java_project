@@ -1030,11 +1030,12 @@ Finally we write down the result in a TXT.
 	
 	public void simRide_i(String custID, String xPos, String yPos, String time) {
 		Customer customer = myUber.getCustomerMap().get(custID);
+		System.out.println(customer.getIdNum());
 		Double x = Double.parseDouble(xPos);
 		Double y = Double.parseDouble(yPos);
 		MyTime startTime = new MyTime(Integer.parseInt(time.split(":")[0]), Integer.parseInt(time.split(":")[1]),Integer.parseInt(time.split(":")[2]));
 		customer.askForPrice(x, y, startTime.getHH());
-		System.out.println("select which kind of ride you want");
+		System.out.println("select which kind of ride you want choose from 'UberX', 'UberBlack','UberVan'");
 		Scanner scan = new Scanner(System.in);
 		String rideType = new String();
 		int passengerNum = 0;

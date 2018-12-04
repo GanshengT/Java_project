@@ -66,6 +66,7 @@ public class Customer {
 						rideX.price(),rideBlack.price(),rideVan.price(),ridePool.price());
 		}else if(startHH <= 23 && startHH >=0 ) {
 		    MyTime startTime = new MyTime(startHH, 0, 0);
+
 		    int passengerNumRequested = 1;
 			GPSLocation gpsEnd = new GPSLocation(desLongtude, desLatitude);
 			Ride rideX = new RideUberX(this, passengerNumRequested, this.gpsStart,gpsEnd, startTime);
