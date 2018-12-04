@@ -132,7 +132,7 @@ public class CLUI {
 		}
 		else if(command[0].equals("runtest")) {
 			if(command.length != 2) {
-				System.out.println("init syntax not right");
+				System.out.println("runtest syntax not right");
 				return false;
 			}else {
 				try {

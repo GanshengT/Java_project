@@ -344,7 +344,134 @@
     </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_3ypc8PcrEei8FLWOGvMUlA" name="userInterface">
-    <packagedElement xmi:type="uml:Class" xmi:id="_DcLE0PcsEei8FLWOGvMUlA" name="CLUI"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_DcLE0PcsEei8FLWOGvMUlA" name="CLUI">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_JxwI8Pf_EeiYcNlgmKJISg" name="myUber" visibility="private" type="_t3I1sOqsEeiIvp1wxbWy6A"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_LheaIPf_EeiYcNlgmKJISg" name="br" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EJavaObject"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_fOrkkPf_EeiYcNlgmKJISg" name="addCarDriver" visibility="package">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_X9h1sPgAEeiYcNlgmKJISg">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_e5zrUPgAEeiYcNlgmKJISg">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_u1azcPgAEeiYcNlgmKJISg">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_f0xUMPf_EeiYcNlgmKJISg" name="addCustomer">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_VfrdwPgBEeiYcNlgmKJISg" name="name">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_YNknYPgBEeiYcNlgmKJISg" name="surName">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_gc1ZwPf_EeiYcNlgmKJISg" name="addDriver">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_b6sZYPgBEeiYcNlgmKJISg" name="name">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_eCX3kPgBEeiYcNlgmKJISg" name="surName">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_frjb4PgBEeiYcNlgmKJISg" name="carID">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_gxNuUPf_EeiYcNlgmKJISg" name="ask4price">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_ofbsUPgBEeiYcNlgmKJISg" name="customerID">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_qKQ2cPgBEeiYcNlgmKJISg" name="des">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_veAoAPgBEeiYcNlgmKJISg" name="time">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_vJy9cPf_EeiYcNlgmKJISg" name="commandMatching">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_8ZhcMPgBEeiYcNlgmKJISg" name="command">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_2_5-EPf_EeiYcNlgmKJISg" name="displayCustomers">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_IOpQEPgCEeiYcNlgmKJISg" name="sortPolicy">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_3359EPf_EeiYcNlgmKJISg" name="displayDrivers">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_MWAuEPgCEeiYcNlgmKJISg" name="sortPolicy">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_4FWjMPf_EeiYcNlgmKJISg" name="displayState">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Pqn5cPgCEeiYcNlgmKJISg">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_4OnM4Pf_EeiYcNlgmKJISg" name="init">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_TC5c0PgCEeiYcNlgmKJISg" name="fileName">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_4WiZ0Pf_EeiYcNlgmKJISg" name="moveCar">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_V1eSIPgCEeiYcNlgmKJISg" name="carID">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_dSHp4PgCEeiYcNlgmKJISg" name="xPos">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_e2veUPgCEeiYcNlgmKJISg" name="yPos">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_4gaukPf_EeiYcNlgmKJISg" name="moveCustomer">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_wSRhEPgCEeiYcNlgmKJISg" name="customerID">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_yT2XQPgCEeiYcNlgmKJISg" name="xPos">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_zpxBUPgCEeiYcNlgmKJISg" name="yPos">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_402tgPf_EeiYcNlgmKJISg" name="runtest">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_5ToM0PgCEeiYcNlgmKJISg" name="txtname">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_5AeHoPf_EeiYcNlgmKJISg" name="simRIde">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="__hGbsPgCEeiYcNlgmKJISg" name="customerID">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Bo1kQPgDEeiYcNlgmKJISg" name="destination">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_DRb5wPgDEeiYcNlgmKJISg" name="time">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_FT0BMPgDEeiYcNlgmKJISg" name="carType">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_HM8GAPgDEeiYcNlgmKJISg" name="driverMark">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_5SwxgPf_EeiYcNlgmKJISg" name="simRide_i">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_M17HwPgDEeiYcNlgmKJISg" name="customerID">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_O72ScPgDEeiYcNlgmKJISg" name="destination">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_QZ5k0PgDEeiYcNlgmKJISg" name="time">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_7iVAYPf_EeiYcNlgmKJISg" name="totalCashed"/>
+    </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_HGurAPcsEei8FLWOGvMUlA" name="GUI"/>
   </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_bucz0OpxEeiIvp1wxbWy6A">
