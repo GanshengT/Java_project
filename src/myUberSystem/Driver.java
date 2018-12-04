@@ -190,8 +190,13 @@ public class Driver {
 		this.occupiedRate = occupiedRate;
 	}
 	
+	public static int getCounter() {
+		return counter;
+	}
 
-
+	public static void setCounter(int counter) {
+		Driver.counter = counter;
+	}
 
 	
 	/**
