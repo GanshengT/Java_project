@@ -226,7 +226,7 @@ public class CLUI {
 			}
 		}
 		else if(command[0].equals("simRide_i")){
-			if(command.length != 4) {
+			if(command.length != 5) {
 				System.out.println("simRide_i syntext not right");
 				return false;
 			}else {
@@ -367,7 +367,7 @@ public class CLUI {
 			}
 		}
 		else if(command[0].equals("simRide_i")) {
-			if(command.length != 4) {
+			if(command.length != 5) {
 				System.out.println("simRide_i syntext not right");
 				return false;
 			}else {
@@ -1003,7 +1003,7 @@ Finally we write down the result in a TXT.
 							+", and the cost is "+simRide.getPriceToPay()+".");
 		System.out.println("This ride began at "+simRide.getStartTime().getTime()+", the end time is "+simRide.getEndTime().getTime()
 							+", and the duration is "+simRide.getDuration()+"min.");
-		
+		displayState();
 	}
 	
 	/**
@@ -1048,30 +1048,54 @@ Finally we write down the result in a TXT.
 		System.out.println(customer.getIdNum());
 		Double x = Double.parseDouble(xPos);
 		Double y = Double.parseDouble(yPos);
-		MyTime startTime = new MyTime(Integer.parseInt(time.split(":")[0]), Integer.parseInt(time.split(":")[1]),Integer.parseInt(time.split(":")[2]));
-		customer.askForPrice(x, y, startTime.getHH());
-		System.out.println("select which kind of ride you want choose from 'UberX', 'UberBlack','UberVan'");
-		Scanner scan = new Scanner(System.in);
 		String rideType = new String();
 		int passengerNum = 0;
-		if (scan.hasNext()) {
-			rideType = scan.next();}
+		int mark = 0;
+		MyTime startTime = new MyTime(Integer.parseInt(time.split(":")[0]), Integer.parseInt(time.split(":")[1]),Integer.parseInt(time.split(":")[2]));
+		customer.askForPrice(x, y, startTime.getHH());
+		
+		try {
+		System.out.println("select which kind of ride you want choose from 'uberx', 'uberblack','ubervan'");
+		//Scanner scan = new Scanner(System.in);
+		//if (scan.hasNext()) {
+		//	rideType = scan.next();}
+		try {
+			rideType = br.readLine();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		System.out.println("enter the passenger number");
-		if (scan.hasNext()) {
-           passengerNum = Integer.parseInt(scan.next());}
+		//if (scan.hasNext()) {
+        //   passengerNum = Integer.parseInt(scan.next());}
+		try {
+			passengerNum = Integer.parseInt(br.readLine());
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		Ride simRide = customer.createANewRideAuto(passengerNum,Double.parseDouble(xPos), Double.parseDouble(yPos),startTime.getHH(),startTime.getMm(),rideType);
 		myUber.driverAllocation(simRide);
 		System.out.println("driverID: " +simRide.getDriver().getDriverId()+
-				"customerID"+simRide.getCustomer().getIdNum()+"carID:"+
-				simRide.getCar().getIdCar()+"rideType: " +simRide.getRideType()
-				+"time departure" +simRide.getStartTime()+"time arrival: "+ simRide.getEndTime());
+				". customerID: "+simRide.getCustomer().getIdNum()+". carID: "+
+				simRide.getCar().getIdCar()+". rideType: " +simRide.getRideType()
+				+". time departure" +simRide.getStartTime()+". time arrival: "+ simRide.getEndTime());
+		
+		customer.aboard();
+		
 		System.out.println("please enter your evaluation for the driver");
-		int mark = 0;
-		if (scan.hasNext()) {
-	          mark = Integer.parseInt(scan.next());}
-		simRide.getDriver().askMark(mark);
+		//if (scan.hasNext()) {
+	    //     mark = Integer.parseInt(scan.next());}
+		try {
+			mark = Integer.parseInt(br.readLine());
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		myUber.RideFinished(simRide, mark);
+		}finally {
+		
 		displayState();
-		scan.close();
+		}
+		//scan.close();
 	}
 	
 	/**

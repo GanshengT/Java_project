@@ -24,7 +24,7 @@ public class Driver {
 	private Double OndutyTime=0.1;
 
 	private double onARideTime = 0.0;
-	private Double occupiedRate;
+	private Double occupiedRate = 0.0;
 	
 	/**
 	 * ownership= true means it has its own car
