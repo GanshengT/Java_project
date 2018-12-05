@@ -172,7 +172,7 @@ public abstract class Ride {
 	
 	
 	public MyTime returnEndTime(MyTime oneStartTime) {
-		MyTime oneEndTime = startTime;
+		MyTime oneEndTime = new MyTime(oneStartTime.getHH(), oneStartTime.getMm(), oneStartTime.getSs());
 		oneEndTime.addTime(this.durationMin*60);
 		return oneEndTime;
 	}

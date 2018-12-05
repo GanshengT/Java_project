@@ -147,8 +147,13 @@ public class MyTime {
 	 */
 	public void addTime(double durationS) {
 		Calendar cal=java.util.Calendar.getInstance();
-		cal.set(this.yyyy, this.MM, this.dd, this.HH, this.mm, this.ss);  
-		cal.add(java.util.Calendar.SECOND,(int) durationS); 
+		cal.set(Calendar.YEAR,this.yyyy);
+		cal.set(Calendar.MONTH, this.MM-1);
+		cal.set(Calendar.DAY_OF_MONTH, this.dd);
+		cal.set(Calendar.HOUR_OF_DAY, this.HH);
+		cal.set(Calendar.MINUTE, this.mm);
+		cal.set(Calendar.SECOND, this.ss);  
+		cal.add(Calendar.SECOND,(int) durationS); 
 		this.yyyy = cal.get(Calendar.YEAR);
 		this.MM = cal.get(Calendar.MONTH)+1;
 		this.dd = cal.get(Calendar.DAY_OF_MONTH);

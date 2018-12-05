@@ -1,12 +1,12 @@
 setup 10 5 5 5 
 addCustomer Alan Turing
 addDriver James Hunt Berline1
-moveCar Berline2 48.32 23.99
-moveCustomer 1 48.84889 23.32899
-ask4price 3 48.839998 23.32655 -1
-simRide 2 2 48.8530119 23.34001 17 30 uberx 4
-simRide 1 1 48.848966 23.3323 13 23 uberblack 5
-simRide 2 3 48.8500023 23.33012 17 25 ubervan 3
+moveCar Berline2 48.8500344 23.330034
+moveCustomer 1 48.850023 23.330098
+ask4price 3 48.8500455 23.3301003 -1
+simRide 2 2 48.8500001224 23.3300022 17 30 uberx 4
+simRide 1 1 48.850008966 23.330023 13 23 uberblack 5
+simRide 2 3 48.85000023 23.3300072 17 25 ubervan 3
 displayState
 displayDrivers mostappreciated
 displayDrivers mostoccupied
