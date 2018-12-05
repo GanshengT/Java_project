@@ -242,7 +242,7 @@ public class MyUber  {
 					for(int j = poolRequest.size()-2;j >= 0; j--) {
 						if(poolRequest.get(i).getPassengerNum()+poolRequest.get(j).getPassengerNum()<=4) {
 							Ride newRideUberPool = new RideUberPool(poolRequest.get(i),poolRequest.get(j));
-							this.listOfRide.add(newRideUberPool);
+							this.listOfRide.add(0,newRideUberPool);
 							this.searchDriver(newRideUberPool);
 							newRideUberPool.calculateLowestRideCost(newRideUberPool.getCar());
 							newRideUberPool.setDurationMin(Ride.calculateDuration(newRideUberPool.getLength(), Ride.getTrafficSpeedMap().get(newRideUberPool.getTrafficState())));

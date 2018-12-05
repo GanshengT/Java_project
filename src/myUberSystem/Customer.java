@@ -267,6 +267,7 @@ public class Customer {
 	 */
 	public void aboard() {
 		this.currentRide.setState("ongoing");
+		System.out.println("You( customer"+this.idNum+") get aboard.");
 	}
 	
 	/**

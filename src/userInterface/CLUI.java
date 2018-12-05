@@ -1055,7 +1055,7 @@ Finally we write down the result in a TXT.
 		customer.askForPrice(x, y, startTime.getHH());
 		
 		try {
-		System.out.println("select which kind of ride you want choose from 'uberx', 'uberblack','ubervan'");
+		System.out.println("select which kind of ride you want choose from 'uberx', 'uberblack','ubervan','uberpool'.");
 		//Scanner scan = new Scanner(System.in);
 		//if (scan.hasNext()) {
 		//	rideType = scan.next();}
@@ -1073,6 +1073,29 @@ Finally we write down the result in a TXT.
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+		if(rideType.equals("uberpool")) {
+			int originalLen = myUber.getListOfRide().size();
+			Ride simRide = customer.createANewRideAuto(passengerNum,Double.parseDouble(xPos), Double.parseDouble(yPos),startTime.getHH(),startTime.getMm(),rideType);
+			myUber.driverAllocation(simRide);
+			if(myUber.getListOfRide().size() == originalLen) {
+				System.out.println("Your request has been sent, please wait for another customer who wants a uberpool ride.");
+			}else if(myUber.getListOfRide().size() == originalLen+1){
+				simRide = myUber.getListOfRide().get(0);
+				simRide.getCustomer().aboard();
+				simRide.getCustomer2().aboard();
+				System.out.println("please enter your evaluation for the driver");
+				try {
+					mark = Integer.parseInt(br.readLine());
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+				myUber.RideFinished(simRide, mark);
+			}else {
+				System.out.println("There are some wrong with uber pool ride, please check.");
+			}
+			
+		}else {
 		Ride simRide = customer.createANewRideAuto(passengerNum,Double.parseDouble(xPos), Double.parseDouble(yPos),startTime.getHH(),startTime.getMm(),rideType);
 		myUber.driverAllocation(simRide);
 		System.out.println("driverID: " +simRide.getDriver().getDriverId()+
@@ -1091,6 +1114,7 @@ Finally we write down the result in a TXT.
 			e.printStackTrace();
 		}
 		myUber.RideFinished(simRide, mark);
+		}
 		}finally {
 		
 		displayState();
