@@ -54,9 +54,10 @@ public class CLUI {
 		while(continueCommand == true) {
 			continueCommand =false;
 		while (readSucceed == false) {
-			myUberCLUI.commandMatching(myUberCLUI.readCommand());
+			readSucceed = myUberCLUI.commandMatching(myUberCLUI.readCommand());
 		}
-		System.out.println("do you want to continue? Y/N");
+		readSucceed = false;
+		System.out.println("Do you want to continue? Y/N");
 		if(myUberCLUI.yesOrNo()==true) {
 			continueCommand = true;
 		}
@@ -98,7 +99,7 @@ public class CLUI {
 	
 	public boolean yesOrNo() throws IOException {
 		String yesNo = br.readLine();
-		if (yesNo =="Y") {
+		if (yesNo.equals("Y")) {
 			return true;
 		}
 		else return false;
@@ -481,7 +482,8 @@ public class CLUI {
 	 */
 	public void addCustomer(String customerName, String customerSurname) throws NoSuchFieldException {
 		myUber.addCustomer(customerName, customerSurname);
-		System.out.println(myUber.getListOfCustomer());
+		System.out.println(customerName+" "+customerSurname+" has been added to MyUber system.");
+		System.out.println("New customer list is "+myUber.getListOfCustomer());
 	}
 	
 	/**
@@ -606,10 +608,13 @@ public class CLUI {
 	 * @return
 	 */
 	public boolean addDriver(String driverName, String driverSurname, String carID) {
-		Driver newDriver = driverGeneration(driverName,driverSurname);
+		Driver newDriver = new Driver(driverName, driverSurname, false);  
+		myUber.getListOfDriver().add(newDriver);
 		for (Car car : myUber.getListOfCar()) {
 			if (car.getIdCar().equals(carID)) {
 				car.getOwners().add(newDriver);
+				System.out.println("New driver "+driverName+" "+driverSurname+" has been added to "+carID+".");
+				System.out.println(carID+"'s owner list: "+car.getOwners());
 				return true;
 			}
 			
@@ -627,7 +632,7 @@ public class CLUI {
 	 * @return
 	 */
 	public boolean addDriver(String driverName, String driverSurname, String carID, BufferedWriter bw) {
-		Driver newDriver = new Driver(driverName, driverSurname, false);  //----------???????????????????这里不能在nonAssignedDrivers加吧，因为我们手动分配了司机
+		Driver newDriver = new Driver(driverName, driverSurname, false);  
 		myUber.getListOfDriver().add(newDriver);
 		try {
 		for (Car car : myUber.getListOfCar()) {
@@ -658,10 +663,8 @@ public class CLUI {
 	public Driver findDriverByName(String driverName, String driverSurname) throws IOException {
 		List<Driver> foundDriver= new ArrayList<>();
 		for (Driver driver:myUber.getListOfDriver()) {
-			if (driver.getName()==driverName) {
-				if(driver.getSurName()==driverSurname) {
-					foundDriver.add(driver);
-				}
+			if (driver.toString().equals(driverName+" "+driverSurname)) {
+					foundDriver.add(driver);	
 			}
 		}
 		if(foundDriver.isEmpty()==true) {
@@ -670,11 +673,11 @@ public class CLUI {
 		if(foundDriver.size()>1) {
 			System.out.println("there are more than one driver statisfy searching criterium, please select the driver by typing the ID");
 			for(Driver driver: foundDriver) {
-			System.out.println(driver.getDriverId()+"name and surname"+driver.getName()+" "+driver.getSurName());
+			System.out.println(driver.getDriverId()+", name and surname: "+driver.getName()+" "+driver.getSurName());
 		}}
 		String[] selectID = readCommand();
 		for(Driver driver: foundDriver) {
-			if(Integer.toString(driver.getDriverId())==selectID[0]) {
+			if(Integer.toString(driver.getDriverId()).equals(selectID[0])) {
 				return driver;
 			}
 		}
@@ -689,8 +692,16 @@ public class CLUI {
 	 * @throws IOException
 	 */
 	public void setDriverStatus(String driverName, String driverSurname, String status) throws IOException {
-		Driver driver = findDriverByName(driverName, driverSurname);
-		driver.setStatus(status);		
+		if(status.equals("on-duty") || status.equals("on-a-ride") || status.equals("off-duty") || status.equals("offline")) {
+			Driver driver = findDriverByName(driverName, driverSurname);
+			System.out.println(driver);
+			String originalState = driver.getStatus();
+			driver.setStatus(status);		
+			System.out.println("Driver "+driver.toString()+"'s status has been changed from "+ originalState +" to "+status+".");
+			}
+		else {
+			System.out.println("MyUber system's driver does not have "+status+" state, please choose a state from on-duty, on-a-ride, off-duty, offline.");
+		}
 	}
 	
 	/**
@@ -782,15 +793,16 @@ Finally we write down the result in a TXT.
 	public void moveCar(String carID, String xPos, String yPos) {
 		try {
 			Car carToMove = this.myUber.getCarMap().get(carID);
+			GPSLocation originalLocation = new GPSLocation(carToMove.getCarLocation().getLongitude(), carToMove.getCarLocation().getLatitude());
 			GPSLocation des = new GPSLocation(Double.parseDouble(xPos),Double.parseDouble(yPos));
 			carToMove.setCarLocation(des);
+			System.out.println(carID+" has been moved from "+originalLocation+" to "+carToMove.getCarLocation());
 			}catch(Exception e) {
 				e.printStackTrace();
 				System.out.println("You can not move this car because of some unknown error.");
 		}finally {
 			for(Car car: myUber.getListOfCar()) {
-				System.out.println(car.getIdCar() + " is situated at " + "longitude "+car.getCarLocation().getLongitude()
-																	+ ", latitude "+car.getCarLocation().getLatitude());
+				System.out.println(car.getIdCar() + " is situated at " + car.getCarLocation());
 			}
 		}
 	}
@@ -833,16 +845,16 @@ Finally we write down the result in a TXT.
 	public void moveCustomer(String custID, String xPos, String yPos) {
 		try {
 			Customer custToMove = this.myUber.getCustomerMap().get(custID);
+			GPSLocation originalLocation = new GPSLocation(custToMove.getGpsStart().getLongitude(), custToMove.getGpsStart().getLatitude());
 			GPSLocation desC = new GPSLocation(Double.parseDouble(xPos),Double.parseDouble(yPos));
 			custToMove.setGpsStart(desC);
-			
+			System.out.println("Customer"+custID+" has been moved from "+originalLocation+" to "+custToMove.getGpsStart()+".");
 			}catch(Exception e) {
 				e.printStackTrace();
 				System.out.println("You can not move this customer because of some unknown error.");
 		}finally {
 			for(Customer c:myUber.getListOfCustomer()) {
-				System.out.println("Customer "+c.getIdNum()+" is at longitude "+c.getGpsStart().getLongitude()
-					+", latitude "+c.getGpsStart().getLatitude());
+				System.out.println("Customer "+c.getIdNum()+" is at "+c.getGpsStart());
 			}
 		}
 	}
@@ -883,9 +895,6 @@ Finally we write down the result in a TXT.
 	 */
 	public void ask4price(String custID, String xPos, String yPos, String time) {
 		Customer customer = myUber.getCustomerMap().get(custID);
-		for(Customer c: myUber.getListOfCustomer()) {
-		System.out.println(c);}
-		System.out.println(customer);
 		Double x = Double.parseDouble(xPos);
 		Double y = Double.parseDouble(yPos);
 		Integer startHH = Integer.parseInt(time);
