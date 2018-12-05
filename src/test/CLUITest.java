@@ -21,20 +21,26 @@ public class CLUITest extends CLUI {
 	}
 	
 	
-	/**
-	@throws IOException 
-	 * @throws NoSuchFieldException 
-	 * @Test
-	public void testInit() throws NoSuchFieldException, IOException {
-		myUberCLUI.init("test.ini");
-		
-		fail("Not yet implemented");
-	}
-	*/
 	@Test
 	public void testInit() throws NoSuchFieldException, IOException {
 		myUberCLUI.init("eval/test.ini");
 		assertTrue(myUberCLUI.getMyUber().getListOfCar().size()==20);
+	}
+	
+	@Test
+	public void testAddCarDriver () {
+		myUberCLUI.addCarDriver("Mike", "Legoff","standard" );
+		myUberCLUI.displayDrivers("mostoccupied");
+	}
+	
+	@Test
+	public void testAddDriver() {
+		myUberCLUI.addDriver("Gezheng", "Xu","Standard2");		
+	}
+	
+	@Test
+	public void testMoveCar() {
+		myUberCLUI.moveCar("Standard1","48.9502745","23.34993407");
 	}
 	/*
 	@Test
@@ -62,15 +68,15 @@ public class CLUITest extends CLUI {
 	}
 	*/
 	
-	/**
+	
 	@Test
 	public void testSimRide_i() {
 		myUberCLUI.simRide_i("2","48.8502745","23.32993407", "3:12:22");
 	}
-	*/
 	
 	
-	/*
+	
+	
 	@Test
 	public void testRuntest() {
 		try {
@@ -80,6 +86,6 @@ public class CLUITest extends CLUI {
 			e.printStackTrace();
 		}
 	}
-	*/
+	
 
 }
