@@ -20,7 +20,9 @@ public class Driver {
 	private MyTime endOnDuty;
 	private List<Integer> listOfMark = new ArrayList<>();
 	private Double averageMark = (double) 0;
+
 	private Double OndutyTime=0.1;
+
 	private double onARideTime = 0.0;
 	private Double occupiedRate;
 	

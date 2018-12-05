@@ -17,6 +17,7 @@ Driver James Hunt has been added to Berline1.
 moveCar:
 Berline2's current position is: (48.32,23.99).
 Cars location informations: 
+
 Van5 is situated at (48.85020801,23.32991619).
 Van4 is situated at (48.85011178,23.33034187).
 Van3 is situated at (48.8501658,23.32975005).
@@ -38,6 +39,7 @@ Standard3 is situated at (48.84997619,23.33011842).
 Standard2 is situated at (48.85011438,23.330299).
 Standard1 is situated at (48.8500368,23.33004926).
 
+
 moveCustomer:
 Customer1's current position is: (48.84889,23.32899).
 Customers location informations: 
@@ -55,6 +57,7 @@ The current ride is a uberX ride, it is completed.
 For this ride, the dirver ID is: 18, the car ID is: Standard3, the customer is Customer2.
 The ride length is: 1137.0km, the traffic state is heavyTraffic, and the cost is 2558.25.
 This ride began at: 2021-2-3 11:14:0, the end time is: 2021-2-3 11:14:0, and the duration is: 22740.0 min.
+
 simRide:
 The current ride is a uberBlack ride, it is completed.
 For this ride, the dirver ID is: 8, the car ID is: Berline3, the customer is Customer1.
@@ -161,6 +164,7 @@ customer's ID: 3, customer's name and surname:customer3name customer3surname, ri
 customer's ID: 4, customer's name and surname:customer4name customer4surname, ride number: 0, location: (48.85038666,23.32998307), consumming money: 0.0.
 customer's ID: 5, customer's name and surname:customer5name customer5surname, ride number: 0, location: (48.84999287,23.33011159), consumming money: 0.0.
 customer's ID: 6, customer's name and surname:Alan Turing, ride number: 0, location: (48.85012481,23.33005637), consumming money: 0.0.
+
 displayCustomers by frequency:
 Customer3 has taken 0 rides.
 Customer4 has taken 0 rides.
@@ -175,6 +179,7 @@ Customer5 has spent 0.0 euros in this system.
 Customer6 has spent 0.0 euros in this system.
 Customer1 has spent 1243.8400000000001 euros in this system.
 Customer2 has spent 2612.15 euros in this system.
+
 
 displayDrivers by appreciated level:
 Driver1's average mark is: 0.0.
@@ -229,3 +234,4 @@ Customer5 has spent 0.0 euros in this system.
 Customer6 has spent 0.0 euros in this system.
 Customer1 has spent 1243.8400000000001 euros in this system.
 Customer2 has spent 2612.15 euros in this system.
+
