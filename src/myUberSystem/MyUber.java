@@ -127,7 +127,7 @@ public class MyUber  {
 		this.numBerlineCar = Integer.parseInt(nBerlinCars);
 		this.numVanCar = Integer.parseInt(nVanCars);
 		this.numDriver = this.numStandardCar + this.numBerlineCar + this.numVanCar;
-		this.areaUsed = new AreaUsed(new GPSLocation(48.85, 23.33),40.00) ; 
+		this.areaUsed = new AreaUsed(new GPSLocation(48.85, 23.33),10.00) ; 
 		this.setup_initialisation();
 		
 	}
@@ -233,7 +233,7 @@ public class MyUber  {
 	 * @param ride
 	 */
 	public void driverAllocation(Ride ride) {
-		if (ride.getRideType() == "uberPool") {
+		if (ride.getRideType().equals("uberPool")) {
 			this.poolRequest.add(0,ride);
 			//this.listOfRide.add(ride);
 			if(poolRequest.size()>=2) {
@@ -248,7 +248,7 @@ public class MyUber  {
 							newRideUberPool.setDurationMin(Ride.calculateDuration(newRideUberPool.getLength(), Ride.getTrafficSpeedMap().get(newRideUberPool.getTrafficState())));
 							newRideUberPool.setDurationMin2(Ride.calculateDuration(newRideUberPool.getLength2(), Ride.getTrafficSpeedMap().get(newRideUberPool.getTrafficState())));
 							newRideUberPool.setEndTime(newRideUberPool.returnEndTime(newRideUberPool.getStartTime()));
-							newRideUberPool.setEndTime2(newRideUberPool.returnEndTime(newRideUberPool.getStartTime2()));
+							newRideUberPool.setEndTime2(newRideUberPool.returnEndTime2(newRideUberPool.getStartTime2()));
 							newRideUberPool.getCustomer().setCurrentRide(newRideUberPool);
 							newRideUberPool.getCustomer2().setCurrentRide(newRideUberPool);
 							newRideUberPool.getDriver().setOnARideTime(newRideUberPool.getDriver().getOnARideTime()+newRideUberPool.getDurationMin()+newRideUberPool.getDurationMin2());

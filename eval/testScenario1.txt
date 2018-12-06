@@ -1,13 +1,17 @@
 setup 10 5 5 5 
 addCustomer Alan Turing
 addDriver James Hunt Berline1
+addCarDriver Steve Jobs standard
 moveCar Berline2 48.8500344 23.330034
 moveCustomer 1 48.850023 23.330098
+setDriverStatus driver1name driver1surname off-duty 
 ask4price 3 48.8500455 23.3301003 -1
-simRide 2 2 48.8500001224 23.3300022 17 30 uberx 4
-simRide 1 1 48.850008966 23.330023 13 23 uberblack 5
-simRide 2 3 48.85000023 23.3300072 17 25 ubervan 3
-displayState
+simRide 2 2 48.850000000001224 23.33000000022 17 30 uberx 4
+simRide 1 1 48.8500002224 23.33000052 14 30 uberblack 5
+simRide 3 5 48.8500023 23.3300000024 23 34 ubervan 3
 displayDrivers mostappreciated
 displayDrivers mostoccupied
 displayCustomers mostcharged
+displayCustomers mostfrequent
+totalCashed
+displayState

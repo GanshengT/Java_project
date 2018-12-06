@@ -1,0 +1,9 @@
+simRide 3 5 48.85009243 23.3300000223 14 30 uberx 4
+addDriver James Hunt Berline1
+displayState
+setup 10 10 10 10 
+displayState
+simRide 1 2 48.850066243 23.33053223 15 30 uberpool 5
+simRide 2 3 48.850098643 23.3305923 15 35 uberpool 5
+simRide 5 1 48.8500008645 23.3300009856 15 36 uberpool 5
+simRide 7 1 48.8500004905 23.3300003657 15 40 uberpool 5

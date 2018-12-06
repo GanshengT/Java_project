@@ -27,6 +27,15 @@ import otherTools.MyTime;
 public class CLUI {
 	
 	private MyUber myUber;
+	
+	private List<String> listOfCommand = new ArrayList();
+	
+	private BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
+	
+	public List<String> getListOfCommand() {
+		return listOfCommand;
+	}
+
 	public MyUber getMyUber() {
 		return myUber;
 	}
@@ -42,13 +51,34 @@ public class CLUI {
 	public void setBr(BufferedReader br) {
 		this.br = br;
 	}
-
-	private BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
-	//private BufferedReader brOfIni;
+	
+	public CLUI() {
+		this.listOfCommand.add("'init <iniFileName>'(iniFileName example: eval/test.ini)");
+		this.listOfCommand.add("'setup <nStandardCars> <nBerlinCars> <nVanCars> <nCustomers>'");
+		this.listOfCommand.add("'runtest <txtFileName>'(txtFileName example: eval/testScenario1)");
+		this.listOfCommand.add("'addCustomer <customerName> <customerSurname>'");
+		this.listOfCommand.add("'addCarDriver <driverName> <driverSurname> <carType>'(carType:berline, standard, van)");
+		this.listOfCommand.add("'addDriver <driverName> <driverSurname> <carID>'(carID example: Standard1)");
+		this.listOfCommand.add("'setDriverStatus <driverName> <driverSurname> <status>'(status: on-duty, offline, off-duty)");
+		this.listOfCommand.add("'moveCar <carID> <xPos> <yPos>'(carID example: Standard1)");
+		this.listOfCommand.add("'moveCustomer <custID> <xPos> <yPos>'(custID example: 1)");
+		this.listOfCommand.add("'displayState'");
+		this.listOfCommand.add("'ask4price <customerID> <xPos> <yPos> <timeHour>'(customerID example:1;time example:17)");
+		this.listOfCommand.add("'simRide <customerID> <xPos> <yPos> <time_Hour> <time_Minute> <rideType> <driverMark>'(rideType:uberx, uberblack, ubervan, uberpool)");
+		this.listOfCommand.add("'simRide_i <customerID> <xPos> <yPos> <time(HH:mm:ss)>'(time example: 20:12:30)");
+		this.listOfCommand.add("'displayDrivers <sortpolicy>'(sortpolicy: mostappreciated or mostoccupied)");
+		this.listOfCommand.add("'displayCustomers <sortpolicy>'(sortpolicy: mostfrequent or mostcharged)");
+		this.listOfCommand.add("'totalCashed'");
+	
+	}
 	
 	public static void main(String[] args) throws IOException, NoSuchFieldException {
 		CLUI myUberCLUI = new CLUI();
-		System.out.println("welcome to my Uber, please input your command");
+		myUberCLUI.setMyUber(new MyUber("10","10", "10", "10"));
+		System.out.println("Welcome to my Uber, the initialized myUber system has 10 standard cars, 10 berline cars, 10 van cars and 10 customers.");
+		System.out.println("Here is a list of commands:");
+		System.out.println(myUberCLUI.getListOfCommand());
+		System.out.println("Please input your command.");
 		boolean readSucceed = false;
 		boolean continueCommand = true;
 		while(continueCommand == true) {
@@ -90,7 +120,7 @@ public class CLUI {
 	public void setup(String nStandardCars, String nBerlinCars, String nVanCars, String nCustomers, BufferedWriter bw) {
 		this.myUber = new MyUber(nStandardCars, nBerlinCars, nVanCars, nCustomers);
 		try {
-			bw.write("setup:\r\nYour system myUber has been set up, with "+nStandardCars+" standard cars, "+nBerlinCars+" beiline cars, "+nVanCars+" van cars, and "
+			bw.write("\r\nsetup:\r\nYour system myUber has been set up, with "+nStandardCars+" standard cars, "+nBerlinCars+" beiline cars, "+nVanCars+" van cars, and "
 				+nCustomers+" customers.\r\n");
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -313,10 +343,12 @@ public class CLUI {
 			}
 		}
 		else if(command[0].equals("setDriverStatus")) {
+			//System.out.println("ici");
 			if(command.length != 4) {
 				System.out.println("setDriverStatus syntext not right");
 				return false;
 			}else {
+				//System.out.println("ici");
 				this.setDriverStatus(command[1], command[2], command[3],bw);
 				return true;
 			}
@@ -665,6 +697,7 @@ public class CLUI {
 		for (Driver driver:myUber.getListOfDriver()) {
 			if (driver.toString().equals(driverName+" "+driverSurname)) {
 					foundDriver.add(driver);	
+					//System.out.println("ici2");
 			}
 		}
 		if(foundDriver.isEmpty()==true) {
@@ -674,12 +707,15 @@ public class CLUI {
 			System.out.println("there are more than one driver statisfy searching criterium, please select the driver by typing the ID");
 			for(Driver driver: foundDriver) {
 			System.out.println(driver.getDriverId()+", name and surname: "+driver.getName()+" "+driver.getSurName());
-		}}
+		}
 		String[] selectID = readCommand();
 		for(Driver driver: foundDriver) {
 			if(Integer.toString(driver.getDriverId()).equals(selectID[0])) {
 				return driver;
 			}
+			}
+		}else {
+			return foundDriver.get(0);
 		}
 		return null;
 	}
@@ -713,7 +749,9 @@ public class CLUI {
 	 * @throws IOException
 	 */
 	public void setDriverStatus(String driverName, String driverSurname, String status, BufferedWriter bw) throws IOException {
+		System.out.println("ici");
 		Driver driver = findDriverByName(driverName, driverSurname);
+		System.out.println(driver);
 		String originalState = driver.getStatus();
 		driver.setStatus(status);		
 		try {
@@ -992,17 +1030,45 @@ Finally we write down the result in a TXT.
 	 */
 	public void simRide(String customerID, String passengerNum, String xPos, String yPos, String timeHH, String timeMM, String rideType, String driverMark) {
 		Customer customer = myUber.getCustomerMap().get(customerID);
-		Ride simRide = customer.createANewRideAuto(Integer.parseInt(passengerNum),Double.parseDouble(xPos), Double.parseDouble(yPos), Integer.parseInt(timeHH), Integer.parseInt(timeMM), rideType);
-		myUber.driverAllocation(simRide);
-		customer.aboard();
-		myUber.RideFinished(simRide, Integer.parseInt(driverMark));
-		System.out.println("The current ride is a "+simRide.getRideType()+" ride, it is "+simRide.getState());
-		System.out.println("For this ride, the dirver ID is: "+simRide.getDriver().getDriverId()+", the car ID is: "+simRide.getCar().getIdCar()
+		if(rideType.equals("uberpool")) {
+			int originalLen = myUber.getListOfRide().size();
+			Ride simRide = customer.createANewRideAuto(Integer.parseInt(passengerNum),Double.parseDouble(xPos), Double.parseDouble(yPos),Integer.parseInt(timeHH),Integer.parseInt(timeMM),rideType);
+			myUber.driverAllocation(simRide);
+			if(myUber.getListOfRide().size() == originalLen) {
+				System.out.println("Your request has been sent, please wait for another customer who wants a uberpool ride.");
+			}else if(myUber.getListOfRide().size() == originalLen+1){
+				simRide = myUber.getListOfRide().get(0);
+				simRide.getCustomer().aboard();
+				simRide.getCustomer2().aboard();
+				myUber.RideFinished(simRide, Integer.parseInt(driverMark));
+				System.out.println("The current ride is a "+simRide.getRideType()+" ride, it is "+simRide.getState());
+				System.out.println("For this ride, the dirver ID is: "+simRide.getDriver().getDriverId()+", the car ID is: "+simRide.getCar().getIdCar()
+									+", the customer is Customer "+simRide.getCustomer().getIdNum()+" and Customer "+simRide.getCustomer2().getIdNum()+".");
+				System.out.println("The ride length for customer 1 is "+simRide.getLength()+"km, the traffic state is "+simRide.getTrafficState()
+								+", and the cost is "+simRide.getPriceToPay()+".");
+				System.out.println("The ride length for customer 2 is "+simRide.getLength2()+"km, the traffic state is "+simRide.getTrafficState2()
+				+", and the cost is "+simRide.getPriceToPay2()+".");
+				System.out.println("This ride began at "+simRide.getStartTime().getTime()+", the end time for customer 1 is "+simRide.getEndTime().getTime()
+								+", and the duration is "+simRide.getDurationMin()+"min.");
+				System.out.println("This ride began at "+simRide.getStartTime2().getTime()+", the end time for customer 2 is "+simRide.getEndTime2().getTime()
+						+", and the duration is "+simRide.getDurationMin2()+"min.");
+				
+			}else {
+				System.out.println("There are some wrong with uber pool ride, please check.");
+			}
+		}else {
+			Ride simRide = customer.createANewRideAuto(Integer.parseInt(passengerNum),Double.parseDouble(xPos), Double.parseDouble(yPos), Integer.parseInt(timeHH), Integer.parseInt(timeMM), rideType);
+			myUber.driverAllocation(simRide);
+			customer.aboard();
+			myUber.RideFinished(simRide, Integer.parseInt(driverMark));
+			System.out.println("The current ride is a "+simRide.getRideType()+" ride, it is "+simRide.getState());
+			System.out.println("For this ride, the dirver ID is: "+simRide.getDriver().getDriverId()+", the car ID is: "+simRide.getCar().getIdCar()
 								+", the customer is Customer "+simRide.getCustomer().getIdNum()+".");
-		System.out.println("The ride length is "+simRide.getLength()+"km, the traffic state is "+simRide.getTrafficState()
+			System.out.println("The ride length is "+simRide.getLength()+"km, the traffic state is "+simRide.getTrafficState()
 							+", and the cost is "+simRide.getPriceToPay()+".");
-		System.out.println("This ride began at "+simRide.getStartTime().getTime()+", the end time is "+simRide.getEndTime().getTime()
-							+", and the duration is "+simRide.getDuration()+"min.");
+			System.out.println("This ride began at "+simRide.getStartTime().getTime()+", the end time is "+simRide.getEndTime().getTime()
+							+", and the duration is "+simRide.getDurationMin()+"min.");
+		}
 		displayState();
 	}
 	
@@ -1019,26 +1085,69 @@ Finally we write down the result in a TXT.
 	 */
 	public void simRide(String customerID, String passengerNum, String xPos, String yPos, String timeHH, String timeMM, String rideType, String driverMark, BufferedWriter bw) {
 		Customer customer = myUber.getCustomerMap().get(customerID);
-		Ride simRide = customer.createANewRideAuto(Integer.parseInt(passengerNum),Double.parseDouble(xPos), Double.parseDouble(yPos), Integer.parseInt(timeHH), Integer.parseInt(timeMM), rideType);
-		myUber.driverAllocation(simRide);
-		customer.aboard();
-		myUber.RideFinished(simRide, Integer.parseInt(driverMark));
-		System.out.println("The current ride is a "+simRide.getRideType()+" ride, it is "+simRide.getState()+".");
-		System.out.println("For this ride, the dirver ID is: "+simRide.getDriver().getDriverId()+", the car ID is: "+simRide.getCar().getIdCar()
+		if(rideType.equals("uberpool")) {
+			int originalLen = myUber.getListOfRide().size();
+			Ride simRide = customer.createANewRideAuto(Integer.parseInt(passengerNum),Double.parseDouble(xPos), Double.parseDouble(yPos),Integer.parseInt(timeHH),Integer.parseInt(timeMM),rideType);
+			myUber.driverAllocation(simRide);
+			if(myUber.getListOfRide().size() == originalLen) {
+				System.out.println("Your request has been sent, please wait for another customer who wants a uberpool ride.");
+				try {
+					bw.write("\r\nsimRide:\r\nYour request has been sent, please wait for another customer who wants a uberpool ride.\r\n");
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}else if(myUber.getListOfRide().size() == originalLen+1){
+				simRide = myUber.getListOfRide().get(0);
+				simRide.getCustomer().aboard();
+				simRide.getCustomer2().aboard();
+				myUber.RideFinished(simRide, Integer.parseInt(driverMark));
+				System.out.println("The current ride is a "+simRide.getRideType()+" ride, it is "+simRide.getState());
+				System.out.println("For this ride, the dirver ID is: "+simRide.getDriver().getDriverId()+", the car ID is: "+simRide.getCar().getIdCar()
+									+", the customer is Customer "+simRide.getCustomer().getIdNum()+" and Customer "+simRide.getCustomer2().getIdNum()+".");
+				System.out.println("The ride length for customer 1 is "+simRide.getLength()+"km, the traffic state is "+simRide.getTrafficState()
+								+", and the cost is "+simRide.getPriceToPay()+".");
+				System.out.println("The ride length for customer 2 is "+simRide.getLength2()+"km, the traffic state is "+simRide.getTrafficState2()
+				+", and the cost is "+simRide.getPriceToPay2()+".");
+				System.out.println("This ride began at "+simRide.getStartTime().getTime()+", the end time for customer 1 is "+simRide.getEndTime().getTime()
+								+", and the duration is "+simRide.getDurationMin()+"min.");
+				System.out.println("This ride began at "+simRide.getStartTime2().getTime()+", the end time for customer 2 is "+simRide.getEndTime2().getTime()
+						+", and the duration is "+simRide.getDurationMin2()+"min.");
+				try {
+					bw.write("\r\nsimRide:\r\nThe current ride is a "+simRide.getRideType()+" ride, it is "+simRide.getState()+".\r\nFor this ride, the dirver ID is: "
+							+simRide.getDriver().getDriverId()+", the car ID is: "+simRide.getCar().getIdCar()+", the customer1 is Customer"
+							+simRide.getCustomer().getIdNum()+" and customer 2 is Customer "+simRide.getCustomer2().getIdNum()+".\r\nThe ride length for customer 1 is: "+simRide.getLength()+"km, the traffic state is "+simRide.getTrafficState()
+							+", and the cost is "+simRide.getPriceToPay()+".\r\nThe ride length for customer 2 is: "+simRide.getLength2()+"km, the traffic state is "+simRide.getTrafficState2()
+							+", and the cost is "+simRide.getPriceToPay2()+".\r\nThis ride began at: "+simRide.getStartTime().getTime()+", the end time for customer 1 is: "
+							+simRide.getEndTime().getTime()+", the end time for customer 2 is: "+simRide.getEndTime2().getTime()+", and the durations are: "+simRide.getDurationMin()+" min, "+simRide.getDurationMin2()+" min.\r\n");
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}else {
+				System.out.println("There are some wrong with uber pool ride, please check.");
+			}
+		}else {
+			Ride simRide = customer.createANewRideAuto(Integer.parseInt(passengerNum),Double.parseDouble(xPos), Double.parseDouble(yPos), Integer.parseInt(timeHH), Integer.parseInt(timeMM), rideType);
+			myUber.driverAllocation(simRide);
+			customer.aboard();
+			myUber.RideFinished(simRide, Integer.parseInt(driverMark));
+			System.out.println("The current ride is a "+simRide.getRideType()+" ride, it is "+simRide.getState());
+			System.out.println("For this ride, the dirver ID is: "+simRide.getDriver().getDriverId()+", the car ID is: "+simRide.getCar().getIdCar()
 								+", the customer is Customer "+simRide.getCustomer().getIdNum()+".");
-		System.out.println("The ride length is "+simRide.getLength()+"km, the traffic state is "+simRide.getTrafficState()
+			System.out.println("The ride length is "+simRide.getLength()+"km, the traffic state is "+simRide.getTrafficState()
 							+", and the cost is "+simRide.getPriceToPay()+".");
-		System.out.println("This ride began at "+simRide.getStartTime().getTime()+", the end time is "+simRide.getEndTime().getTime()
-							+", and the duration is "+simRide.getDuration()+"min.");
-		try {
-			bw.write("simRide:\r\nThe current ride is a "+simRide.getRideType()+" ride, it is "+simRide.getState()+".\r\nFor this ride, the dirver ID is: "
-					+simRide.getDriver().getDriverId()+", the car ID is: "+simRide.getCar().getIdCar()+", the customer is Customer"
-					+simRide.getCustomer().getIdNum()+".\r\nThe ride length is: "+simRide.getLength()+"km, the traffic state is "+simRide.getTrafficState()
-					+", and the cost is "+simRide.getPriceToPay()+".\r\nThis ride began at: "+simRide.getStartTime().getTime()+", the end time is: "
-					+simRide.getEndTime().getTime()+", and the duration is: "+simRide.getDuration()+" min.\r\n");
-		}catch(Exception e) {
-			e.printStackTrace();
+			System.out.println("This ride began at "+simRide.getStartTime().getTime()+", the end time is "+simRide.getEndTime().getTime()
+							+", and the duration is "+simRide.getDurationMin()+"min.");
+			try {
+				bw.write("\r\nsimRide:\r\nThe current ride is a "+simRide.getRideType()+" ride, it is "+simRide.getState()+".\r\nFor this ride, the dirver ID is: "
+						+simRide.getDriver().getDriverId()+", the car ID is: "+simRide.getCar().getIdCar()+", the customer is Customer"
+						+simRide.getCustomer().getIdNum()+".\r\nThe ride length is: "+simRide.getLength()+"km, the traffic state is "+simRide.getTrafficState()
+						+", and the cost is "+simRide.getPriceToPay()+".\r\nThis ride began at: "+simRide.getStartTime().getTime()+", the end time is: "
+						+simRide.getEndTime().getTime()+", and the duration is: "+simRide.getDurationMin()+" min.\r\n");
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
+		
 		
 	}
 	
@@ -1121,6 +1230,7 @@ Finally we write down the result in a TXT.
 		}
 		//scan.close();
 	}
+	
 	
 	/**
 	 * Tan: addCustomer

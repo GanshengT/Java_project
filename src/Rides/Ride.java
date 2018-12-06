@@ -106,7 +106,7 @@ public abstract class Ride {
 			this.lengthType2 = Ride.returnLengthType(this.length2);
 			this.trafficState2 = this.trafficState;
 			this.durationMin2 = calculateDuration(length2, trafficSpeedMap.get(trafficState2));
-			this.endTime2 = returnEndTime(this.startTime2);
+			this.endTime2 = returnEndTime2(this.startTime2);
 			
 		}
 	/**
@@ -174,6 +174,12 @@ public abstract class Ride {
 	public MyTime returnEndTime(MyTime oneStartTime) {
 		MyTime oneEndTime = new MyTime(oneStartTime.getHH(), oneStartTime.getMm(), oneStartTime.getSs());
 		oneEndTime.addTime(this.durationMin*60);
+		return oneEndTime;
+	}
+	
+	public MyTime returnEndTime2(MyTime oneStartTime) {
+		MyTime oneEndTime = new MyTime(oneStartTime.getHH(), oneStartTime.getMm(), oneStartTime.getSs());
+		oneEndTime.addTime(this.durationMin2*60);
 		return oneEndTime;
 	}
 	

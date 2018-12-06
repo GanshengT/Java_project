@@ -1,0 +1,371 @@
+setup:
+Your system myUber has been set up, with 15 standard cars, 15 beiline cars, 15 van cars, and 10 customers.
+
+simRide:
+Your request has been sent, please wait for another customer who wants a uberpool ride.
+
+simRide:
+The current ride is a uberPool ride, it is completed.
+For this ride, the dirver ID is: 39, the car ID is: Standard7, the customer1 is Customer1 and customer 2 is Customer 2.
+The ride length for customer 1 is: 11.0km, the traffic state is mediumTraffic, and the cost is 29.04.
+The ride length for customer 2 is: 6.0km, the traffic state is heavyTraffic, and the cost is 17.279999999999998.
+This ride began at: 2018-12-6 7:35:0, the end time for customer 1 is: 2018-12-6 9:3:0, the end time for customer 2 is: 2018-12-6 8:23:0, and the durations are: 88.0 min, 48.0 min.
+
+simRide:
+The current ride is a uberX ride, it is completed.
+For this ride, the dirver ID is: 33, the car ID is: Standard13, the customer is Customer3.
+The ride length is: 14.0km, the traffic state is lowTraffic, and the cost is 26.74.
+This ride began at: 2018-12-6 14:30:0, the end time is: 2018-12-6 15:26:0, and the duration is: 56.0 min.
+
+simRide:
+Your request has been sent, please wait for another customer who wants a uberpool ride.
+
+simRide:
+The current ride is a uberBlack ride, it is completed.
+For this ride, the dirver ID is: 29, the car ID is: Berline2, the customer is Customer4.
+The ride length is: 7.0km, the traffic state is heavyTraffic, and the cost is 61.6.
+This ride began at: 2018-12-6 17:26:0, the end time is: 2018-12-6 19:46:0, and the duration is: 140.0 min.
+
+simRide:
+The current ride is a uberPool ride, it is completed.
+For this ride, the dirver ID is: 38, the car ID is: Standard8, the customer1 is Customer5 and customer 2 is Customer 6.
+The ride length for customer 1 is: 11.0km, the traffic state is mediumTraffic, and the cost is 15.730000000000002.
+The ride length for customer 2 is: 11.0km, the traffic state is mediumTraffic, and the cost is 36.300000000000004.
+This ride began at: 2018-12-6 16:35:0, the end time for customer 1 is: 2018-12-6 18:3:0, the end time for customer 2 is: 2018-12-6 18:3:0, and the durations are: 88.0 min, 88.0 min.
+
+displayDrivers by appreciated level:
+Driver1's average mark is: 0.0.
+Driver2's average mark is: 0.0.
+Driver3's average mark is: 0.0.
+Driver4's average mark is: 0.0.
+Driver5's average mark is: 0.0.
+Driver6's average mark is: 0.0.
+Driver7's average mark is: 0.0.
+Driver8's average mark is: 0.0.
+Driver9's average mark is: 0.0.
+Driver10's average mark is: 0.0.
+Driver11's average mark is: 0.0.
+Driver12's average mark is: 0.0.
+Driver13's average mark is: 0.0.
+Driver14's average mark is: 0.0.
+Driver15's average mark is: 0.0.
+Driver16's average mark is: 0.0.
+Driver17's average mark is: 0.0.
+Driver18's average mark is: 0.0.
+Driver19's average mark is: 0.0.
+Driver20's average mark is: 0.0.
+Driver21's average mark is: 0.0.
+Driver22's average mark is: 0.0.
+Driver23's average mark is: 0.0.
+Driver24's average mark is: 0.0.
+Driver25's average mark is: 0.0.
+Driver26's average mark is: 0.0.
+Driver27's average mark is: 0.0.
+Driver28's average mark is: 0.0.
+Driver30's average mark is: 0.0.
+Driver31's average mark is: 0.0.
+Driver32's average mark is: 0.0.
+Driver34's average mark is: 0.0.
+Driver35's average mark is: 0.0.
+Driver36's average mark is: 0.0.
+Driver37's average mark is: 0.0.
+Driver40's average mark is: 0.0.
+Driver41's average mark is: 0.0.
+Driver42's average mark is: 0.0.
+Driver43's average mark is: 0.0.
+Driver44's average mark is: 0.0.
+Driver45's average mark is: 0.0.
+Driver29's average mark is: 4.0.
+Driver33's average mark is: 4.0.
+Driver38's average mark is: 5.0.
+Driver39's average mark is: 5.0.
+
+displayDrivers by occupied level:
+Driver1's occupied ratio is: 0.0.
+Driver2's occupied ratio is: 0.0.
+Driver3's occupied ratio is: 0.0.
+Driver4's occupied ratio is: 0.0.
+Driver5's occupied ratio is: 0.0.
+Driver6's occupied ratio is: 0.0.
+Driver7's occupied ratio is: 0.0.
+Driver8's occupied ratio is: 0.0.
+Driver9's occupied ratio is: 0.0.
+Driver10's occupied ratio is: 0.0.
+Driver11's occupied ratio is: 0.0.
+Driver12's occupied ratio is: 0.0.
+Driver13's occupied ratio is: 0.0.
+Driver14's occupied ratio is: 0.0.
+Driver15's occupied ratio is: 0.0.
+Driver16's occupied ratio is: 0.0.
+Driver17's occupied ratio is: 0.0.
+Driver18's occupied ratio is: 0.0.
+Driver19's occupied ratio is: 0.0.
+Driver20's occupied ratio is: 0.0.
+Driver21's occupied ratio is: 0.0.
+Driver22's occupied ratio is: 0.0.
+Driver23's occupied ratio is: 0.0.
+Driver24's occupied ratio is: 0.0.
+Driver25's occupied ratio is: 0.0.
+Driver26's occupied ratio is: 0.0.
+Driver27's occupied ratio is: 0.0.
+Driver28's occupied ratio is: 0.0.
+Driver30's occupied ratio is: 0.0.
+Driver31's occupied ratio is: 0.0.
+Driver32's occupied ratio is: 0.0.
+Driver34's occupied ratio is: 0.0.
+Driver35's occupied ratio is: 0.0.
+Driver36's occupied ratio is: 0.0.
+Driver37's occupied ratio is: 0.0.
+Driver40's occupied ratio is: 0.0.
+Driver41's occupied ratio is: 0.0.
+Driver42's occupied ratio is: 0.0.
+Driver43's occupied ratio is: 0.0.
+Driver44's occupied ratio is: 0.0.
+Driver45's occupied ratio is: 0.0.
+Driver33's occupied ratio is: 0.056.
+Driver39's occupied ratio is: 0.136.
+Driver29's occupied ratio is: 0.14.
+Driver38's occupied ratio is: 0.176.
+
+displayCustomers by charged level:
+Customer7 has spent 0.0 euros in this system.
+Customer8 has spent 0.0 euros in this system.
+Customer9 has spent 0.0 euros in this system.
+Customer10 has spent 0.0 euros in this system.
+Customer5 has spent 15.730000000000002 euros in this system.
+Customer2 has spent 17.279999999999998 euros in this system.
+Customer3 has spent 26.74 euros in this system.
+Customer1 has spent 29.04 euros in this system.
+Customer6 has spent 36.300000000000004 euros in this system.
+Customer4 has spent 61.6 euros in this system.
+
+displayCustomers by frequency:
+Customer7 has taken 0 rides.
+Customer8 has taken 0 rides.
+Customer9 has taken 0 rides.
+Customer10 has taken 0 rides.
+Customer1 has taken 1 rides.
+Customer2 has taken 1 rides.
+Customer3 has taken 1 rides.
+Customer4 has taken 1 rides.
+Customer5 has taken 1 rides.
+Customer6 has taken 1 rides.
+
+displayState
+Car information:
+Van15, its position: 23.32994448.
+Van14, its position: 23.33003007.
+Van13, its position: 23.32993178.
+Van12, its position: 23.32997313.
+Van11, its position: 23.32998048.
+Van10, its position: 23.32999348.
+Van9, its position: 23.33008118.
+Van8, its position: 23.3299928.
+Van7, its position: 23.32991232.
+Van6, its position: 23.33008154.
+Van5, its position: 23.32997844.
+Van4, its position: 23.33004332.
+Van3, its position: 23.32993898.
+Van2, its position: 23.32999535.
+Van1, its position: 23.3299949.
+Berline15, its position: 23.3299926.
+Berline14, its position: 23.3299676.
+Berline13, its position: 23.32993244.
+Berline12, its position: 23.33006057.
+Berline11, its position: 23.33001137.
+Berline10, its position: 23.33001428.
+Berline9, its position: 23.33000489.
+Berline8, its position: 23.33001688.
+Berline7, its position: 23.32995391.
+Berline6, its position: 23.33001097.
+Berline5, its position: 23.33003811.
+Berline4, its position: 23.32997934.
+Berline3, its position: 23.33001971.
+Berline2, its position: 23.32997703.
+Berline1, its position: 23.33007196.
+Standard15, its position: 23.32994159.
+Standard14, its position: 23.32996377.
+Standard13, its position: 23.32996398.
+Standard12, its position: 23.33001738.
+Standard11, its position: 23.33001905.
+Standard10, its position: 23.33001585.
+Standard9, its position: 23.32994804.
+Standard8, its position: 23.33000825.
+Standard7, its position: 23.3299589.
+Standard6, its position: 23.33004627.
+Standard5, its position: 23.32997738.
+Standard4, its position: 23.32996102.
+Standard3, its position: 23.32997154.
+Standard2, its position: 23.32991697.
+Standard1, its position: 23.32992524.
+Driver information:
+DriverID: 1, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 2, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 3, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 4, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 5, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 6, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 7, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 8, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 9, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 10, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 11, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 12, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 13, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 14, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 15, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 16, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 17, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 18, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 19, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 20, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 21, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 22, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 23, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 24, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 25, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 26, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 27, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 28, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 29, status: on-duty, occupied rate: 0.14, average mark: 4.0.
+DriverID: 30, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 31, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 32, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 33, status: off-duty, occupied rate: 0.056, average mark: 4.0.
+DriverID: 34, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 35, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 36, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 37, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 38, status: off-duty, occupied rate: 0.176, average mark: 5.0.
+DriverID: 39, status: on-duty, occupied rate: 0.136, average mark: 5.0.
+DriverID: 40, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 41, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 42, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 43, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 44, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+DriverID: 45, status: on-duty, occupied rate: 0.0, average mark: 0.0.
+displayDrivers by appreciated level:
+Driver1's average mark is: 0.0.
+Driver2's average mark is: 0.0.
+Driver3's average mark is: 0.0.
+Driver4's average mark is: 0.0.
+Driver5's average mark is: 0.0.
+Driver6's average mark is: 0.0.
+Driver7's average mark is: 0.0.
+Driver8's average mark is: 0.0.
+Driver9's average mark is: 0.0.
+Driver10's average mark is: 0.0.
+Driver11's average mark is: 0.0.
+Driver12's average mark is: 0.0.
+Driver13's average mark is: 0.0.
+Driver14's average mark is: 0.0.
+Driver15's average mark is: 0.0.
+Driver16's average mark is: 0.0.
+Driver17's average mark is: 0.0.
+Driver18's average mark is: 0.0.
+Driver19's average mark is: 0.0.
+Driver20's average mark is: 0.0.
+Driver21's average mark is: 0.0.
+Driver22's average mark is: 0.0.
+Driver23's average mark is: 0.0.
+Driver24's average mark is: 0.0.
+Driver25's average mark is: 0.0.
+Driver26's average mark is: 0.0.
+Driver27's average mark is: 0.0.
+Driver28's average mark is: 0.0.
+Driver30's average mark is: 0.0.
+Driver31's average mark is: 0.0.
+Driver32's average mark is: 0.0.
+Driver34's average mark is: 0.0.
+Driver35's average mark is: 0.0.
+Driver36's average mark is: 0.0.
+Driver37's average mark is: 0.0.
+Driver40's average mark is: 0.0.
+Driver41's average mark is: 0.0.
+Driver42's average mark is: 0.0.
+Driver43's average mark is: 0.0.
+Driver44's average mark is: 0.0.
+Driver45's average mark is: 0.0.
+Driver29's average mark is: 4.0.
+Driver33's average mark is: 4.0.
+Driver38's average mark is: 5.0.
+Driver39's average mark is: 5.0.
+displayDrivers by occupied level:
+Driver1's occupied ratio is: 0.0.
+Driver2's occupied ratio is: 0.0.
+Driver3's occupied ratio is: 0.0.
+Driver4's occupied ratio is: 0.0.
+Driver5's occupied ratio is: 0.0.
+Driver6's occupied ratio is: 0.0.
+Driver7's occupied ratio is: 0.0.
+Driver8's occupied ratio is: 0.0.
+Driver9's occupied ratio is: 0.0.
+Driver10's occupied ratio is: 0.0.
+Driver11's occupied ratio is: 0.0.
+Driver12's occupied ratio is: 0.0.
+Driver13's occupied ratio is: 0.0.
+Driver14's occupied ratio is: 0.0.
+Driver15's occupied ratio is: 0.0.
+Driver16's occupied ratio is: 0.0.
+Driver17's occupied ratio is: 0.0.
+Driver18's occupied ratio is: 0.0.
+Driver19's occupied ratio is: 0.0.
+Driver20's occupied ratio is: 0.0.
+Driver21's occupied ratio is: 0.0.
+Driver22's occupied ratio is: 0.0.
+Driver23's occupied ratio is: 0.0.
+Driver24's occupied ratio is: 0.0.
+Driver25's occupied ratio is: 0.0.
+Driver26's occupied ratio is: 0.0.
+Driver27's occupied ratio is: 0.0.
+Driver28's occupied ratio is: 0.0.
+Driver30's occupied ratio is: 0.0.
+Driver31's occupied ratio is: 0.0.
+Driver32's occupied ratio is: 0.0.
+Driver34's occupied ratio is: 0.0.
+Driver35's occupied ratio is: 0.0.
+Driver36's occupied ratio is: 0.0.
+Driver37's occupied ratio is: 0.0.
+Driver40's occupied ratio is: 0.0.
+Driver41's occupied ratio is: 0.0.
+Driver42's occupied ratio is: 0.0.
+Driver43's occupied ratio is: 0.0.
+Driver44's occupied ratio is: 0.0.
+Driver45's occupied ratio is: 0.0.
+Driver33's occupied ratio is: 0.056.
+Driver39's occupied ratio is: 0.136.
+Driver29's occupied ratio is: 0.14.
+Driver38's occupied ratio is: 0.176.
+Customers information:
+customer's ID: 1, customer's name and surname:customer1name customer1surname, ride number: 1, location: (48.84995207,23.32995287), consumming money: 29.04.
+customer's ID: 2, customer's name and surname:customer2name customer2surname, ride number: 1, location: (48.84996653,23.3300032), consumming money: 17.279999999999998.
+customer's ID: 3, customer's name and surname:customer3name customer3surname, ride number: 1, location: (48.85005396,23.32997943), consumming money: 26.74.
+customer's ID: 4, customer's name and surname:customer4name customer4surname, ride number: 1, location: (48.84992769,23.33004879), consumming money: 61.6.
+customer's ID: 5, customer's name and surname:customer5name customer5surname, ride number: 1, location: (48.84994545,23.33003839), consumming money: 15.730000000000002.
+customer's ID: 6, customer's name and surname:customer6name customer6surname, ride number: 1, location: (48.8500775,23.33000231), consumming money: 36.300000000000004.
+customer's ID: 7, customer's name and surname:customer7name customer7surname, ride number: 0, location: (48.84997068,23.32997099), consumming money: 0.0.
+customer's ID: 8, customer's name and surname:customer8name customer8surname, ride number: 0, location: (48.84994691,23.32995062), consumming money: 0.0.
+customer's ID: 9, customer's name and surname:customer9name customer9surname, ride number: 0, location: (48.84993467,23.32994871), consumming money: 0.0.
+customer's ID: 10, customer's name and surname:customer10name customer10surname, ride number: 0, location: (48.84993934,23.33001333), consumming money: 0.0.
+displayCustomers by frequency:
+Customer7 has taken 0 rides.
+Customer8 has taken 0 rides.
+Customer9 has taken 0 rides.
+Customer10 has taken 0 rides.
+Customer1 has taken 1 rides.
+Customer2 has taken 1 rides.
+Customer3 has taken 1 rides.
+Customer4 has taken 1 rides.
+Customer5 has taken 1 rides.
+Customer6 has taken 1 rides.
+displayCustomers by charged level:
+Customer7 has spent 0.0 euros in this system.
+Customer8 has spent 0.0 euros in this system.
+Customer9 has spent 0.0 euros in this system.
+Customer10 has spent 0.0 euros in this system.
+Customer5 has spent 15.730000000000002 euros in this system.
+Customer2 has spent 17.279999999999998 euros in this system.
+Customer3 has spent 26.74 euros in this system.
+Customer1 has spent 29.04 euros in this system.
+Customer6 has spent 36.300000000000004 euros in this system.
+Customer4 has spent 61.6 euros in this system.

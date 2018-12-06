@@ -1,0 +1,13 @@
+setup 15 15 15 10
+simRide 1 2 48.8500000004224 23.33000092 7 30 uberpool 5
+simRide 2 1 48.8500001224 23.33000062 7 35 uberpool 5
+simRide 3 2 48.85009243 23.3300000223 14 30 uberx 4
+simRide 5 1 48.850002447 23.3300228 16 30 uberpool 5
+simRide 4 2 48.8500323 23.3300000823 17 26 uberblack 4
+simRide 6 2 48.850007284 23.33000202 16 35 uberpool 5
+displayDrivers mostappreciated
+displayDrivers mostoccupied
+displayCustomers mostcharged
+displayCustomers mostfrequent
+totalCashed
+displayState
